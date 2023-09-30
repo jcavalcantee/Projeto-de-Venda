@@ -8,12 +8,12 @@ package com.mycompany.prototipos;
  *
  * @author jeffe
  */
-public class TelaClientes extends javax.swing.JFrame {
+public class TelaProdutos extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaClientes
      */
-    public TelaClientes() {
+    public TelaProdutos() {
         initComponents();
     }
 
