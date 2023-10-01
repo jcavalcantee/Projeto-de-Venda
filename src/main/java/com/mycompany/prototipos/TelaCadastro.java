@@ -31,6 +31,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jSpinner1 = new javax.swing.JSpinner();
+        jLabel12 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -59,6 +60,8 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel9.setText("jLabel9");
 
         jTextField6.setText("jTextField6");
+
+        jLabel12.setText("jLabel12");
 
         jLabel1.setText("Nome:");
 
@@ -213,6 +216,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
