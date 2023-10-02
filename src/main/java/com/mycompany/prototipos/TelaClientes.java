@@ -4,6 +4,8 @@
  */
 package com.mycompany.prototipos;
 
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,7 +18,7 @@ public class TelaClientes extends javax.swing.JFrame {
      * Creates new form TelaClientes
      */
     public TelaClientes() {
-    
+
         initComponents();
     }
 
@@ -122,9 +124,15 @@ public class TelaClientes extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consulta de Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
+        txtBuscar.setName("busca"); // NOI18N
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarActionPerformed(evt);
+            }
+        });
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyTyped(evt);
             }
         });
 
@@ -220,13 +228,32 @@ public class TelaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        if(rdbCPF.isSelected()){
+
+        if (rdbCPF.isSelected()) {
             Validador cpf = new Validador();
             cpf.validarNumero(txtBuscar);
-            JOptionPane.showMessageDialog(rootPane, cpf.getMensagensErro());
-            cpf.limparMensagens();
+            if (cpf.hasErro()) {
+                JOptionPane.showMessageDialog(rootPane, cpf.getMensagensErro());
+                cpf.limparMensagens();
+            }
         }
+
     }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+        
+        if(txtBuscar.getText().trim().length() > 12){
+            evt.consume();
+        }
+        
+        char c = evt.getKeyChar();
+
+        if ((c < '0' || c > '9') && c != KeyEvent.VK_BACK_SPACE) {
+            evt.consume();
+        } else{
+            txtBuscar.setBackground(Color.WHITE);
+        }
+    }//GEN-LAST:event_txtBuscarKeyTyped
 
     /**
      * @param args the command line arguments
