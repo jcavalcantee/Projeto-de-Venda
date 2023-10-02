@@ -128,7 +128,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         String login = txtLogin.getText();
+       String login = txtLogin.getText();
        String senha = txtSenha.getText();
        //char[] senha = txtSenha.getPassword();
        String senha1 = "1";
