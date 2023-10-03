@@ -12,9 +12,7 @@ public class Prototipos {
 
     public static void main(String[] args) {
         
-     
-        
-        TelaPrincipal tela = new TelaPrincipal();
-        tela.setVisible(true);
+     TelaLogin tela = new TelaLogin();
+     tela.setVisible(true);
     }
 }
