@@ -21,7 +21,7 @@ public class Validador {
         try {
 
             //Verifico se o campo está vazio
-            if (txt.getText().trim().equals("")) {
+            if (txt.getText().replace(".", "").replaceAll("-", "").trim().equals("")) {
                 throw new IllegalArgumentException();
             }
 
