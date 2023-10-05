@@ -6,7 +6,13 @@ package com.mycompany.prototipos;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.AEADBadTagException;
 import javax.swing.JOptionPane;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -18,7 +24,6 @@ public class TelaClientes extends javax.swing.JFrame {
      * Creates new form TelaClientes
      */
     public TelaClientes() {
-
         initComponents();
     }
 
@@ -41,11 +46,11 @@ public class TelaClientes extends javax.swing.JFrame {
         btnAtualizar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        txtBuscar = new javax.swing.JTextField();
         rdbCPF = new javax.swing.JRadioButton();
         rdbNome = new javax.swing.JRadioButton();
         rdbUF = new javax.swing.JRadioButton();
         btnBuscar = new javax.swing.JButton();
+        txtBusca = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -131,30 +136,61 @@ public class TelaClientes extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consulta de Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
-        txtBuscar.setName("busca"); // NOI18N
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
-            }
-        });
-        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtBuscarKeyTyped(evt);
-            }
-        });
-
         buscaClientes.add(rdbCPF);
         rdbCPF.setText("Busca por CPF");
+        rdbCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbCPFActionPerformed(evt);
+            }
+        });
 
         buscaClientes.add(rdbNome);
         rdbNome.setText("Busca por Nome");
+        rdbNome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdbNomeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                rdbNomeMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                rdbNomeMousePressed(evt);
+            }
+        });
+        rdbNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbNomeActionPerformed(evt);
+            }
+        });
 
         buscaClientes.add(rdbUF);
         rdbUF.setText("Buscar por UF");
+        rdbUF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbUFActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/zoom.png"))); // NOI18N
         btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        txtBusca.setName("busca"); // NOI18N
+        txtBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscaActionPerformed(evt);
+            }
+        });
+        txtBusca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscaKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -167,13 +203,13 @@ public class TelaClientes extends javax.swing.JFrame {
                         .addComponent(rdbCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(rdbNome)
-                        .addGap(35, 35, 35)
-                        .addComponent(rdbUF, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 25, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(rdbUF, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                        .addGap(17, 17, 17))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(txtBusca)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar)))
                 .addGap(42, 42, 42))
         );
@@ -187,8 +223,8 @@ public class TelaClientes extends javax.swing.JFrame {
                     .addComponent(rdbCPF))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
 
@@ -233,6 +269,28 @@ public class TelaClientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean mascaraAplicada = false;
+    private boolean mascaraRemovida = false;
+
+    public void mascara() {
+        try {
+            MaskFormatter maskFormatter = new MaskFormatter("###.###.###-##");
+            txtBusca.setFormatterFactory(new DefaultFormatterFactory(maskFormatter));
+            mascaraAplicada = true;
+            mascaraRemovida = false;
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Não foi possível aplicar a máscara");
+        }
+    }
+
+    public void removerMascara() {
+        txtBusca.setFormatterFactory(null);
+        txtBusca.setText("");
+        mascaraAplicada = false;
+        mascaraRemovida = true;
+
+    }
+
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         TelaCadastro tela = new TelaCadastro();
         this.dispose();
@@ -243,44 +301,81 @@ public class TelaClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-
+    private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
+        Validador cpf = new Validador();
         if (rdbCPF.isSelected()) {
-            Validador cpf = new Validador();
-            cpf.validarNumero(txtBuscar);
+            cpf.validarNumero(txtBusca);
             if (cpf.hasErro()) {
                 JOptionPane.showMessageDialog(rootPane, cpf.getMensagensErro());
                 cpf.limparMensagens();
             }
         }
+    }//GEN-LAST:event_txtBuscaActionPerformed
 
-        if (rdbNome.isSelected()) {
-            Validador nome = new Validador();
-            nome.ValidarTexto(txtBuscar);
-            if (nome.hasErro()) {
-                JOptionPane.showMessageDialog(rootPane, nome.getMensagensErro());
-                nome.limparMensagens();
-            }
+    private void rdbUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbUFActionPerformed
+        removerMascara();
+        txtBusca.setBackground(Color.white);
+    }//GEN-LAST:event_rdbUFActionPerformed
+
+    private void txtBuscaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyTyped
+        if ((rdbCPF.isSelected() && mascaraAplicada == false)) {
+            mascara();
         }
+        if (rdbNome.isSelected() && mascaraRemovida == false) {
+            removerMascara();
+        }
+        if (rdbUF.isSelected() && mascaraRemovida == false) {
+            removerMascara();
+        }
+    }//GEN-LAST:event_txtBuscaKeyTyped
 
-    }//GEN-LAST:event_txtBuscarActionPerformed
+    private void rdbNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbNomeMouseClicked
 
-    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+    }//GEN-LAST:event_rdbNomeMouseClicked
+
+    private void rdbNomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbNomeMouseEntered
+
+    }//GEN-LAST:event_rdbNomeMouseEntered
+
+    private void rdbNomeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbNomeMousePressed
+
+    }//GEN-LAST:event_rdbNomeMousePressed
+
+    private void rdbNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbNomeActionPerformed
+        removerMascara();
+        txtBusca.setBackground(Color.white);
+    }//GEN-LAST:event_rdbNomeActionPerformed
+
+    private void rdbCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbCPFActionPerformed
+        txtBusca.setText("");
+        txtBusca.setBackground(Color.white);
+    }//GEN-LAST:event_rdbCPFActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         if (rdbCPF.isSelected()) {
-            if (txtBuscar.getText().trim().length() > 12) {
-                evt.consume();
-            }
-
-            char c = evt.getKeyChar();
-
-            if ((c < '0' || c > '9') && c != KeyEvent.VK_BACK_SPACE) {
-                evt.consume();
-            } else {
-                txtBuscar.setBackground(Color.WHITE);
+            Validador cpf = new Validador();
+            cpf.validarNumero(txtBusca);
+            if (cpf.hasErro()) {
+                JOptionPane.showMessageDialog(rootPane, cpf.getMensagensErro());
             }
         }
-
-    }//GEN-LAST:event_txtBuscarKeyTyped
+        
+        if (rdbNome.isSelected()){
+            Validador nome = new Validador();
+            nome.ValidarTexto(txtBusca);
+            if (nome.hasErro()){
+                JOptionPane.showMessageDialog(rootPane, nome.getMensagensErro());
+            }
+        }
+        
+        if (rdbUF.isSelected()){
+            Validador uf = new Validador();
+            uf.ValidarTexto(txtBusca);
+            if (uf.hasErro()){
+                JOptionPane.showMessageDialog(rootPane, uf.getMensagensErro());
+            }
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -333,6 +428,6 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdbCPF;
     private javax.swing.JRadioButton rdbNome;
     private javax.swing.JRadioButton rdbUF;
-    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JFormattedTextField txtBusca;
     // End of variables declaration//GEN-END:variables
 }
