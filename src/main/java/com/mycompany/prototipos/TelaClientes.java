@@ -254,21 +254,32 @@ public class TelaClientes extends javax.swing.JFrame {
             }
         }
 
+        if (rdbNome.isSelected()) {
+            Validador nome = new Validador();
+            nome.ValidarTexto(txtBuscar);
+            if (nome.hasErro()) {
+                JOptionPane.showMessageDialog(rootPane, nome.getMensagensErro());
+                nome.limparMensagens();
+            }
+        }
+
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
-        
-        if(txtBuscar.getText().trim().length() > 12){
-            evt.consume();
-        }
-        
-        char c = evt.getKeyChar();
+        if (rdbCPF.isSelected()) {
+            if (txtBuscar.getText().trim().length() > 12) {
+                evt.consume();
+            }
 
-        if ((c < '0' || c > '9') && c != KeyEvent.VK_BACK_SPACE) {
-            evt.consume();
-        } else{
-            txtBuscar.setBackground(Color.WHITE);
+            char c = evt.getKeyChar();
+
+            if ((c < '0' || c > '9') && c != KeyEvent.VK_BACK_SPACE) {
+                evt.consume();
+            } else {
+                txtBuscar.setBackground(Color.WHITE);
+            }
         }
+
     }//GEN-LAST:event_txtBuscarKeyTyped
 
     /**
