@@ -4,6 +4,7 @@
  */
 package com.mycompany.prototipos;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -87,6 +88,11 @@ public class TelaLogin extends javax.swing.JFrame {
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
+            }
+        });
+        btnEntrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnEntrarKeyPressed(evt);
             }
         });
 
@@ -186,19 +192,30 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        
+        validacaoLogin();
+    }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void validacaoLogin() {
         String login = txtLogin.getText();
-        String senha = txtSenha.getText();
-        String senha1 = "1";
+        char[] senha = txtSenha.getPassword();
+        String conv = new String(senha);
+        String senhaCorreta = "1";
         
-        if(login.equals("123") && senha.equals(senha1)) {
+        if(login.equals("123") && conv.equals(senhaCorreta)) {
             TelaPrincipal tela = new TelaPrincipal();
             tela.setVisible(true);
             this.dispose();
-        }
-        else 
+        } else 
             JOptionPane.showMessageDialog(rootPane, "Usuário ou Senha Inválidos.");
-    }//GEN-LAST:event_btnEntrarActionPerformed
+       }
+    private void btnEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEntrarKeyPressed
+        char t = evt.getKeyChar();
+        
+        if(t == KeyEvent.VK_ENTER) {
+            validacaoLogin();
+        } else
+            JOptionPane.showMessageDialog(rootPane, "Usuário ou Senha Inválidos.");
+    }//GEN-LAST:event_btnEntrarKeyPressed
 
     /**
      * @param args the command line arguments
