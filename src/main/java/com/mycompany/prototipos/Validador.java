@@ -5,6 +5,7 @@
 package com.mycompany.prototipos;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 
@@ -87,6 +88,13 @@ public class Validador {
             return true;
         } else {
             return false;
+        }
+    }
+    
+    public void limiteTexto(JTextField txt, java.awt.event.KeyEvent evt, int x) {
+        //Limitando a 50 caracteres;
+        if(txt.getText().length() >= x){
+            evt.consume();
         }
     }
 }

@@ -269,8 +269,8 @@ public class TelaClientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean mascaraAplicada = false;
-    private boolean mascaraRemovida = false;
+    private boolean mascaraAplicada;
+    private boolean mascaraRemovida;
 
     public void mascara() {
         try {
@@ -326,6 +326,14 @@ public class TelaClientes extends javax.swing.JFrame {
         }
         if (rdbUF.isSelected() && mascaraRemovida == false) {
             removerMascara();
+        }
+        if (rdbNome.isSelected() && mascaraRemovida == true) {
+            Validador validar = new Validador();
+            validar.limiteTexto(txtBusca, evt, 50);
+        }
+        if (rdbUF.isSelected() && mascaraRemovida == true) {
+            Validador validar = new Validador();
+            validar.limiteTexto(txtBusca, evt, 2);
         }
     }//GEN-LAST:event_txtBuscaKeyTyped
 
