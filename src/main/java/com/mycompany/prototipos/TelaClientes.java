@@ -187,6 +187,9 @@ public class TelaClientes extends javax.swing.JFrame {
             }
         });
         txtBusca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscaKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtBuscaKeyTyped(evt);
             }
@@ -270,25 +273,23 @@ public class TelaClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private boolean mascaraAplicada;
-    private boolean mascaraRemovida;
 
-    public void mascara() {
+    public boolean mascara() {
         try {
             MaskFormatter maskFormatter = new MaskFormatter("###.###.###-##");
             txtBusca.setFormatterFactory(new DefaultFormatterFactory(maskFormatter));
-            mascaraAplicada = true;
-            mascaraRemovida = false;
+
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(rootPane, "Não foi possível aplicar a máscara");
         }
+        return mascaraAplicada = true;
     }
 
-    public void removerMascara() {
+    public boolean removerMascara() {
         txtBusca.setFormatterFactory(null);
         txtBusca.setText("");
-        mascaraAplicada = false;
-        mascaraRemovida = true;
 
+        return mascaraAplicada = false;
     }
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
@@ -318,23 +319,29 @@ public class TelaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_rdbUFActionPerformed
 
     private void txtBuscaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyTyped
+        if (rdbNome.isSelected() && mascaraAplicada == true) {
+            removerMascara();
+        }
+        
+        if (rdbUF.isSelected() && mascaraAplicada == true) {
+            removerMascara();
+        }
+        
         if ((rdbCPF.isSelected() && mascaraAplicada == false)) {
-            mascara();
+            Validador cpf = new Validador();
+            cpf.limiteTexto(txtBusca, evt, 11);          
         }
-        if (rdbNome.isSelected() && mascaraRemovida == false) {
-            removerMascara();
-        }
-        if (rdbUF.isSelected() && mascaraRemovida == false) {
-            removerMascara();
-        }
-        if (rdbNome.isSelected() && mascaraRemovida == true) {
+        
+        if (rdbNome.isSelected() && mascaraAplicada == false) {
             Validador validar = new Validador();
             validar.limiteTexto(txtBusca, evt, 50);
         }
-        if (rdbUF.isSelected() && mascaraRemovida == true) {
+        
+        if (rdbUF.isSelected() && mascaraAplicada == false) {
             Validador validar = new Validador();
             validar.limiteTexto(txtBusca, evt, 2);
         }
+        txtBusca.setBackground(Color.white);
     }//GEN-LAST:event_txtBuscaKeyTyped
 
     private void rdbNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbNomeMouseClicked
@@ -355,7 +362,10 @@ public class TelaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_rdbNomeActionPerformed
 
     private void rdbCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbCPFActionPerformed
-        txtBusca.setText("");
+        txtBusca.setValue(null);
+        if ((rdbCPF.isSelected() && mascaraAplicada == false)) {
+            mascara();
+        }
         txtBusca.setBackground(Color.white);
     }//GEN-LAST:event_rdbCPFActionPerformed
 
@@ -367,23 +377,29 @@ public class TelaClientes extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, cpf.getMensagensErro());
             }
         }
-        
-        if (rdbNome.isSelected()){
+
+        if (rdbNome.isSelected()) {
             Validador nome = new Validador();
             nome.ValidarTexto(txtBusca);
-            if (nome.hasErro()){
+            if (nome.hasErro()) {
                 JOptionPane.showMessageDialog(rootPane, nome.getMensagensErro());
             }
         }
-        
-        if (rdbUF.isSelected()){
+
+        if (rdbUF.isSelected()) {
             Validador uf = new Validador();
             uf.ValidarTexto(txtBusca);
-            if (uf.hasErro()){
+            if (uf.hasErro()) {
                 JOptionPane.showMessageDialog(rootPane, uf.getMensagensErro());
             }
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtBuscaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyReleased
+        if (rdbUF.isSelected()) {
+            txtBusca.setText(this.txtBusca.getText().toUpperCase());
+        }
+    }//GEN-LAST:event_txtBuscaKeyReleased
 
     /**
      * @param args the command line arguments

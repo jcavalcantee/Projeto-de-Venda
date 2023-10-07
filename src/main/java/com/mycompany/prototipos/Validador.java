@@ -92,7 +92,7 @@ public class Validador {
     }
     
     public void limiteTexto(JTextField txt, java.awt.event.KeyEvent evt, int x) {
-        //Limitando a 50 caracteres;
+        //Limitando caracteres;
         if(txt.getText().length() >= x){
             evt.consume();
         }
