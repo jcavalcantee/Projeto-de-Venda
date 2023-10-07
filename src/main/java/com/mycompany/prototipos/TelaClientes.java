@@ -57,11 +57,7 @@ public class TelaClientes extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "CPF Cliente", "Nome Cliente", "E-mail Cliente", "Endereço Cliente"
@@ -333,13 +329,15 @@ public class TelaClientes extends javax.swing.JFrame {
         }
         
         if (rdbNome.isSelected() && mascaraAplicada == false) {
-            Validador validar = new Validador();
-            validar.limiteTexto(txtBusca, evt, 50);
+            Validador nome = new Validador();
+            nome.limiteTexto(txtBusca, evt, 50);
+            nome.textoSemNumeros(txtBusca, evt);
         }
         
         if (rdbUF.isSelected() && mascaraAplicada == false) {
-            Validador validar = new Validador();
-            validar.limiteTexto(txtBusca, evt, 2);
+            Validador uf = new Validador();
+            uf.limiteTexto(txtBusca, evt, 2);
+            uf.textoSemNumeros(txtBusca, evt);
         }
         txtBusca.setBackground(Color.white);
     }//GEN-LAST:event_txtBuscaKeyTyped
@@ -380,7 +378,7 @@ public class TelaClientes extends javax.swing.JFrame {
 
         if (rdbNome.isSelected()) {
             Validador nome = new Validador();
-            nome.ValidarTexto(txtBusca);
+            nome.validarTexto(txtBusca);
             if (nome.hasErro()) {
                 JOptionPane.showMessageDialog(rootPane, nome.getMensagensErro());
             }
@@ -388,7 +386,7 @@ public class TelaClientes extends javax.swing.JFrame {
 
         if (rdbUF.isSelected()) {
             Validador uf = new Validador();
-            uf.ValidarTexto(txtBusca);
+            uf.validarTexto(txtBusca);
             if (uf.hasErro()) {
                 JOptionPane.showMessageDialog(rootPane, uf.getMensagensErro());
             }

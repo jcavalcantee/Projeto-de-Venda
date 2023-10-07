@@ -30,7 +30,7 @@ public class Validador {
             this.mensagensErro.add("Falha ao converter o valor do campo " + txt.getName() + " em inteiro");
             txt.setText("");
             txt.setBackground(Color.red);
-            
+
         } catch (IllegalArgumentException e) {
             this.mensagensErro.add("O campo " + txt.getName() + " não deve ficar em branco!");
             txt.setBackground(Color.red);
@@ -38,7 +38,7 @@ public class Validador {
 
     }
 
-    public void ValidarTexto(JTextField txt) {
+    public void validarTexto(JTextField txt) {
 
         try {
 
@@ -50,7 +50,7 @@ public class Validador {
             txt.setBackground(Color.white);
 
         } catch (IllegalArgumentException e) {
-            this.mensagensErro.add("Digite um valor para o campo " + txt.getName());
+            this.mensagensErro.add("O campo " + txt.getName() + " não deve ficar em branco!");
             txt.setBackground(Color.red);
         }
 
@@ -90,11 +90,24 @@ public class Validador {
             return false;
         }
     }
-    
+
     public void limiteTexto(JTextField txt, java.awt.event.KeyEvent evt, int x) {
         //Limitando caracteres;
-        if(txt.getText().length() >= x){
+        if (txt.getText().length() >= x) {
             evt.consume();
+        }
+    }
+
+    public void textoSemNumeros(JTextField txt, java.awt.event.KeyEvent evt) {
+
+        try {
+            char c = evt.getKeyChar();
+            if (c >= '0' && c <= '9') {
+                evt.consume();
+            }
+        } catch (Exception e) {
+            this.mensagensErro.add("Este campo não aceita números, digite novamente!");
+            txt.setBackground(Color.red);
         }
     }
 }
