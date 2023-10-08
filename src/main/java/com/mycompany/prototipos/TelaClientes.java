@@ -301,7 +301,7 @@ public class TelaClientes extends javax.swing.JFrame {
     private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
         Validador cpf = new Validador();
         if (rdbCPF.isSelected()) {
-            cpf.validarNumero(txtBusca);
+            cpf.validarTexto(txtBusca);
             if (cpf.hasErro()) {
                 JOptionPane.showMessageDialog(rootPane, cpf.getMensagensErro());
                 cpf.limparMensagens();
@@ -370,10 +370,10 @@ public class TelaClientes extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         if (rdbCPF.isSelected()) {
             Validador cpf = new Validador();
-            cpf.validarNumero(txtBusca);
+            cpf.validarCPF(txtBusca);
             if (cpf.hasErro()) {
                 JOptionPane.showMessageDialog(rootPane, cpf.getMensagensErro());
-            }
+            }     
         }
 
         if (rdbNome.isSelected()) {

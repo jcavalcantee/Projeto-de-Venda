@@ -25,6 +25,7 @@ public class Validador {
             if (txt.getText().replace(".", "").replaceAll("-", "").trim().equals("")) {
                 throw new IllegalArgumentException();
             }
+            int number = Integer.parseInt(txt.getText());
 
         } catch (NumberFormatException e) {
             this.mensagensErro.add("Falha ao converter o valor do campo " + txt.getName() + " em inteiro");
@@ -62,7 +63,7 @@ public class Validador {
     }
 
     public void limparMensagens(JTextField txt) {
-        txt.setText("15");
+        txt.setText("");
     }
 
     public String getMensagensErro() {
@@ -93,13 +94,18 @@ public class Validador {
 
     public void limiteTexto(JTextField txt, java.awt.event.KeyEvent evt, int x) {
         //Limitando caracteres;
-        if (txt.getText().length() >= x) {
-            evt.consume();
+        try {
+            if (txt.getText().length() >= x) {
+                evt.consume();
+            }
+        } catch (Exception e) {
+            this.mensagensErro.add("O limite de caracteres para este campo é de " + x + " caracteres.");
+            txt.setBackground(Color.red);
         }
     }
 
     public void textoSemNumeros(JTextField txt, java.awt.event.KeyEvent evt) {
-
+        //Restringindo números no preenchimento do campo
         try {
             char c = evt.getKeyChar();
             if (c >= '0' && c <= '9') {
@@ -107,6 +113,22 @@ public class Validador {
             }
         } catch (Exception e) {
             this.mensagensErro.add("Este campo não aceita números, digite novamente!");
+            txt.setBackground(Color.red);
+        }
+    }
+
+    public void validarCPF(JTextField txt) {
+        try {
+
+            //Verifico se o campo está vazio
+            if (txt.getText().replace(".", "").replaceAll("-", "").trim().equals("")) {
+                throw new IllegalArgumentException();
+            }
+
+            txt.setBackground(Color.white);
+
+        } catch (IllegalArgumentException e) {
+            this.mensagensErro.add("O campo " + txt.getName() + " não deve ficar em branco e deve conter 11 números!");
             txt.setBackground(Color.red);
         }
     }
