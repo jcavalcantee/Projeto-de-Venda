@@ -129,7 +129,7 @@
                       <Component id="btnVendas" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btnRelatorios" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnClientes" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnProdutos" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel1" max="32767" attributes="0"/>
@@ -151,7 +151,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnClientes" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="btnRelatorios" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnVendas" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -182,13 +182,16 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClientesActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btnRelatorios">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Relat&#xf3;rios"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRelatoriosActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnVendas">
           <Properties>
