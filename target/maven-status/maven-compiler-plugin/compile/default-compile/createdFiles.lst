@@ -35,6 +35,7 @@ com\mycompany\prototipos\TelaPrincipal$1.class
 com\mycompany\prototipos\TelaClientes$3.class
 com\mycompany\prototipos\TelaProdutos$6.class
 com\mycompany\prototipos\TelaRelatorios$1.class
+com\mycompany\prototipos\TelaCadastro$12.class
 com\mycompany\prototipos\TelaLogin$3.class
 com\mycompany\prototipos\TelaVenda$3.class
 com\mycompany\prototipos\TelaCadastro$1.class
@@ -50,6 +51,7 @@ com\mycompany\prototipos\Prototipos.class
 com\mycompany\prototipos\TelaVenda.class
 com\mycompany\prototipos\TelaPrincipal.class
 com\mycompany\prototipos\TelaClientes$11.class
+com\mycompany\prototipos\TelaCadastro$11.class
 com\mycompany\prototipos\TelaCadastro.class
 com\mycompany\prototipos\TelaPrincipal$2.class
 com\mycompany\prototipos\TelaClientes$9.class

@@ -12,7 +12,7 @@ public class Cliente {
     
     private String nome;
     private String dataNascimento;
-    private int cpf;
+    private String cpf;
     private char sexo;
     private int telefone;
     private String email;
@@ -26,7 +26,7 @@ public class Cliente {
         
     }
     //Construtor com os dados obrigatórios para cadastro de produtos.
-    public Cliente(String nome, int cpf, char sexo, String email, String logradouro) {
+    public Cliente(String nome, String cpf, char sexo, String email, String logradouro) {
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;
@@ -59,11 +59,11 @@ public class Cliente {
         this.dataNascimento = dataNascimento;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

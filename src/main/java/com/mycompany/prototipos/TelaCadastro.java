@@ -4,7 +4,9 @@
  */
 package com.mycompany.prototipos;
 
+import classes.Cliente;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -58,7 +60,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jcbUf = new javax.swing.JComboBox<>();
         jcbSexo = new javax.swing.JComboBox<>();
-        ftfCpf = new javax.swing.JFormattedTextField();
+        txtCPF = new javax.swing.JFormattedTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         ftfTelefone = new javax.swing.JFormattedTextField();
@@ -161,13 +163,18 @@ public class TelaCadastro extends javax.swing.JFrame {
         jcbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
 
         try {
-            ftfCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ftfCpf.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCPFActionPerformed(evt);
+            }
+        });
+        txtCPF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                ftfCpfKeyTyped(evt);
+                txtCPFKeyTyped(evt);
             }
         });
 
@@ -234,7 +241,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                                             .addComponent(jcbUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ftfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,7 +296,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jcbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ftfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ftfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel22))
@@ -347,6 +354,11 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         btnCadastrarProd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCadastrarProd.setText("Cadastrar");
+        btnCadastrarProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarProdActionPerformed(evt);
+            }
+        });
 
         jLabel24.setText("Preço Unitário * :");
 
@@ -453,8 +465,20 @@ public class TelaCadastro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    int j = 0;
     private void btnCadastrarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarCliActionPerformed
-        // TODO add your handling code here:
+
+        Cliente c1[] = new Cliente[10];
+        try {
+            Object stringSexo = jcbSexo.getSelectedItem();
+            char sexo = ((String) stringSexo).charAt(0);
+            c1[j] = new Cliente(txtNome.getText(), txtCPF.getText(), sexo, txtEmail.getText(), txtLogradouro.getText());
+            JOptionPane.showMessageDialog(rootPane, "Usuario cadastrado com sucesso!");
+            j++;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar o cliente, por favor revise os campos!");
+        }
+
     }//GEN-LAST:event_btnCadastrarCliActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -466,7 +490,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField12ActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-       // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyTyped
@@ -475,10 +499,10 @@ public class TelaCadastro extends javax.swing.JFrame {
         nome.textoSemNumeros(txtNome, evt);
     }//GEN-LAST:event_txtNomeKeyTyped
 
-    private void ftfCpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfCpfKeyTyped
+    private void txtCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCPFKeyTyped
         Validador cpf = new Validador();
         cpf.limiteTexto(txtNome, evt, 11);
-    }//GEN-LAST:event_ftfCpfKeyTyped
+    }//GEN-LAST:event_txtCPFKeyTyped
 
     private void ftfDtNascimentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfDtNascimentoKeyTyped
         Validador dtNascimento = new Validador();
@@ -499,9 +523,9 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void txtNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyTyped
         Validador numero = new Validador();
         char c = evt.getKeyChar();
-            if ((c < '0' || c > '9') && c != KeyEvent.VK_BACK_SPACE) {
-                evt.consume();
-            }
+        if ((c < '0' || c > '9') && c != KeyEvent.VK_BACK_SPACE) {
+            evt.consume();
+        }
         numero.limiteTexto(txtNumero, evt, 5);
     }//GEN-LAST:event_txtNumeroKeyTyped
 
@@ -511,10 +535,17 @@ public class TelaCadastro extends javax.swing.JFrame {
         cidade.limiteTexto(txtCidade, evt, 20);
     }//GEN-LAST:event_txtCidadeKeyTyped
 
+    private void btnCadastrarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCadastrarProdActionPerformed
+
+    private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCPFActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarCli;
     private javax.swing.JButton btnCadastrarProd;
-    private javax.swing.JFormattedTextField ftfCpf;
     private javax.swing.JFormattedTextField ftfDtNascimento;
     private javax.swing.JFormattedTextField ftfTelefone;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -560,6 +591,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JComboBox<String> jcbSexo;
     private javax.swing.JComboBox<String> jcbUf;
+    private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtLogradouro;
