@@ -5,6 +5,7 @@
 package com.mycompany.prototipos;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JTextField;
@@ -131,5 +132,13 @@ public class Validador {
             this.mensagensErro.add("O campo " + txt.getName() + " não deve ficar em branco e deve conter 11 números!");
             txt.setBackground(Color.red);
         }
+    }
+
+    void limiteTexto(JTextField txtNome, ActionEvent evt, int i) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void textoSemNumeros(JTextField txtNome, ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
