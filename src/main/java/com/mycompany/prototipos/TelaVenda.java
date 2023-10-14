@@ -132,6 +132,11 @@ public class TelaVenda extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtDataNascimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDataNascimentoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -427,6 +432,7 @@ public class TelaVenda extends javax.swing.JFrame {
         Validador pesquisar = new Validador();
         
         pesquisar.validarCPF(txtCPF);
+       
         
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
@@ -441,6 +447,17 @@ public class TelaVenda extends javax.swing.JFrame {
         nome.limiteTexto(txtNomeCliente, evt, 50);
         nome.textoSemNumeros(txtNomeCliente, evt);
     }//GEN-LAST:event_txtNomeClienteKeyTyped
+
+    private void txtDataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataNascimentoActionPerformed
+       /* Validador pesquisar = new Validador();
+        pesquisar.validarNumero(txtDataNascimento);
+        
+        if(pesquisar.hasErro()){
+            JOptionPane.showMessageDialog(rootPane, pesquisar.getMensagensErro());
+                pesquisar.limparMensagens();
+        
+        }*/
+    }//GEN-LAST:event_txtDataNascimentoActionPerformed
 
     /**
      * @param args the command line arguments
