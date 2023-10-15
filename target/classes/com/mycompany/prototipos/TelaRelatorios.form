@@ -3,11 +3,18 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+<<<<<<< HEAD
     <Property name="title" type="java.lang.String" value="Street Clothing - Relat&#xf3;rios"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
+=======
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -25,11 +32,15 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
+<<<<<<< HEAD
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTabbedPane1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
+=======
+          <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -38,7 +49,10 @@
               <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jTabbedPane1" max="32767" attributes="0"/>
+<<<<<<< HEAD
               <EmptySpace max="-2" attributes="0"/>
+=======
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,6 +82,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
+<<<<<<< HEAD
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jScrollPane1" pref="819" max="32767" attributes="0"/>
@@ -76,6 +91,19 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="jScrollPane4" min="-2" pref="251" max="-2" attributes="0"/>
                           </Group>
+=======
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jFormattedTextField3" min="-2" pref="172" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" pref="802" max="32767" attributes="0"/>
+                          <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -87,9 +115,23 @@
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="424" max="-2" attributes="0"/>
+<<<<<<< HEAD
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane4" min="-2" pref="63" max="-2" attributes="0"/>
                       <EmptySpace pref="8" max="32767" attributes="0"/>
+=======
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel6" pref="26" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jFormattedTextField3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
                   </Group>
               </Group>
             </DimensionLayout>
@@ -112,6 +154,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -154,6 +197,19 @@
                                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+=======
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jFormattedTextField1" min="-2" pref="89" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jFormattedTextField2" min="-2" pref="89" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnBuscarSintetico" min="-2" max="-2" attributes="0"/>
@@ -166,6 +222,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -196,6 +253,20 @@
                               <Component id="jcbAnoFinalSintetico" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
+=======
+                              <Component id="btnBuscarSintetico" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jFormattedTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jFormattedTextField1" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -217,6 +288,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="14" style="1"/>
                     </Property>
+<<<<<<< HEAD
                     <Property name="text" type="java.lang.String" value="Data inicial"/>
                   </Properties>
                 </Component>
@@ -449,6 +521,28 @@
                       <Font name="Segoe UI" size="12" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Ano"/>
+=======
+                    <Property name="text" type="java.lang.String" value="Data"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+                  <Properties>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Format format="##/##/####" subtype="-1" type="5"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField2">
+                  <Properties>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Format format="##/##/####" subtype="-1" type="5"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="at&#xe9;"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
                   </Properties>
                 </Component>
               </SubComponents>
@@ -470,6 +564,7 @@
                       <Table columnCount="3" rowCount="30">
                         <Column editable="true" title="Cliente" type="java.lang.String"/>
                         <Column editable="true" title="Data da compra" type="java.lang.Integer"/>
+<<<<<<< HEAD
                         <Column editable="true" title="Subtotal" type="java.lang.Double"/>
                       </Table>
                     </Property>
@@ -489,12 +584,33 @@
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="1" rowCount="1">
                         <Column editable="false" title="Valor total das vendas" type="java.lang.Double"/>
+=======
+                        <Column editable="true" title="Total" type="java.lang.Double"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
                       </Table>
                     </Property>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
+<<<<<<< HEAD
+=======
+            <Component class="javax.swing.JLabel" name="jLabel6">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="18" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Valor total vendas: "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField3">
+              <Properties>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                  <Format subtype="0" type="4"/>
+                </Property>
+              </Properties>
+            </Component>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="pnlAnalitico">
@@ -512,6 +628,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
+<<<<<<< HEAD
                           <Group type="102" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="jScrollPane3" min="-2" pref="251" max="-2" attributes="0"/>
@@ -521,6 +638,20 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
+=======
+                          <Component id="jScrollPane2" pref="802" max="32767" attributes="0"/>
+                          <Component id="jPanel1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jFormattedTextField6" min="-2" pref="173" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                  </Group>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -529,9 +660,18 @@
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="424" max="-2" attributes="0"/>
+<<<<<<< HEAD
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" pref="63" max="-2" attributes="0"/>
                       <EmptySpace pref="8" max="32767" attributes="0"/>
+=======
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          <Component id="jFormattedTextField6" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
                   </Group>
               </Group>
             </DimensionLayout>
@@ -555,6 +695,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
                           <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -591,6 +732,17 @@
                                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                                       <Component id="jcbAnoFinalAnalitico" min="-2" max="-2" attributes="0"/>
                                   </Group>
+=======
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jFormattedTextField4" min="-2" pref="89" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jFormattedTextField5" min="-2" pref="89" max="-2" attributes="0"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
                               </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -604,6 +756,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -634,6 +787,20 @@
                               <Component id="jcbAnoFinalAnalitico" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
+=======
+                              <Component id="btnBuscarAnalitico" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jFormattedTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jFormattedTextField4" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -644,7 +811,30 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="14" style="1"/>
                     </Property>
+<<<<<<< HEAD
                     <Property name="text" type="java.lang.String" value="Data inicial"/>
+=======
+                    <Property name="text" type="java.lang.String" value="Data"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField4">
+                  <Properties>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Format format="##/##/####" subtype="-1" type="5"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField5">
+                  <Properties>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Format format="##/##/####" subtype="-1" type="5"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel5">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="at&#xe9;"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnBuscarAnalitico">
@@ -655,6 +845,7 @@
                     <Property name="text" type="java.lang.String" value="Buscar"/>
                   </Properties>
                 </Component>
+<<<<<<< HEAD
                 <Component class="javax.swing.JLabel" name="jLabel3">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -883,6 +1074,8 @@
                     <Property name="text" type="java.lang.String" value="Ano"/>
                   </Properties>
                 </Component>
+=======
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
               </SubComponents>
             </Container>
             <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -900,6 +1093,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="5" rowCount="30">
+<<<<<<< HEAD
                         <Column editable="false" title="Cliente" type="java.lang.String"/>
                         <Column editable="false" title="Data da compra" type="java.lang.Integer"/>
                         <Column editable="false" title="Produtos" type="java.lang.String"/>
@@ -923,12 +1117,32 @@
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="1" rowCount="1">
                         <Column editable="false" title="Valor total das vendas" type="java.lang.Double"/>
+=======
+                        <Column editable="true" title="Cliente" type="java.lang.Object"/>
+                        <Column editable="true" title="Data da compra" type="java.lang.Object"/>
+                        <Column editable="true" title="Produtos" type="java.lang.Object"/>
+                        <Column editable="true" title="Quantidade" type="java.lang.Object"/>
+                        <Column editable="true" title="Total" type="java.lang.Object"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
                       </Table>
                     </Property>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
+<<<<<<< HEAD
+=======
+            <Component class="javax.swing.JLabel" name="jLabel7">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="18" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Valor total vendas: "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField6">
+            </Component>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
           </SubComponents>
         </Container>
       </SubComponents>

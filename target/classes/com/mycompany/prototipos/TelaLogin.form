@@ -12,8 +12,11 @@
         <Property name="text" type="java.lang.String" value="jButton4"/>
       </Properties>
     </Component>
+<<<<<<< HEAD
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
+=======
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -69,6 +72,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -96,12 +100,51 @@
                       </Group>
                   </Group>
                   <EmptySpace pref="64" max="32767" attributes="0"/>
+=======
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="66" max="32767" attributes="0"/>
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="btnEntrar" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnRedefinirSenha" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="btnCadastrese" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="134" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jLabel8" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtLogin" alignment="0" min="-2" pref="227" max="-2" attributes="0"/>
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtSenha" min="-2" pref="227" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+<<<<<<< HEAD
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
@@ -115,6 +158,38 @@
                   <EmptySpace pref="94" max="32767" attributes="0"/>
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+=======
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="txtLogin" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="txtSenha" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btnEntrar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnRedefinirSenha" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnCadastrese" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
               </Group>
           </Group>
         </DimensionLayout>
@@ -139,7 +214,33 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
+<<<<<<< HEAD
             <Property name="text" type="java.lang.String" value="ID Funcion&#xe1;rio"/>
+=======
+            <Property name="text" type="java.lang.String" value="Login"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel4">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="66" red="66" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Senha"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel5">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="66" red="66" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="N&#xe3;o possui cadastro?"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -153,13 +254,35 @@
             <Property name="text" type="java.lang.String" value="Todos os Direitos Reservados &#xa9; 2023"/>
           </Properties>
         </Component>
+<<<<<<< HEAD
         <Component class="javax.swing.JTextField" name="txtID">
+=======
+        <Component class="javax.swing.JTextField" name="txtLogin">
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
           </Properties>
         </Component>
+<<<<<<< HEAD
+=======
+        <Component class="javax.swing.JPasswordField" name="txtSenha">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="1"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnRedefinirSenha">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Redefinir Senha"/>
+          </Properties>
+        </Component>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
         <Component class="javax.swing.JButton" name="btnEntrar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -172,6 +295,17 @@
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="btnEntrarKeyPressed"/>
           </Events>
         </Component>
+<<<<<<< HEAD
+=======
+        <Component class="javax.swing.JButton" name="btnCadastrese">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Cadastre-se"/>
+          </Properties>
+        </Component>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -179,6 +313,16 @@
             </Property>
           </Properties>
         </Component>
+<<<<<<< HEAD
+=======
+        <Component class="javax.swing.JLabel" name="jLabel9">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Other Sources/padlock.png"/>
+            </Property>
+          </Properties>
+        </Component>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">

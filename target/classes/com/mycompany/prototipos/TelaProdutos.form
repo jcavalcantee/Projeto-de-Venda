@@ -14,7 +14,11 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+<<<<<<< HEAD
     <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
+=======
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -207,7 +211,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
               <Group type="102" alignment="1" attributes="0">
+=======
+              <Group type="102" attributes="0">
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="txtBusca" min="-2" pref="271" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -215,11 +223,19 @@
                   <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
+<<<<<<< HEAD
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="rdbCodigo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="rdbNome" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
+=======
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="rdbCodigo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="rdbNome" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
               </Group>
           </Group>
         </DimensionLayout>
@@ -268,9 +284,12 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Busca por Nome"/>
           </Properties>
+<<<<<<< HEAD
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdbNomeActionPerformed"/>
           </Events>
+=======
+>>>>>>> a8c79b0 (fix: validação tela de vendas)
         </Component>
         <Component class="javax.swing.JButton" name="btnBuscar">
           <Properties>
