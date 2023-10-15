@@ -9,10 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
-<<<<<<< HEAD
 import javax.swing.JOptionPane;
-=======
->>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
 import javax.swing.JTextField;
 
 /**
@@ -131,12 +128,7 @@ public class Validador {
             txt.setBackground(Color.red);
         }
     }
-    public void MinNumero(KeyEvent e) {
-        char c = e.getKeyChar();
-        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-            e.consume(); // Isso impede que caracteres não numéricos sejam digitados
-        }
-    }
+    
     public void validarCPF(JTextField txt) {
         try {
 
@@ -160,10 +152,7 @@ public class Validador {
     void textoSemNumeros(JTextField txtNome, ActionEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
     void comboBox(JComboBox<String> jcb) {
         int index = jcb.getSelectedIndex();
         if (index == 0){
