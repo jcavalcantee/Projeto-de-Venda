@@ -469,6 +469,51 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel18" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
+                                          <Component id="txtMarca" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
+                                          <Component id="jcbTamanho" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel16" alignment="0" min="-2" pref="66" max="-2" attributes="0"/>
+                                                  <Component id="jcbUnidade" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="49" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="txtEstoque" min="-2" pref="77" max="-2" attributes="0"/>
+                                                  <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel12" min="-2" pref="58" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="txtNomeProd" min="-2" pref="252" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jcbCategorias" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel13" min="-2" pref="80" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
+                          </Group>
+=======
+>>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -601,7 +646,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel18">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Marca:"/>
+                <Property name="text" type="java.lang.String" value="Marca*:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel19">
@@ -611,7 +656,11 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtNomeProd">
               <Properties>
+<<<<<<< HEAD
+                <Property name="name" type="java.lang.String" value="Nome do Produto" noResource="true"/>
+=======
                 <Property name="name" type="java.lang.String" value="Nome do produto" noResource="true"/>
+>>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
               </Properties>
               <Events>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNomeProdKeyTyped"/>
@@ -638,7 +687,11 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
+<<<<<<< HEAD
+                    <StringItem index="0" value="Selecione"/>
+=======
                     <StringItem index="0" value="Selecione "/>
+>>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
                     <StringItem index="1" value="1 - Pe&#xe7;a"/>
                     <StringItem index="2" value="2 - Par"/>
                     <StringItem index="3" value=" "/>
@@ -690,7 +743,11 @@
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="txtPreco">
               <Properties>
+<<<<<<< HEAD
+                <Property name="name" type="java.lang.String" value="Pre&#xe7;o unitario" noResource="true"/>
+=======
                 <Property name="name" type="java.lang.String" value="Pre&#xe7;o" noResource="true"/>
+>>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel25">
@@ -701,20 +758,31 @@
             <Component class="javax.swing.JComboBox" name="jcbTamanho">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+<<<<<<< HEAD
+                  <StringArray count="7">
+=======
                   <StringArray count="6">
+>>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
                     <StringItem index="0" value="Selecione"/>
                     <StringItem index="1" value="PP"/>
                     <StringItem index="2" value="P"/>
                     <StringItem index="3" value="M"/>
                     <StringItem index="4" value="G"/>
                     <StringItem index="5" value="GG"/>
+<<<<<<< HEAD
+                    <StringItem index="6" value=" "/>
+=======
+>>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="Tamanho" noResource="true"/>
               </Properties>
+<<<<<<< HEAD
+=======
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbTamanhoActionPerformed"/>
               </Events>
+>>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
