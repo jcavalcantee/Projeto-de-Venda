@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-com/mycompany/prototipos/TelaVenda$15.class
-com/mycompany/prototipos/TelaVenda$7.class
-com/mycompany/prototipos/TelaVenda$12.class
-com/mycompany/prototipos/TelaVenda$4.class
-com/mycompany/prototipos/TelaVenda$6.class
-com/mycompany/prototipos/TelaVenda$13.class
-com/mycompany/prototipos/TelaVenda$16.class
-com/mycompany/prototipos/TelaVenda$10.class
-com/mycompany/prototipos/TelaVenda$17.class
-com/mycompany/prototipos/TelaVenda$9.class
-com/mycompany/prototipos/TelaVenda$14.class
-com/mycompany/prototipos/TelaVenda$11.class
-com/mycompany/prototipos/TelaVenda$18.class
-com/mycompany/prototipos/TelaVenda$8.class
-com/mycompany/prototipos/TelaVenda$5.class
-=======
 com\mycompany\prototipos\TelaClientes$2.class
 com\mycompany\prototipos\TelaClientes$5.class
 com\mycompany\prototipos\TelaRelatorios$7.class
@@ -85,4 +68,3 @@ com\mycompany\prototipos\TelaClientes$11.class
 com\mycompany\prototipos\TelaCadastro.class
 com\mycompany\prototipos\TelaClientes$9.class
 com\mycompany\prototipos\TelaLogin$2.class
->>>>>>> main
