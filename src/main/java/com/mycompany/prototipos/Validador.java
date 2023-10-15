@@ -8,7 +8,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 /**
@@ -118,7 +118,12 @@ public class Validador {
             txt.setBackground(Color.red);
         }
     }
-
+    public void MinNumero(KeyEvent e) {
+        char c = e.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+            e.consume(); // Isso impede que caracteres não numéricos sejam digitados
+        }
+    }
     public void validarCPF(JTextField txt) {
         try {
 
@@ -133,6 +138,20 @@ public class Validador {
             this.mensagensErro.add("O campo " + txt.getName() + " não deve ficar em branco e deve conter 11 números!");
             //JOptionPane.showMessageDialog(txt, this.mensagensErro);
             txt.setBackground(Color.red);
+        }
+    }
+
+    void limiteTexto(JTextField txtNome, ActionEvent evt, int i) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void textoSemNumeros(JTextField txtNome, ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    void comboBox(JComboBox<String> jcb) {
+        int index = jcb.getSelectedIndex();
+        if (index == 0){
+           this.mensagensErro.add("Selecione uma opção valida no campo: " + jcb.getName());
         }
     }
 }

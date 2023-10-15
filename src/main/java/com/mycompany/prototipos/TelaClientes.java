@@ -4,6 +4,7 @@
  */
 package com.mycompany.prototipos;
 
+import classes.Cliente;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
@@ -11,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.AEADBadTagException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
@@ -25,6 +27,7 @@ public class TelaClientes extends javax.swing.JFrame {
      */
     public TelaClientes() {
         initComponents();
+        clientesCadastrados();
     }
 
     /**
@@ -38,7 +41,7 @@ public class TelaClientes extends javax.swing.JFrame {
 
         buscaClientes = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblClientes = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
@@ -55,7 +58,7 @@ public class TelaClientes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -71,7 +74,7 @@ public class TelaClientes extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblClientes);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -266,6 +269,7 @@ public class TelaClientes extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private boolean mascaraAplicada;
@@ -281,6 +285,27 @@ public class TelaClientes extends javax.swing.JFrame {
         return mascaraAplicada = true;
     }
 
+    public void clientesCadastrados(){
+        Cliente clientes[] = new Cliente[5];
+        clientes[0] = new Cliente("Lucas", "55151515215", 'M', "lucas@gmail.com", "Rua um");
+        clientes[1] = new Cliente("Pedro", "4536895552", 'M', "pedro@gmail.com", "Rua dois");
+        clientes[2] = new Cliente("Patrick","55489896212", 'M', "patrick@gmail.com", "Rua três");
+        clientes[3] = new Cliente("Gabriel", "178782656562", 'M', "gabriel@gmail.com", "Rua quatro");
+        clientes[4] = new Cliente("Jefferson", "798413266523", 'M', "jefferson@gmail.com", "Rua cinco");
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
+        
+        for(int i = 0; i < clientes.length; i++){
+        //Adicionar uma linha à tabela
+        modelo.addRow(new String[]{
+                       clientes[i].getCpf(), 
+                       clientes[i].getNome(),
+                       clientes[i].getEmail(),
+                       clientes[i].getLogradouro()});
+        }
+    }
+        
+    
     public boolean removerMascara() {
         txtBusca.setFormatterFactory(null);
         txtBusca.setText("");
@@ -446,10 +471,10 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JRadioButton rdbCPF;
     private javax.swing.JRadioButton rdbNome;
     private javax.swing.JRadioButton rdbUF;
+    private javax.swing.JTable tblClientes;
     private javax.swing.JFormattedTextField txtBusca;
     // End of variables declaration//GEN-END:variables
 }
