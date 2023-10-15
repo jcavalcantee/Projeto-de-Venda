@@ -136,6 +136,7 @@ public class Validador {
 
         } catch (IllegalArgumentException e) {
             this.mensagensErro.add("O campo " + txt.getName() + " não deve ficar em branco e deve conter 11 números!");
+            //JOptionPane.showMessageDialog(txt, this.mensagensErro);
             txt.setBackground(Color.red);
         }
     }
