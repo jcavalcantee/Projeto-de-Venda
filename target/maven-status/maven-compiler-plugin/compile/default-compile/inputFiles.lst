@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+/home/lomba/Projeto-de-Venda/src/main/java/com/mycompany/prototipos/TelaPrincipal.java
+/home/lomba/Projeto-de-Venda/src/main/java/com/mycompany/prototipos/Prototipos.java
+/home/lomba/Projeto-de-Venda/src/main/java/com/mycompany/prototipos/Validador.java
+/home/lomba/Projeto-de-Venda/src/main/java/com/mycompany/prototipos/TelaLogin.java
+/home/lomba/Projeto-de-Venda/src/main/java/com/mycompany/prototipos/TelaCadastro.java
+/home/lomba/Projeto-de-Venda/src/main/java/com/mycompany/prototipos/TelaProdutos.java
+/home/lomba/Projeto-de-Venda/src/main/java/com/mycompany/prototipos/TelaClientes.java
+/home/lomba/Projeto-de-Venda/src/main/java/com/mycompany/prototipos/TelaRelatorios.java
+/home/lomba/Projeto-de-Venda/src/main/java/com/mycompany/prototipos/TelaVenda.java
+=======
 C:\Users\patri\OneDrive\Área de Trabalho\projeto-loja\Projeto-de-Venda\src\main\java\classes\Cliente.java
 C:\Users\patri\OneDrive\Área de Trabalho\projeto-loja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaCadastro.java
 C:\Users\patri\OneDrive\Área de Trabalho\projeto-loja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaRelatorios.java
@@ -9,3 +20,4 @@ C:\Users\patri\OneDrive\Área de Trabalho\projeto-loja\Projeto-de-Venda\src\main
 C:\Users\patri\OneDrive\Área de Trabalho\projeto-loja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\Validador.java
 C:\Users\patri\OneDrive\Área de Trabalho\projeto-loja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaLogin.java
 C:\Users\patri\OneDrive\Área de Trabalho\projeto-loja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\Prototipos.java
+>>>>>>> main

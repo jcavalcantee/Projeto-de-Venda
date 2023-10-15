@@ -344,11 +344,9 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jLabel19.setText("Tamanho*:");
 
-<<<<<<< HEAD
         txtNomeProd.setName("Nome do Produto"); // NOI18N
-=======
+
         txtNomeProd.setName("Nome do produto"); // NOI18N
->>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
         txtNomeProd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNomeProdKeyTyped(evt);
@@ -374,10 +372,9 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< HEAD
         jcbUnidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "1 - Peça", "2 - Par", " " }));
         jcbUnidade.setName("Unidade"); // NOI18N
-=======
+
         jcbUnidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione ", "1 - Peça", "2 - Par", " " }));
         jcbUnidade.setName("Unidade"); // NOI18N
         jcbUnidade.addActionListener(new java.awt.event.ActionListener() {
@@ -385,7 +382,6 @@ public class TelaCadastro extends javax.swing.JFrame {
                 jcbUnidadeActionPerformed(evt);
             }
         });
->>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
 
         jcbCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "1 - Masculino", "2 - Feminino", "3 - Masculino Infantil", "4 - Feminino Infantil", "5 - Acessórios", " " }));
         jcbCategorias.setName("Categorias"); // NOI18N
@@ -400,14 +396,13 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jLabel24.setText("Preço Unitário * :");
 
-<<<<<<< HEAD
         txtPreco.setName("Preço unitario"); // NOI18N
 
         jLabel25.setText("* Indica obrigatoriedade no preenchimento.");
 
         jcbTamanho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "PP", "P", "M", "G", "GG", " " }));
         jcbTamanho.setName("Tamanho"); // NOI18N
-=======
+    
         txtPreco.setName("Preço"); // NOI18N
 
         jLabel25.setText("* Indica obrigatoriedade no preenchimento.");
@@ -419,7 +414,6 @@ public class TelaCadastro extends javax.swing.JFrame {
                 jcbTamanhoActionPerformed(evt);
             }
         });
->>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
 
         jLabel14.setText("R$");
 
@@ -430,7 +424,6 @@ public class TelaCadastro extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -461,8 +454,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(0, 11, Short.MAX_VALUE))
-=======
->>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
+
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -476,10 +468,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(btnCadastrarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-<<<<<<< HEAD
                                 .addGap(85, 85, 85))))))
-=======
-                                .addGap(85, 85, 85))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel19)
@@ -508,9 +497,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                                     .addComponent(jcbCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 11, Short.MAX_VALUE))))
->>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
-        );
+                        .addGap(0, 11, Short.MAX_VALUE)));
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -585,13 +572,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-<<<<<<< HEAD
-    private void txtMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarcaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMarcaActionPerformed
-
-=======
->>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
@@ -639,11 +619,9 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCidadeKeyTyped
 
     private void btnCadastrarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdActionPerformed
-<<<<<<< HEAD
         //Validação da tela de cadastro de produtos!
-=======
+
        //Validação da tela de cadastro de produtos!
->>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
 
         Validador vazio = new Validador();
         vazio.comboBox(jcbTamanho);
@@ -660,21 +638,14 @@ public class TelaCadastro extends javax.swing.JFrame {
         if (quantidade < 1) {
             JOptionPane.showMessageDialog(null, "Aviso: o do estoque inicial não pode ser menor que 1.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
-<<<<<<< HEAD
 
 
-=======
->>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
     }//GEN-LAST:event_btnCadastrarProdActionPerformed
 
     private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCPFActionPerformed
 
-<<<<<<< HEAD
-    private void txtNomeProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeProdKeyTyped
-        // TODO add your handling code here:
-=======
     private void txtMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarcaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMarcaActionPerformed
@@ -688,7 +659,6 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbTamanhoActionPerformed
 
     private void txtNomeProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeProdKeyTyped
->>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
         Validador nomeProd = new Validador();
         nomeProd.validarTexto(txtNomeProd);
         nomeProd.limiteTexto(txtNomeProd, evt, 30);
@@ -696,19 +666,13 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeProdKeyTyped
 
     private void txtEstoqueKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEstoqueKeyTyped
-<<<<<<< HEAD
         // TODO add your handling code here:
-=======
->>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
         Validador qtdMin = new Validador();
         qtdMin.MinNumero(evt);
     }//GEN-LAST:event_txtEstoqueKeyTyped
 
     private void txtMarcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMarcaKeyTyped
-<<<<<<< HEAD
         // TODO add your handling code here:
-=======
->>>>>>> adb80201a5d7976e1d9fbbad4fcb2ebb6c0857d2
         Validador nomeProd = new Validador();
         nomeProd.validarTexto(txtMarca);
         nomeProd.limiteTexto(txtMarca, evt, 50);
