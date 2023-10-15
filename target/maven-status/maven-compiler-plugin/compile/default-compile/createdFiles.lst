@@ -1,6 +1,7 @@
 com\mycompany\prototipos\TelaCadastro$3.class
 com\mycompany\prototipos\TelaClientes$2.class
 com\mycompany\prototipos\TelaClientes$5.class
+com\mycompany\prototipos\TelaRelatorios$7.class
 com\mycompany\prototipos\TelaVenda$1.class
 com\mycompany\prototipos\TelaCadastro$6.class
 com\mycompany\prototipos\TelaRelatorios$3.class
@@ -17,6 +18,7 @@ com\mycompany\prototipos\TelaProdutos$2.class
 com\mycompany\prototipos\TelaCadastro$2.class
 com\mycompany\prototipos\TelaRelatorios.class
 com\mycompany\prototipos\TelaClientes$1.class
+com\mycompany\prototipos\TelaRelatorios$8.class
 com\mycompany\prototipos\TelaCadastro$10.class
 com\mycompany\prototipos\TelaPrincipal$7.class
 com\mycompany\prototipos\TelaClientes$10.class
@@ -35,7 +37,9 @@ com\mycompany\prototipos\Validador.class
 com\mycompany\prototipos\TelaCadastro$8.class
 com\mycompany\prototipos\TelaPrincipal$1.class
 com\mycompany\prototipos\TelaClientes$3.class
+com\mycompany\prototipos\TelaRelatorios$10.class
 com\mycompany\prototipos\TelaProdutos$6.class
+com\mycompany\prototipos\TelaRelatorios$9.class
 com\mycompany\prototipos\TelaRelatorios$1.class
 com\mycompany\prototipos\TelaCadastro$12.class
 com\mycompany\prototipos\TelaLogin$3.class
