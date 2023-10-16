@@ -52,7 +52,7 @@ public class TelaVenda extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnAdicionarItem = new javax.swing.JButton();
         txtCodigo = new javax.swing.JTextField();
         txtProduto = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
@@ -200,20 +200,35 @@ public class TelaVenda extends javax.swing.JFrame {
 
         jButton3.setText("Pesquisar");
 
-        jButton4.setText("Adicionar Item");
+        btnAdicionarItem.setText("Adicionar Item");
+        btnAdicionarItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarItemActionPerformed(evt);
+            }
+        });
+        btnAdicionarItem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                btnAdicionarItemKeyTyped(evt);
+            }
+        });
 
+        txtCodigo.setName("Código"); // NOI18N
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyTyped(evt);
             }
         });
 
+        txtProduto.setName("Produto"); // NOI18N
         txtProduto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtProdutoKeyTyped(evt);
             }
         });
 
+        jTextField6.setName("Preço"); // NOI18N
+
+        txtQuantidade.setName("Quantidade"); // NOI18N
         txtQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtQuantidadeKeyTyped(evt);
@@ -246,7 +261,7 @@ public class TelaVenda extends javax.swing.JFrame {
                             .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(72, 72, 72)
-                        .addComponent(jButton4)))
+                        .addComponent(btnAdicionarItem)))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -271,7 +286,7 @@ public class TelaVenda extends javax.swing.JFrame {
                     .addComponent(txtQuantidade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(btnAdicionarItem)
                 .addContainerGap())
         );
 
@@ -481,7 +496,7 @@ public class TelaVenda extends javax.swing.JFrame {
         if ((c < '0' || c > '9') && c != KeyEvent.VK_BACK_SPACE) {
             evt.consume();
         }
-        quantidade.limiteTexto(txtCodigo, evt, 6);
+        quantidade.limiteTexto(txtQuantidade, evt, 6);
     }//GEN-LAST:event_txtQuantidadeKeyTyped
 
     private void btnPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarClienteActionPerformed
@@ -498,6 +513,26 @@ public class TelaVenda extends javax.swing.JFrame {
         Validador data = new Validador();
         data.validarTexto(txtData);
     }//GEN-LAST:event_txtDataKeyTyped
+
+    private void btnAdicionarItemKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAdicionarItemKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdicionarItemKeyTyped
+
+    private void btnAdicionarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarItemActionPerformed
+        Validador adicionar = new Validador();
+        
+        adicionar.validarTexto(txtCodigo);
+        adicionar.validarTexto(txtProduto);
+        adicionar.validarTexto(txtQuantidade);
+        
+        if(adicionar.hasErro()){
+            JOptionPane.showMessageDialog(rootPane, adicionar.getMensagensErro());
+        }
+        int quantidade = Integer.parseInt(txtQuantidade.getText());
+        if(quantidade<1){
+            JOptionPane.showMessageDialog(null, "Aviso: o do quantidade inicial não pode ser menor que 1.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAdicionarItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -535,11 +570,11 @@ public class TelaVenda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdicionarItem;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnPesquisarCliente;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
