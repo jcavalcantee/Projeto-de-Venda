@@ -139,14 +139,7 @@ public class Validador {
             txt.setBackground(Color.red);
         }
     }
-
-    void limiteTexto(JTextField txtNome, ActionEvent evt, int i) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    void textoSemNumeros(JTextField txtNome, ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
     void comboBox(JComboBox<String> jcb) {
         int index = jcb.getSelectedIndex();
         if (index == 0){
