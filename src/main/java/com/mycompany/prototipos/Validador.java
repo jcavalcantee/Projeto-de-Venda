@@ -59,6 +59,28 @@ public class Validador {
 
     }
 
+    public void ValidarFloat(JTextField txt) {
+
+        try {
+
+            //Verifico se o campo está vazio
+            if (txt.getText().trim().equals("")) {
+                throw new IllegalArgumentException();
+            }
+
+            float valorConvertido = Float.parseFloat(txt.getText());
+            txt.setBackground(Color.WHITE);
+
+        } catch (NumberFormatException e) {
+
+            this.mensagensErro.add("Falha ao converter o valor do campo " + txt.getName() + " em float");
+            txt.setBackground(Color.red);
+        } catch (IllegalArgumentException e) {
+            this.mensagensErro.add("Digite um valor para o campo " + txt.getName());
+            txt.setBackground(Color.red);
+        }
+    }
+
     public void limparMensagens() {
 
         this.mensagensErro.clear();
@@ -107,7 +129,7 @@ public class Validador {
     }
 
     public void textoSemNumeros(JTextField txt, java.awt.event.KeyEvent evt) {
-        
+
         try {
             //Restringindo números no preenchimento do campo
             char c = evt.getKeyChar();
@@ -119,12 +141,14 @@ public class Validador {
             txt.setBackground(Color.red);
         }
     }
+
     public void MinNumero(KeyEvent e) {
         char c = e.getKeyChar();
         if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             e.consume(); // Isso impede que caracteres não numéricos sejam digitados
         }
     }
+
     public void validarCPF(JTextField txt) {
         try {
 
@@ -140,11 +164,11 @@ public class Validador {
             txt.setBackground(Color.red);
         }
     }
-    
+
     void comboBox(JComboBox<String> jcb) {
         int index = jcb.getSelectedIndex();
-        if (index == 0){
-           this.mensagensErro.add("Selecione uma opção valida no campo: " + jcb.getName());
+        if (index == 0) {
+            this.mensagensErro.add("Selecione uma opção valida no campo: " + jcb.getName());
         }
     }
 }
