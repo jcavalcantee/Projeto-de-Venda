@@ -619,7 +619,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         vazio.validarTexto(txtEstoque);
         vazio.validarTexto(txtNomeProd);
         vazio.validarTexto(txtMarca);
-        vazio.validarTexto(txtPreco);
+        vazio.ValidarFloat(txtPreco);
         if (vazio.hasErro()) {
             JOptionPane.showMessageDialog(rootPane, "Não foi possível cadastrar o produto.");
             JOptionPane.showMessageDialog(rootPane, vazio.getMensagensErro());
