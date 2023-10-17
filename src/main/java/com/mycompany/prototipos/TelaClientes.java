@@ -285,27 +285,26 @@ public class TelaClientes extends javax.swing.JFrame {
         return mascaraAplicada = true;
     }
 
-    public void clientesCadastrados(){
+    public void clientesCadastrados() {
         Cliente clientes[] = new Cliente[5];
         clientes[0] = new Cliente("Lucas", "55151515215", 'M', "lucas@gmail.com", "Rua um");
         clientes[1] = new Cliente("Pedro", "4536895552", 'M', "pedro@gmail.com", "Rua dois");
-        clientes[2] = new Cliente("Patrick","55489896212", 'M', "patrick@gmail.com", "Rua três");
+        clientes[2] = new Cliente("Patrick", "55489896212", 'M', "patrick@gmail.com", "Rua três");
         clientes[3] = new Cliente("Gabriel", "178782656562", 'M', "gabriel@gmail.com", "Rua quatro");
         clientes[4] = new Cliente("Jefferson", "798413266523", 'M', "jefferson@gmail.com", "Rua cinco");
-        
+
         DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
-        
-        for(int i = 0; i < clientes.length; i++){
-        //Adicionar uma linha à tabela
-        modelo.addRow(new String[]{
-                       clientes[i].getCpf(), 
-                       clientes[i].getNome(),
-                       clientes[i].getEmail(),
-                       clientes[i].getLogradouro()});
+
+        for (int i = 0; i < clientes.length; i++) {
+            //Adicionar uma linha à tabela
+            modelo.addRow(new String[]{
+                clientes[i].getCpf(),
+                clientes[i].getNome(),
+                clientes[i].getEmail(),
+                clientes[i].getLogradouro()});
         }
     }
-        
-    
+
     public boolean removerMascara() {
         txtBusca.setFormatterFactory(null);
         txtBusca.setText("");
@@ -343,22 +342,22 @@ public class TelaClientes extends javax.swing.JFrame {
         if (rdbNome.isSelected() && mascaraAplicada == true) {
             removerMascara();
         }
-        
+
         if (rdbUF.isSelected() && mascaraAplicada == true) {
             removerMascara();
         }
-        
+
         if ((rdbCPF.isSelected() && mascaraAplicada == false)) {
             Validador cpf = new Validador();
-            cpf.limiteTexto(txtBusca, evt, 11);          
+            cpf.limiteTexto(txtBusca, evt, 11);
         }
-        
+
         if (rdbNome.isSelected() && mascaraAplicada == false) {
             Validador nome = new Validador();
             nome.limiteTexto(txtBusca, evt, 50);
             nome.textoSemNumeros(txtBusca, evt);
         }
-        
+
         if (rdbUF.isSelected() && mascaraAplicada == false) {
             Validador uf = new Validador();
             uf.limiteTexto(txtBusca, evt, 2);
@@ -393,28 +392,18 @@ public class TelaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_rdbCPFActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        Validador cliente = new Validador();
         if (rdbCPF.isSelected()) {
-            Validador cpf = new Validador();
-            cpf.validarCPF(txtBusca);
-            if (cpf.hasErro()) {
-                JOptionPane.showMessageDialog(rootPane, cpf.getMensagensErro());
-            }     
+            cliente.validarCPF(txtBusca);
+        } else if (rdbNome.isSelected()) {
+            cliente.validarTexto(txtBusca);
+        } else if (rdbUF.isSelected()) {
+            cliente.validarTexto(txtBusca);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Selecione uma opção para realizar a busca!");
         }
-
-        if (rdbNome.isSelected()) {
-            Validador nome = new Validador();
-            nome.validarTexto(txtBusca);
-            if (nome.hasErro()) {
-                JOptionPane.showMessageDialog(rootPane, nome.getMensagensErro());
-            }
-        }
-
-        if (rdbUF.isSelected()) {
-            Validador uf = new Validador();
-            uf.validarTexto(txtBusca);
-            if (uf.hasErro()) {
-                JOptionPane.showMessageDialog(rootPane, uf.getMensagensErro());
-            }
+        if (cliente.hasErro()) {
+            JOptionPane.showMessageDialog(rootPane, cliente.getMensagensErro());
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
