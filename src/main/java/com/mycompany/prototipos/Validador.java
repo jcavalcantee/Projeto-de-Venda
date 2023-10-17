@@ -107,8 +107,9 @@ public class Validador {
     }
 
     public void textoSemNumeros(JTextField txt, java.awt.event.KeyEvent evt) {
-        //Restringindo números no preenchimento do campo
+        
         try {
+            //Restringindo números no preenchimento do campo
             char c = evt.getKeyChar();
             if (c >= '0' && c <= '9') {
                 evt.consume();
