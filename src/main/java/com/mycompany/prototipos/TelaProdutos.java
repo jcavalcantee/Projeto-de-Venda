@@ -250,21 +250,26 @@ public class TelaProdutos extends javax.swing.JFrame {
             codigo.limiteTexto(txtBusca, evt, 4);
         }
         txtBusca.setBackground(Color.white);
-        
+
         if (rdbNome.isSelected()) {
             Validador nome = new Validador();
-            nome.limiteTexto(txtBusca, evt, 10);
+            nome.limiteTexto(txtBusca, evt, 50);
             nome.textoSemNumeros(txtBusca, evt);
         }
     }//GEN-LAST:event_txtBuscaKeyTyped
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        Validador produto = new Validador();
         if (rdbCodigo.isSelected()) {
-            Validador codigo = new Validador();
-            codigo.validarNumero(txtBusca);
-            if (codigo.hasErro()) {
-                JOptionPane.showMessageDialog(rootPane, codigo.getMensagensErro());
-            }
+            produto.validarNumero(txtBusca);
+        }else if (rdbNome.isSelected()) {
+            produto.validarTexto(txtBusca);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Selecione uma opção para realizar a busca!");
+        }
+
+        if (produto.hasErro()) {
+            JOptionPane.showMessageDialog(rootPane, produto.getMensagensErro());
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
