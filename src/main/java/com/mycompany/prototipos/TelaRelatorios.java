@@ -4,6 +4,10 @@
  */
 package com.mycompany.prototipos;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author pedro
@@ -599,7 +603,38 @@ public class TelaRelatorios extends javax.swing.JFrame {
 
     
     private void btnBuscarSinteticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarSinteticoActionPerformed
-        // TODO add your handling code here:
+        Integer diaInicial = Integer.parseInt((String) jcbDtInicialSintetico.getSelectedItem());
+        Integer diaFinal = Integer.parseInt((String) jcbDtFinalSintetico.getSelectedItem());
+        
+        Integer mesInicial = Integer.parseInt((String) jcbMesInicialSintetico.getSelectedItem());
+        Integer mesFinal = Integer.parseInt((String) jcbMesFinalSintetico.getSelectedItem());
+        
+        Integer anoInicial = Integer.parseInt((String) jcbAnoInicialSintetico.getSelectedItem());
+        Integer anoFinal = Integer.parseInt((String) jcbAnoFinalSintetico.getSelectedItem());
+        
+        LocalDate dataInicial = LocalDate.of(anoInicial, mesInicial, diaInicial);
+        LocalDate dataFinal = LocalDate.of(anoFinal, mesFinal, diaFinal);
+        
+        long numeroDias = ChronoUnit.DAYS.between(dataInicial, dataFinal);
+        
+        if(numeroDias < 31) {
+                  JOptionPane.showMessageDialog(rootPane, "RELATORIO GERADO COM SUCESSO");
+         }  else  {
+                           JOptionPane.showMessageDialog(rootPane,
+                        "O periodo selecionado para o relatório não pode ter um intervalo maior que 31 dias");       
+                     }   
+        
+        
+        //  TESTE
+//                if(((anoFinal - anoInicial == 0) && (mesFinal - mesInicial == 0)) || ((anoFinal - anoInicial == 1) && (mesFinal - mesInicial == 1)) 
+//                  || ((anoFinal - anoInicial == 1) && (mesFinal - mesInicial == 0)) || ((anoFinal - anoInicial == 0) && (mesFinal - mesInicial == 1))) {                 
+//                            if((diaFinal - diaInicial) <= 31) {
+//                                    JOptionPane.showMessageDialog(rootPane, "RELATORIO GERADO COM SUCESSO");
+//                            }             
+//                 } else {
+//                           JOptionPane.showMessageDialog(rootPane,
+//                        "O periodo selecionado para o relatório não pode ter um intervalo maior que 31 dias");       
+//                }
     }//GEN-LAST:event_btnBuscarSinteticoActionPerformed
 
     private void jcbMesInicialSinteticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbMesInicialSinteticoActionPerformed
