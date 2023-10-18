@@ -257,9 +257,16 @@ public class TelaRelatorios extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tblRelatorioSintetico);
@@ -323,6 +330,11 @@ public class TelaRelatorios extends javax.swing.JFrame {
 
         btnBuscarAnalitico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/analytics.png"))); // NOI18N
         btnBuscarAnalitico.setText("Buscar");
+        btnBuscarAnalitico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarAnaliticoActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Data final");
@@ -619,17 +631,15 @@ public class TelaRelatorios extends javax.swing.JFrame {
 
             long numeroDias = ChronoUnit.DAYS.between(dataInicial, dataFinal);
 
-            if(mesInicial == mesFinal) {
-                if(diaInicial > diaFinal) {
-                    JOptionPane.showMessageDialog(rootPane,
+            if ((mesInicial == mesFinal) && (diaInicial > diaFinal)) {
+                JOptionPane.showMessageDialog(rootPane,
                         "O periodo inicial selecionado não pode ser maior que o periodo final.");
-                }
-            }   else if ((mesInicial > mesFinal) || (anoInicial > anoFinal)) {
+            } else if ((mesInicial > mesFinal) || (anoInicial > anoFinal)) {
                 JOptionPane.showMessageDialog(rootPane,
                         "O periodo inicial selecionado não pode ser maior que o periodo final.");
             } else {
                 if (numeroDias <= 31) {
-                    JOptionPane.showMessageDialog(rootPane, "RELATORIO GERADO COM SUCESSO");
+                    JOptionPane.showMessageDialog(rootPane, "RELATORIO SINTÉTICO GERADO COM SUCESSO :)");
                 } else {
                     JOptionPane.showMessageDialog(rootPane,
                             "O periodo selecionado para o relatório não pode ter um intervalo maior que 31 dias");
@@ -639,16 +649,6 @@ public class TelaRelatorios extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "O dia selecionado não existe.");
         }
 
-        //  TESTE
-//                if(((anoFinal - anoInicial == 0) && (mesFinal - mesInicial == 0)) || ((anoFinal - anoInicial == 1) && (mesFinal - mesInicial == 1)) 
-//                  || ((anoFinal - anoInicial == 1) && (mesFinal - mesInicial == 0)) || ((anoFinal - anoInicial == 0) && (mesFinal - mesInicial == 1))) {                 
-//                            if((diaFinal - diaInicial) <= 31) {
-//                                    JOptionPane.showMessageDialog(rootPane, "RELATORIO GERADO COM SUCESSO");
-//                            }             
-//                 } else {
-//                           JOptionPane.showMessageDialog(rootPane,
-//                        "O periodo selecionado para o relatório não pode ter um intervalo maior que 31 dias");       
-//                }
     }//GEN-LAST:event_btnBuscarSinteticoActionPerformed
 
     private void jcbMesInicialSinteticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbMesInicialSinteticoActionPerformed
@@ -666,6 +666,42 @@ public class TelaRelatorios extends javax.swing.JFrame {
     private void jcbMesFinalAnaliticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbMesFinalAnaliticoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbMesFinalAnaliticoActionPerformed
+
+    private void btnBuscarAnaliticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarAnaliticoActionPerformed
+        try {
+            Integer diaInicial = Integer.parseInt((String) jcbDtInicialAnalitico.getSelectedItem());
+            Integer diaFinal = Integer.parseInt((String) jcbDtFinalAnalitico.getSelectedItem());
+
+            Integer mesInicial = Integer.parseInt((String) jcbMesInicialAnalitico.getSelectedItem());
+            Integer mesFinal = Integer.parseInt((String) jcbMesFinalAnalitico.getSelectedItem());
+
+            Integer anoInicial = Integer.parseInt((String) jcbAnoInicialAnalitico.getSelectedItem());
+            Integer anoFinal = Integer.parseInt((String) jcbAnoFinalAnalitico.getSelectedItem());
+
+            LocalDate dataInicial = LocalDate.of(anoInicial, mesInicial, diaInicial);
+            LocalDate dataFinal = LocalDate.of(anoFinal, mesFinal, diaFinal);
+
+            long numeroDias = ChronoUnit.DAYS.between(dataInicial, dataFinal);
+
+            if ((mesInicial == mesFinal) && (diaInicial > diaFinal)) {
+                JOptionPane.showMessageDialog(rootPane,
+                        "O periodo inicial selecionado não pode ser maior que o periodo final.");
+            } else if ((mesInicial > mesFinal) || (anoInicial > anoFinal)) {
+                JOptionPane.showMessageDialog(rootPane,
+                        "O periodo inicial selecionado não pode ser maior que o periodo final.");
+            } else {
+                if (numeroDias <= 31) {
+                    JOptionPane.showMessageDialog(rootPane, "RELATORIO ANALÍTICO GERADO COM SUCESSO :)");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane,
+                            "O periodo selecionado para o relatório não pode ter um intervalo maior que 31 dias");
+                }
+            }
+        } catch (DateTimeException e) {
+            JOptionPane.showMessageDialog(rootPane, "O dia selecionado não existe.");
+        }
+
+    }//GEN-LAST:event_btnBuscarAnaliticoActionPerformed
 
     /**
      * @param args the command line arguments
