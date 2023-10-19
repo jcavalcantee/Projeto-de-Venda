@@ -55,7 +55,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        mnuArquivo = new javax.swing.JMenu();
+        mnuProd = new javax.swing.JMenuItem();
+        mnuCli = new javax.swing.JMenuItem();
+        mnuRel = new javax.swing.JMenuItem();
+        mnuVen = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         mnuSair = new javax.swing.JMenuItem();
 
@@ -66,6 +70,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuBar2.add(jMenu4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Street Clothing - Tela Principal");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -147,11 +152,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jlData.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jlData.setForeground(new java.awt.Color(0, 0, 0));
+        jlData.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlData.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jlData.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jlHora.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jlHora.setForeground(new java.awt.Color(0, 0, 0));
+        jlHora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlHora.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -198,9 +205,48 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/logo_PI_resized.jpg"))); // NOI18N
 
-        jMenu1.setText("Arquivo");
-        jMenuBar1.add(jMenu1);
+        mnuArquivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/page.png"))); // NOI18N
+        mnuArquivo.setText("Arquivo");
 
+        mnuProd.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        mnuProd.setText("Acessar Produtos");
+        mnuProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuProdActionPerformed(evt);
+            }
+        });
+        mnuArquivo.add(mnuProd);
+
+        mnuCli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        mnuCli.setText("Acessar Clientes");
+        mnuCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCliActionPerformed(evt);
+            }
+        });
+        mnuArquivo.add(mnuCli);
+
+        mnuRel.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        mnuRel.setText("Acessar Relatórios");
+        mnuRel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuRelActionPerformed(evt);
+            }
+        });
+        mnuArquivo.add(mnuRel);
+
+        mnuVen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        mnuVen.setText("Acessar Vendas");
+        mnuVen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuVenActionPerformed(evt);
+            }
+        });
+        mnuArquivo.add(mnuVen);
+
+        jMenuBar1.add(mnuArquivo);
+
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/door_out.png"))); // NOI18N
         jMenu5.setText("Encerrar Sessão");
 
         mnuSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -289,6 +335,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_btnRelatoriosActionPerformed
 
+    private void mnuProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuProdActionPerformed
+        TelaProdutos produtos = new TelaProdutos();
+        produtos.setVisible(true);
+    }//GEN-LAST:event_mnuProdActionPerformed
+
+    private void mnuCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCliActionPerformed
+        TelaClientes clientes = new TelaClientes();
+        clientes.setVisible(true);
+    }//GEN-LAST:event_mnuCliActionPerformed
+
+    private void mnuRelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRelActionPerformed
+        TelaRelatorios relatorios = new TelaRelatorios();
+        relatorios.setVisible(true);
+    }//GEN-LAST:event_mnuRelActionPerformed
+
+    private void mnuVenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuVenActionPerformed
+        TelaVenda vendas = new TelaVenda();
+        vendas.setVisible(true);
+    }//GEN-LAST:event_mnuVenActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -332,7 +398,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -343,7 +408,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel jlData;
     private javax.swing.JLabel jlHora;
+    private javax.swing.JMenu mnuArquivo;
+    private javax.swing.JMenuItem mnuCli;
+    private javax.swing.JMenuItem mnuProd;
+    private javax.swing.JMenuItem mnuRel;
     private javax.swing.JMenuItem mnuSair;
+    private javax.swing.JMenuItem mnuVen;
     // End of variables declaration//GEN-END:variables
     
     class hora implements ActionListener {
