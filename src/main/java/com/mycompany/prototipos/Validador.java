@@ -58,25 +58,6 @@ public class Validador {
         }
 
     }
-    
-    
-    public void validarPreco(JTextField txt, java.awt.event.KeyEvent evt){
-        try{
-            char c = evt.getKeyChar();
-
-                if (!((Character.isDigit(c) || c == '.') && (txt.getText().indexOf('.') == -1 || c != '.'))) {
-                    evt.consume(); // Impede a entrada de caracteres não numéricos ou mais de um ponto
-                }
-                
-        }catch (NumberFormatException e) {
-
-            this.mensagensErro.add("Falha ao converter o valor do campo " + txt.getName() + " em float");
-            txt.setBackground(Color.red);
-        } catch (IllegalArgumentException e) {
-            this.mensagensErro.add("Digite um valor para o campo " + txt.getName());
-            txt.setBackground(Color.red);
-        }
-    }
 
     public void ValidarFloat(JTextField txt) {
 
