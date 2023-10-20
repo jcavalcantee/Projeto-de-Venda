@@ -237,6 +237,11 @@ public class TelaVenda extends javax.swing.JFrame {
                 txtPrecoActionPerformed(evt);
             }
         });
+        txtPreco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecoKeyTyped(evt);
+            }
+        });
 
         txtQuantidade.setName("Quantidade"); // NOI18N
         txtQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -535,7 +540,7 @@ public class TelaVenda extends javax.swing.JFrame {
         adicionar.validarTexto(txtProduto);
         adicionar.validarTexto(txtQuantidade);
         adicionar.ValidarFloat(txtPreco);
-        
+       
         if(adicionar.hasErro()){
             JOptionPane.showMessageDialog(rootPane, adicionar.getMensagensErro());
         }
@@ -557,6 +562,10 @@ public class TelaVenda extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
+    private void txtPrecoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecoKeyTyped
+        Validador preco = new Validador();
+        preco.validarPreco(txtPreco, evt);
+    }//GEN-LAST:event_txtPrecoKeyTyped
     /**
      * @param args the command line arguments
      */
