@@ -27,7 +27,6 @@ public class TelaClientes extends javax.swing.JFrame {
      */
     public TelaClientes() {
         initComponents();
-        clientesCadastrados();
     }
 
     /**
@@ -273,8 +272,11 @@ public class TelaClientes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    //Variável para verificação se o campo está ou não com a máscara
     private boolean mascaraAplicada;
 
+    //Função para aplicar máscara de CPF ao campo
     public boolean mascara() {
         try {
             MaskFormatter maskFormatter = new MaskFormatter("###.###.###-##");
@@ -286,26 +288,7 @@ public class TelaClientes extends javax.swing.JFrame {
         return mascaraAplicada = true;
     }
 
-    public void clientesCadastrados() {
-        Cliente clientes[] = new Cliente[5];
-        clientes[0] = new Cliente("Lucas", "55151515215", 'M', "lucas@gmail.com", "Rua um");
-        clientes[1] = new Cliente("Pedro", "4536895552", 'M', "pedro@gmail.com", "Rua dois");
-        clientes[2] = new Cliente("Patrick", "55489896212", 'M', "patrick@gmail.com", "Rua três");
-        clientes[3] = new Cliente("Gabriel", "178782656562", 'M', "gabriel@gmail.com", "Rua quatro");
-        clientes[4] = new Cliente("Jefferson", "798413266523", 'M', "jefferson@gmail.com", "Rua cinco");
-
-        DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
-
-        for (int i = 0; i < clientes.length; i++) {
-            //Adicionar uma linha à tabela
-            modelo.addRow(new String[]{
-                clientes[i].getCpf(),
-                clientes[i].getNome(),
-                clientes[i].getEmail(),
-                clientes[i].getLogradouro()});
-        }
-    }
-
+    //Função para remover a máscara do campo
     public boolean removerMascara() {
         txtBusca.setFormatterFactory(null);
         txtBusca.setText("");
