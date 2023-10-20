@@ -25,7 +25,7 @@ public class Cliente {
     public Cliente() {
         
     }
-    //Construtor com os dados obrigatórios para cadastro de produtos.
+    //Construtor com os dados obrigatórios para cadastro de clientes.
     public Cliente(String nome, String cpf, char sexo, String email, String logradouro) {
         this.nome = nome;
         this.cpf = cpf;
