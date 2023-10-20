@@ -406,6 +406,16 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel24.setText("Preço Unitário * :");
 
         txtPreco.setName("Preço"); // NOI18N
+        txtPreco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecoActionPerformed(evt);
+            }
+        });
+        txtPreco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecoKeyTyped(evt);
+            }
+        });
 
         jLabel25.setText("* Indica obrigatoriedade no preenchimento.");
 
@@ -524,7 +534,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    int j = 0;
     private void btnCadastrarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarCliActionPerformed
 
         Validador validarDados = new Validador();
@@ -536,22 +545,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         validarDados.validarNumero(txtNumero);
         validarDados.validarTexto(txtCidade);
         validarDados.comboBox(jcbUf);
+        validarDados.ValidarFloat(txtPreco);
 
         if (validarDados.hasErro()) {
             JOptionPane.showMessageDialog(rootPane, "Não foi possível cadastrar o usuário.");
             JOptionPane.showMessageDialog(rootPane, validarDados.getMensagensErro());
-        } else {
-            Cliente c1[] = new Cliente[10];
-            try {
-                Object stringSexo = jcbSexo.getSelectedItem();
-                char sexo = ((String) stringSexo).charAt(0);
-                c1[j] = new Cliente(txtNome.getText(), txtCPF.getText(), sexo, txtEmail.getText(), txtLogradouro.getText());
-                JOptionPane.showMessageDialog(rootPane, "Usuario cadastrado com sucesso!");
-                j++;
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar o cliente, por favor revise os campos!");
-            }
-
         }
 
     }//GEN-LAST:event_btnCadastrarCliActionPerformed
@@ -610,8 +608,9 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCidadeKeyTyped
 
     private void btnCadastrarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdActionPerformed
-        //Validação da tela de cadastro de produtos!
+        int quantidade = 0;
 
+        //Validação da tela de cadastro de produtos!
         Validador vazio = new Validador();
         vazio.comboBox(jcbTamanho);
         vazio.comboBox(jcbCategorias);
@@ -624,9 +623,18 @@ public class TelaCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Não foi possível cadastrar o produto.");
             JOptionPane.showMessageDialog(rootPane, vazio.getMensagensErro());
         }
-        int quantidade = Integer.parseInt(txtEstoque.getText());
+        
+        try {
+            quantidade = Integer.parseInt(txtEstoque.getText());
+        } catch (NumberFormatException e) {
+            if (!txtEstoque.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Digite um valor válido para o campo estoque");
+            }
+        }
+        
         if (quantidade < 1) {
-            JOptionPane.showMessageDialog(null, "Aviso: o do estoque inicial não pode ser menor que 1.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Aviso: O estoque inicial não pode ser menor que 1.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            txtEstoque.setBackground(Color.red);
         }
     }//GEN-LAST:event_btnCadastrarProdActionPerformed
 
@@ -668,6 +676,15 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
         txtEmail.setBackground(Color.white);
     }//GEN-LAST:event_txtEmailKeyTyped
+
+    private void txtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecoActionPerformed
+
+    private void txtPrecoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecoKeyTyped
+        Validador preco = new Validador();
+        preco.validarPreco(txtPreco, evt);
+    }//GEN-LAST:event_txtPrecoKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarCli;
