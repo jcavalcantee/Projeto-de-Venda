@@ -171,7 +171,7 @@ public class TelaClientes extends javax.swing.JFrame {
         });
 
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/zoom.png"))); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/search.png"))); // NOI18N
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
