@@ -64,7 +64,7 @@ public class Validador {
         try{
             char c = evt.getKeyChar();
 
-                if (!((Character.isDigit(c) || c == ',') && (txt.getText().indexOf(',') == -1 || c != ','))) {
+                if (!((Character.isDigit(c) || c == '.') && (txt.getText().indexOf('.') == -1 || c != '.'))) {
                     evt.consume(); // Impede a entrada de caracteres não numéricos ou mais de um ponto
                 }
                 
