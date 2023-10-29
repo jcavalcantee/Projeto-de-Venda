@@ -522,8 +522,12 @@ public class TelaVenda extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Aviso: A quantidade inicial não pode ser menor que 1.", "Aviso", JOptionPane.WARNING_MESSAGE);
             txtQuantidade.setBackground(Color.red);
         } else {
-            totalVenda += quantidade * Float.parseFloat(txtPreco.getText());
-            lblTotalVenda.setText(totalVenda + "");
+            try {
+                totalVenda += quantidade * Float.parseFloat(txtPreco.getText().replace(",", "."));
+                lblTotalVenda.setText(totalVenda + "");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Digite apenas um ponto \".\" ou uma vírgula \",\".");
+            }
         }
     }//GEN-LAST:event_btnAdicionarItemActionPerformed
 

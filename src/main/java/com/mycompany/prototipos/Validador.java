@@ -64,7 +64,8 @@ public class Validador {
         try{
             char c = evt.getKeyChar();
 
-                if (!((Character.isDigit(c) || c == '.') && (txt.getText().indexOf('.') == -1 || c != '.'))) {
+                if (!((Character.isDigit(c) || c == '.' || c == ',') && (txt.getText().indexOf('.') == -1 || c != '.')
+                        && (txt.getText().indexOf(',') == -1 || c != ','))) {
                     evt.consume(); // Impede a entrada de caracteres não numéricos ou mais de um ponto
                 }
                 
@@ -87,7 +88,7 @@ public class Validador {
                 throw new IllegalArgumentException();
             }
 
-            float valorConvertido = Float.parseFloat(txt.getText());
+            float valorConvertido = Float.parseFloat(txt.getText().replace(",", "."));
             txt.setBackground(Color.WHITE);
 
         } catch (NumberFormatException e) {
