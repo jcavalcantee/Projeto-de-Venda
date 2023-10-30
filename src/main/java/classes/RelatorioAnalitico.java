@@ -4,10 +4,6 @@
  */
 package classes;
 
-/**
- *
- * @author jeffe
- */
 public class RelatorioAnalitico {
     
     private int cliente;
