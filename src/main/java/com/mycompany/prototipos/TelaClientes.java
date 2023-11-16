@@ -5,9 +5,11 @@
 package com.mycompany.prototipos;
 
 import classes.Cliente;
+import com.mycompany.prototipos.dao.StreetClothingDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.AEADBadTagException;
@@ -27,6 +29,7 @@ public class TelaClientes extends javax.swing.JFrame {
      */
     public TelaClientes() {
         initComponents();
+        recarregarTabela();
     }
 
     /**
@@ -57,7 +60,6 @@ public class TelaClientes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Street Clothing - Menu de Clientes");
-        setPreferredSize(new java.awt.Dimension(666, 517));
 
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -391,6 +393,24 @@ public class TelaClientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    public void recarregarTabela(){
+    
+        ArrayList<Cliente> lista = StreetClothingDAO.listarCliente();
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
+        modelo.setRowCount(0);
+        
+        //Para cada item na lista retornada do banco, adiciono à nossa tabela
+        for (Cliente item : lista) {
+            modelo.addRow(new String[]{
+                        String.valueOf(item.getCpf()),
+                        String.valueOf(item.getNome()),
+                        String.valueOf(item.getEmail()),
+                        String.valueOf(item.getLogradouro())
+            });
+        }       
+    }
+    
     private void txtBuscaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyReleased
         if (rdbUF.isSelected()) {
             txtBusca.setText(this.txtBusca.getText().toUpperCase());
