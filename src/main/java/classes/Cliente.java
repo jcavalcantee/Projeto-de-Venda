@@ -21,6 +21,7 @@ public class Cliente {
     private int numero;
     private String cidade;
     private String uf;
+    private int idCliente;
 
     public Cliente() {
         
@@ -41,6 +42,14 @@ public class Cliente {
         this.numero = numero;
         this.cidade = cidade;
         this.uf = uf;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getNome() {
