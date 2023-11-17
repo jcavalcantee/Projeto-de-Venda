@@ -105,6 +105,11 @@ public class TelaClientes extends javax.swing.JFrame {
         btnAtualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/edit.png"))); // NOI18N
         btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -416,6 +421,23 @@ public class TelaClientes extends javax.swing.JFrame {
             txtBusca.setText(this.txtBusca.getText().toUpperCase());
         }
     }//GEN-LAST:event_txtBuscaKeyReleased
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        //1º Resgatar dados da linha da tabela e passar para o objeto
+        int linhaSelecionada = tblClientes.getSelectedRow();
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
+        
+        int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString()) ;
+        int numeroSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 1).toString()) ;
+        double valorSelecionado = Double.parseDouble(modelo.getValueAt(linhaSelecionada, 2).toString());
+                
+//        Cliente objAlterar = new Cliente(idSelecionado, numeroSelecionado, valorSelecionado);
+//        
+//        //TODO: Passar objeto para a tela de alteração
+//        ViewNotaFiscal telaAlterar = new ViewNotaFiscal(objAlterar);
+//        telaAlterar.setVisible(true);
+    }//GEN-LAST:event_btnAtualizarActionPerformed
 
     /**
      * @param args the command line arguments
