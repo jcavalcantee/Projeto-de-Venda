@@ -44,6 +44,21 @@ public class Cliente {
         this.uf = uf;
     }
 
+    public Cliente(String nome, String dataNascimento, String cpf, char sexo, int telefone, String email, String estCivil, String logradouro, int numero, String cidade, String uf) {
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.cpf = cpf;
+        this.sexo = sexo;
+        this.telefone = telefone;
+        this.email = email;
+        this.estCivil = estCivil;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.cidade = cidade;
+        this.uf = uf;
+    }
+    
+    
     public int getIdCliente() {
         return idCliente;
     }

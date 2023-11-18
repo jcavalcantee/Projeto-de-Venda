@@ -5,6 +5,7 @@
 package com.mycompany.prototipos;
 
 import classes.Cliente;
+import com.mycompany.prototipos.dao.StreetClothingDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -14,6 +15,8 @@ import javax.swing.JOptionPane;
  * @author patri
  */
 public class TelaCadastro extends javax.swing.JFrame {
+
+    Cliente obj = null;
 
     /**
      * Creates new form TelaCadastro
@@ -66,7 +69,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         ftfTelefone = new javax.swing.JFormattedTextField();
         jLabel22 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcbEstCivil = new javax.swing.JComboBox<>();
         ftfDtNascimento = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -211,7 +214,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jLabel22.setText("Estado Civil:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 - Solteiro(a)", "2 - Casado(a)", "3 - Viuvo(a)" }));
+        jcbEstCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 - Solteiro(a)", "2 - Casado(a)", "3 - Viuvo(a)" }));
 
         try {
             ftfDtNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -285,7 +288,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel5)
                                             .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jcbEstCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(ftfDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -320,7 +323,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbEstCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -552,6 +555,22 @@ public class TelaCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, validarDados.getMensagensErro());
         }
 
+        if (obj == null) {
+            String cpf = txtCPF.getText();
+            String nome = txtNome.getText();
+            String email = txtEmail.getText();
+            String dtNascimento = ftfDtNascimento.getText();
+            String sexo = String.valueOf(jcbSexo.getSelectedItem());
+            int telefone = Integer.parseInt(ftfTelefone.getText());
+            String estCivil = String.valueOf(jcbEstCivil.getSelectedItem());
+            String logradouro = txtLogradouro.getText();
+            int numero = Integer.parseInt(txtNumero.getText());
+            String cidade = txtCidade.getText();
+            String uf = String.valueOf(jcbUf.getSelectedItem());
+        
+            //TODO: Estanciar o construtor com os parametros para cadastrar, e chamar a DAO
+           
+        }
     }//GEN-LAST:event_btnCadastrarCliActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -623,7 +642,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Não foi possível cadastrar o produto.");
             JOptionPane.showMessageDialog(rootPane, vazio.getMensagensErro());
         }
-        
+
         try {
             quantidade = Integer.parseInt(txtEstoque.getText());
         } catch (NumberFormatException e) {
@@ -631,7 +650,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Digite um valor válido para o campo estoque");
             }
         }
-        
+
         if (quantidade < 1) {
             JOptionPane.showMessageDialog(null, "Aviso: O estoque inicial não pode ser menor que 1.", "Aviso", JOptionPane.WARNING_MESSAGE);
             txtEstoque.setBackground(Color.red);
@@ -691,7 +710,6 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrarProd;
     private javax.swing.JFormattedTextField ftfDtNascimento;
     private javax.swing.JFormattedTextField ftfTelefone;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -727,6 +745,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JComboBox<String> jcbCategorias;
+    private javax.swing.JComboBox<String> jcbEstCivil;
     private javax.swing.JComboBox<String> jcbSexo;
     private javax.swing.JComboBox<String> jcbTamanho;
     private javax.swing.JComboBox<String> jcbUf;

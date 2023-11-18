@@ -103,7 +103,6 @@ public class StreetClothingDAO {
                     item.setNome(rs.getString("Nome"));
                     item.setEmail(rs.getString("E_mail"));
                     item.setLogradouro(rs.getString("Rua"));
-//                    item.setNumero(rs.getInt("Numero"));
 
                     lista.add(item);
 
