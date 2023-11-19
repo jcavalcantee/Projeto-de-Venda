@@ -14,7 +14,7 @@ public class Cliente {
     private String dataNascimento;
     private String cpf;
     private char sexo;
-    private int telefone;
+    private String telefone;
     private String email;
     private String estCivil;
     private String logradouro;
@@ -35,7 +35,7 @@ public class Cliente {
         this.logradouro = logradouro;
     }
     //Construtor com os demais atributos "não obrigatórios".
-    public Cliente(String dataNascimento, int telefone, String estCivil, int numero, String cidade, String uf) {
+    public Cliente(String dataNascimento, String telefone, String estCivil, int numero, String cidade, String uf) {
         this.dataNascimento = dataNascimento;
         this.telefone = telefone;
         this.estCivil = estCivil;
@@ -44,7 +44,8 @@ public class Cliente {
         this.uf = uf;
     }
 
-    public Cliente(String nome, String dataNascimento, String cpf, char sexo, int telefone, String email, String estCivil, String logradouro, int numero, String cidade, String uf) {
+    //Gerado construtor com todos os parametros para utilização no cadastro de cliente;
+    public Cliente(String cpf, String nome, String dataNascimento, char sexo, String telefone, String email, String estCivil, String logradouro, int numero, String cidade, String uf) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.cpf = cpf;
@@ -99,11 +100,11 @@ public class Cliente {
         this.sexo = sexo;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
