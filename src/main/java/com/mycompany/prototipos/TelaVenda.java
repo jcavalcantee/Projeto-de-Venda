@@ -4,6 +4,8 @@
  */
 package com.mycompany.prototipos;
 
+import classes.Cliente;
+import com.mycompany.prototipos.dao.StreetClothingDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -43,9 +45,9 @@ public class TelaVenda extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtNomeCliente = new javax.swing.JTextField();
         btnPesquisarCliente = new javax.swing.JButton();
         txtCPF = new javax.swing.JFormattedTextField();
+        lblNomeCliente = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -102,14 +104,6 @@ public class TelaVenda extends javax.swing.JFrame {
 
         jLabel4.setText("Nome");
 
-        txtNomeCliente.setInheritsPopupMenu(true);
-        txtNomeCliente.setName("Nome"); // NOI18N
-        txtNomeCliente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNomeClienteKeyTyped(evt);
-            }
-        });
-
         btnPesquisarCliente.setText("Pesquisar");
         btnPesquisarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,6 +128,8 @@ public class TelaVenda extends javax.swing.JFrame {
             }
         });
 
+        lblNomeCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -146,11 +142,11 @@ public class TelaVenda extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(101, 101, 101)
                         .addComponent(btnPesquisarCliente)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,11 +158,13 @@ public class TelaVenda extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(lblNomeCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(btnPesquisarCliente)
                 .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblNomeCliente, txtCPF});
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados do Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
@@ -486,7 +484,7 @@ public class TelaVenda extends javax.swing.JFrame {
                     .addComponent(btnFinalizar)
                     .addComponent(btnCancelar)
                     .addComponent(jButton8))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
@@ -505,13 +503,6 @@ public class TelaVenda extends javax.swing.JFrame {
     private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCPFActionPerformed
-
-    private void txtNomeClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeClienteKeyTyped
-        Validador nome = new Validador();
-
-        nome.limiteTexto(txtNomeCliente, evt, 50);
-        nome.textoSemNumeros(txtNomeCliente, evt);
-    }//GEN-LAST:event_txtNomeClienteKeyTyped
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
         Validador cod = new Validador();
@@ -549,9 +540,22 @@ public class TelaVenda extends javax.swing.JFrame {
         Validador pesquisar = new Validador();
 
         pesquisar.validarTexto(txtCPF);
-        pesquisar.validarTexto(txtNomeCliente);
+//        pesquisar.validarTexto(txtNomeCliente);
         if (pesquisar.hasErro())
             JOptionPane.showMessageDialog(rootPane, pesquisar.getMensagensErro());
+        
+        Cliente pesquisarCliente = new Cliente();
+        pesquisarCliente.setCpf(txtCPF.getText());
+        Cliente retorno = StreetClothingDAO.pesquisarClientes(pesquisarCliente);
+        
+        lblNomeCliente.setText(retorno.getNome());
+        
+        if(retorno.getNome() == null){
+            JOptionPane.showMessageDialog(rootPane, "Cliente não cadastrado!");
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Cliente cadastrado!");
+        }
+        
     }//GEN-LAST:event_btnPesquisarClienteActionPerformed
 
     private void btnAdicionarItemKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAdicionarItemKeyTyped
@@ -688,10 +692,10 @@ public class TelaVenda extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel lblNomeCliente;
     private javax.swing.JLabel lblTotalVenda;
     private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtPreco;
     private javax.swing.JTextField txtProduto;
     private javax.swing.JTextField txtQuantidade;
