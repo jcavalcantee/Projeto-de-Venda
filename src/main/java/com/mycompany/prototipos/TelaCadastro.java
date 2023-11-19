@@ -5,6 +5,7 @@
 package com.mycompany.prototipos;
 
 import classes.Cliente;
+import classes.Produto;
 import com.mycompany.prototipos.dao.StreetClothingDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -214,7 +215,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jLabel22.setText("Estado Civil:");
 
-        jcbEstCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 - Solteiro(a)", "2 - Casado(a)", "3 - Viuvo(a)" }));
+        jcbEstCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solteiro(a)", "Casado(a)", "Viuvo(a)" }));
 
         try {
             ftfDtNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -235,13 +236,9 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCadastrarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(jLabel21)))
-                        .addGap(86, 86, 86))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel21)
+                        .addGap(108, 108, 108))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(229, 229, 229)
@@ -293,6 +290,10 @@ public class TelaCadastro extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(ftfDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(53, 53, 53))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(btnCadastrarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,9 +341,9 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcbUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(btnCadastrarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel21)
                 .addGap(15, 15, 15))
         );
@@ -387,7 +388,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
-        jcbUnidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione ", "1 - Peça", "2 - Par", " " }));
+        jcbUnidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione ", "Peça", "Par", " " }));
         jcbUnidade.setName("Unidade"); // NOI18N
         jcbUnidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -395,7 +396,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
-        jcbCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "1 - Masculino", "2 - Feminino", "3 - Masculino Infantil", "4 - Feminino Infantil", "5 - Acessórios", " " }));
+        jcbCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Masculino", "Feminino", "Masculino Infantil", "Feminino Infantil", "Acessórios", " " }));
         jcbCategorias.setName("Categorias"); // NOI18N
 
         btnCadastrarProd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -481,7 +482,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                                     .addComponent(jcbCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 11, Short.MAX_VALUE))))
+                        .addGap(0, 28, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -568,7 +569,6 @@ public class TelaCadastro extends javax.swing.JFrame {
             String cidade = txtCidade.getText();
             String uf = String.valueOf(jcbUf.getSelectedItem());
 
-            
             Cliente novoCliente = new Cliente(cpf, nome, dataNascimento, sexo, telefone, email, estCivil, logradouro, numero, cidade, uf);
 
             boolean retorno = StreetClothingDAO.cadastrarCliente(novoCliente);
@@ -601,7 +601,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         //cpf.limiteTexto(txtNome, evt, 11);
         cpf.validarCPF(ftfCPF);
         ftfCPF.setBackground(Color.white);
-        
+
     }//GEN-LAST:event_ftfCPFKeyTyped
 
     private void ftfDtNascimentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfDtNascimentoKeyTyped
@@ -664,6 +664,26 @@ public class TelaCadastro extends javax.swing.JFrame {
         if (quantidade < 1) {
             JOptionPane.showMessageDialog(null, "Aviso: O estoque inicial não pode ser menor que 1.", "Aviso", JOptionPane.WARNING_MESSAGE);
             txtEstoque.setBackground(Color.red);
+        }
+
+        if (obj == null) {
+            String nomeProduto = txtNomeProd.getText();
+            String categoria = String.valueOf(jcbCategorias.getSelectedItem());
+            String tamanho = String.valueOf(jcbTamanho.getSelectedItem());
+            String unidade = String.valueOf(jcbUnidade.getSelectedItem());
+            int estoque = Integer.parseInt(txtEstoque.getText());
+            String marca = String.valueOf(txtMarca.getText());
+            float precoUni = Float.parseFloat(txtPreco.getText());
+
+            Produto novoProduto = new Produto(nomeProduto, categoria, tamanho, unidade, estoque, marca, precoUni);
+
+            boolean retorno = StreetClothingDAO.cadastrarProduto(novoProduto);
+
+            if (retorno == true) {
+                JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar!");
+            }
         }
     }//GEN-LAST:event_btnCadastrarProdActionPerformed
 
