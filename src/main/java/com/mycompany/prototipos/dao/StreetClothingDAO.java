@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  *
  * @author Lucas Gouveia
@@ -38,18 +39,19 @@ public class StreetClothingDAO {
             conexao = DriverManager.getConnection(url, login, senha);
 
             //Preparar o comando a ser executado
-            comandoSQL = conexao.prepareStatement("INSERT INTO Clientes (CPF, Nome, E_mail, Rua, DataNascimento, Sexo, Telefone, "
-                    + "Estado_Civil, numero, Cidade, UF) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            comandoSQL = conexao.prepareStatement("INSERT INTO Clientes (CPF, Nome, DataNascimento, Sexo, Telefone, E_mail, Estado_Civil, Logradouro, Numero,"
+                    + "Cidade, UF) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             comandoSQL.setString(1, novoCliente.getCpf());
             comandoSQL.setString(2, novoCliente.getNome());
             comandoSQL.setString(3, novoCliente.getDataNascimento());
             comandoSQL.setString(4, Character.toString(novoCliente.getSexo()));
-            comandoSQL.setInt(5, novoCliente.getTelefone());
+            comandoSQL.setString(5, novoCliente.getTelefone());
             comandoSQL.setString(6, novoCliente.getEmail());
             comandoSQL.setString(7, novoCliente.getEstCivil());
             comandoSQL.setString(8, novoCliente.getLogradouro());
-            comandoSQL.setString(9, novoCliente.getCidade());
-            comandoSQL.setString(10, novoCliente.getUf());
+            comandoSQL.setString(9, String.valueOf(novoCliente.getNumero()));
+            comandoSQL.setString(10, novoCliente.getCidade());
+            comandoSQL.setString(11, novoCliente.getUf());
 
             //Executando o comando preparado
             int linhasAfetadas = comandoSQL.executeUpdate();
@@ -102,7 +104,7 @@ public class StreetClothingDAO {
                     item.setCpf(rs.getString("CPF"));
                     item.setNome(rs.getString("Nome"));
                     item.setEmail(rs.getString("E_mail"));
-                    item.setLogradouro(rs.getString("Rua"));
+                    item.setLogradouro(rs.getString("Logradouro"));
 
                     lista.add(item);
 
