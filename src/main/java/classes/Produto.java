@@ -9,18 +9,19 @@ package classes;
  * @author jeffe
  */
 public class Produto {
-    
+
     private String nome;
     private String categoria;
-    private String modelo;
+    private String tamanho;
     private String unidade;
     private int estoqueInicial;
     private String marca;
     private float precoUnit;
 
     public Produto() {
-        
+
     }
+
     //Construtor com os dados obrigatórios para cadastro de cliente.
     public Produto(String nome, String categoria, String unidade, float precoUnit) {
         this.nome = nome;
@@ -28,11 +29,29 @@ public class Produto {
         this.unidade = unidade;
         this.precoUnit = precoUnit;
     }
+
     //Construtor com os demais atributos "não obrigatórios".
-    public Produto(String modelo, int estoqueInicial, String marca) {
-        this.modelo = modelo;
+    public Produto(int estoqueInicial, String marca) {
         this.estoqueInicial = estoqueInicial;
         this.marca = marca;
+    }
+
+    public Produto(String nome, String categoria, String tamanho, String unidade, int estoqueInicial, String marca, float precoUnit) {
+        this.nome = nome;
+        this.categoria = categoria;
+        this.tamanho = tamanho;
+        this.unidade = unidade;
+        this.estoqueInicial = estoqueInicial;
+        this.marca = marca;
+        this.precoUnit = precoUnit;
+    }
+
+    public String getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(String tamanho) {
+        this.tamanho = tamanho;
     }
 
     public String getNome() {
@@ -49,14 +68,6 @@ public class Produto {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
     }
 
     public String getUnidade() {
@@ -89,5 +100,5 @@ public class Produto {
 
     public void setPrecoUnit(float precoUnit) {
         this.precoUnit = precoUnit;
-    }  
+    }
 }

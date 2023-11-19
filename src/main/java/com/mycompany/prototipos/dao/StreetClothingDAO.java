@@ -5,6 +5,7 @@
 package com.mycompany.prototipos.dao;
 
 import classes.Cliente;
+import classes.Produto;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -23,6 +24,52 @@ public class StreetClothingDAO {
     static String url = "jdbc:mysql://localhost:3306/StreetClothing";
     static String login = "StreetClothing";
     static String senha = "psc@2*";
+     public static boolean cadastrarProduto(Produto novoProduto) {
+
+        Connection conexao = null;
+        PreparedStatement comandoSQL = null;
+        boolean retorno = false;
+
+        try {
+            //Carregando o Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Abrir conexão com o Banco
+            conexao = DriverManager.getConnection(url, login, senha);
+
+            //Preparar comando SQL
+            comandoSQL = conexao.prepareStatement("INSERT INTO Produtos(NomeProduto, Categoria, Tamanho, UnidadeMedida, Estoque, PrecoUnitario, Marca)"
+                    + "VALUES (?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            comandoSQL.setString(1, novoProduto.getNome());
+            comandoSQL.setString(2, novoProduto.getCategoria());
+            comandoSQL.setString(3, novoProduto.getTamanho());
+            comandoSQL.setString(4, novoProduto.getUnidade());
+            comandoSQL.setInt(5, novoProduto.getEstoqueInicial());
+            comandoSQL.setFloat(6, novoProduto.getPrecoUnit());
+            comandoSQL.setString(7, novoProduto.getMarca());
+
+            //Executando o comando preparado
+            int linhasAfetadas = comandoSQL.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                retorno = true;
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return retorno;
+    }
 
     public static boolean cadastrarCliente(Cliente novoCliente) { //Metódo para Cadastrar cliente no banco.
 
