@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author Lucas Gouveia
@@ -25,7 +24,7 @@ public class StreetClothingDAO {
     static String login = "StreetClothing";
     static String senha = "psc@2*";
 
-    public static boolean cadastrarCliente(Cliente novoCliente) {
+    public static boolean cadastrarCliente(Cliente novoCliente) { //Metódo para Cadastrar cliente no banco.
 
         Connection conexao = null;
         PreparedStatement comandoSQL = null;
@@ -75,6 +74,45 @@ public class StreetClothingDAO {
         return retorno;
     }
 
+    public static boolean excluirCliente(int excCliente) { //Metódo para Excluir cliente do banco.
+        Connection conexao = null;
+        PreparedStatement comandoSQL = null;
+        boolean retorno = false;
+
+        try {
+            //Carregando o Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            //Abrindo conexão com o Banco
+            conexao = DriverManager.getConnection(url, login, senha);
+            
+            //Preparar o comando SQL
+            comandoSQL = conexao.prepareStatement("DELETE FROM Clientes WHERE ID = ?");
+            comandoSQL.setInt(1, excCliente);
+            
+            //Executar o comando SQL preparado
+            int linhasAfetadas = comandoSQL.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                retorno = true;
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return retorno;
+    }
+
     public static ArrayList<Cliente> listarCliente() {
 
         ArrayList<Cliente> lista = new ArrayList<>();
@@ -101,6 +139,7 @@ public class StreetClothingDAO {
                 //Percorrer as linhas do result set
                 while (rs.next()) {
                     Cliente item = new Cliente();
+                    item.setIdCliente(rs.getInt("ID"));
                     item.setCpf(rs.getString("CPF"));
                     item.setNome(rs.getString("Nome"));
                     item.setEmail(rs.getString("E_mail"));
