@@ -300,6 +300,40 @@ public class StreetClothingDAO {
         return pesquisar;
     }
     
+    public static Produto pesquisarProdutos(Produto pesquisar){
+        Connection conexao = null;
+        PreparedStatement comandoSQL = null;
+        ResultSet rs = null;
+         
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+             //Passo 2 - Abrir a conexão com o banco
+            conexao = DriverManager.getConnection(url, login, senha);
+            
+            //Passo 3 - Preparar o comando SQL a ser executado
+            comandoSQL = conexao.prepareStatement("SELECT * FROM Produtos WHERE ID = ?");
+            comandoSQL.setInt(1, pesquisar.getId());
+            
+            rs = comandoSQL.executeQuery();
+            
+            if(rs != null){
+                while(rs.next()){
+                    //esquisar.setNome(rs.getString("Nome"));
+                    pesquisar.setNome(rs.getString("NomeProduto"));
+                    pesquisar.setPrecoUnit(rs.getFloat("PrecoUnitario"));
+                }
+               
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return pesquisar;
+    }
+    
 //    
 //    public static fazerVenda(){
 //        Connection conexao = null;

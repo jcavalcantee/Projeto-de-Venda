@@ -9,7 +9,8 @@ package classes;
  * @author jeffe
  */
 public class Produto {
-
+    
+    private int id;
     private String nome;
     private String categoria;
     private String tamanho;
@@ -45,6 +46,16 @@ public class Produto {
         this.marca = marca;
         this.precoUnit = precoUnit;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
 
     public String getTamanho() {
         return tamanho;
