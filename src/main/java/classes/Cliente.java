@@ -26,6 +26,8 @@ public class Cliente {
     public Cliente() {
         
     }
+    
+    
     //Construtor com os dados obrigatórios para cadastro de clientes.
     public Cliente(String nome, String cpf, char sexo, String email, String logradouro) {
         this.nome = nome;
@@ -58,8 +60,7 @@ public class Cliente {
         this.cidade = cidade;
         this.uf = uf;
     }
-    
-    
+
     public int getIdCliente() {
         return idCliente;
     }
