@@ -109,15 +109,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnCadastrarCli" min="-2" pref="270" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                      <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                              <EmptySpace min="15" max="32767" attributes="0"/>
+                              <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -192,6 +186,11 @@
                           </Group>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                      <Component id="btnCadastrarCli" min="-2" pref="270" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -251,9 +250,9 @@
                           <Component id="txtCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jcbUf" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <EmptySpace pref="23" max="32767" attributes="0"/>
                       <Component id="btnCadastrarCli" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   </Group>
@@ -455,9 +454,9 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
-                    <StringItem index="0" value="1 - Solteiro(a)"/>
-                    <StringItem index="1" value="2 - Casado(a)"/>
-                    <StringItem index="2" value="3 - Viuvo(a)"/>
+                    <StringItem index="0" value="Solteiro(a)"/>
+                    <StringItem index="1" value="Casado(a)"/>
+                    <StringItem index="2" value="Viuvo(a)"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -550,7 +549,7 @@
                                   </Group>
                                   <Component id="jLabel12" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="28" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -662,8 +661,8 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
                     <StringItem index="0" value="Selecione "/>
-                    <StringItem index="1" value="1 - Pe&#xe7;a"/>
-                    <StringItem index="2" value="2 - Par"/>
+                    <StringItem index="1" value="Pe&#xe7;a"/>
+                    <StringItem index="2" value="Par"/>
                     <StringItem index="3" value=" "/>
                   </StringArray>
                 </Property>
@@ -681,11 +680,11 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="7">
                     <StringItem index="0" value="Selecione"/>
-                    <StringItem index="1" value="1 - Masculino"/>
-                    <StringItem index="2" value="2 - Feminino"/>
-                    <StringItem index="3" value="3 - Masculino Infantil"/>
-                    <StringItem index="4" value="4 - Feminino Infantil"/>
-                    <StringItem index="5" value="5 - Acess&#xf3;rios"/>
+                    <StringItem index="1" value="Masculino"/>
+                    <StringItem index="2" value="Feminino"/>
+                    <StringItem index="3" value="Masculino Infantil"/>
+                    <StringItem index="4" value="Feminino Infantil"/>
+                    <StringItem index="5" value="Acess&#xf3;rios"/>
                     <StringItem index="6" value=" "/>
                   </StringArray>
                 </Property>
