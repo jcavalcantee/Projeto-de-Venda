@@ -6,6 +6,7 @@ package com.mycompany.prototipos.dao;
 
 import classes.Cliente;
 import classes.Produto;
+import classes.Venda;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -280,7 +281,7 @@ public class StreetClothingDAO {
             conexao = DriverManager.getConnection(url, login, senha);
             
             //Passo 3 - Preparar o comando SQL a ser executado
-            comandoSQL = conexao.prepareStatement("SELECT Nome FROM Clientes WHERE cpf = ?");
+            comandoSQL = conexao.prepareStatement("SELECT Nome, ID FROM Clientes WHERE cpf = ?");
             comandoSQL.setString(1, pesquisar.getCpf());
             
             rs = comandoSQL.executeQuery();
@@ -288,6 +289,7 @@ public class StreetClothingDAO {
             if(rs != null){
                 while(rs.next()){
                     pesquisar.setNome(rs.getString("Nome"));
+                    pesquisar.setIdCliente(rs.getInt("ID"));
                 }
                
             }
@@ -334,10 +336,166 @@ public class StreetClothingDAO {
         return pesquisar;
     }
     
-//    
-//    public static fazerVenda(){
-//        Connection conexao = null;
-//        PreparedStatement comandoSQL = null;
-//        boolean retorno = false;
-//    }
+public static ArrayList<Venda> listarProdutosVenda(){
+        ArrayList<Venda> list = new ArrayList<>();
+        
+        Connection connection = null;
+        PreparedStatement comandoSQL = null;
+        ResultSet rs = null;
+        
+        try {
+            //carregar o drive
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            //abrir conexão com o mysql
+            connection = DriverManager.getConnection(url, login, senha);
+            //preparar comando sql
+            comandoSQL = connection.prepareStatement("SELECT Produtos.ID, Produtos.NomeProduto, Produtos.PrecoUnitario,"
+                    + "ITEMPEDIDO.Quantidade FROM PRODUTOS INNER JOIN  ITEMPEDIDO on PRODUTOS.ID = FK_PRODUTOS_ID");
+            //comandoSQL = connection.prepareStatement("SELECT * FROM PRODUTOS");
+            //executar comando sql
+            rs = comandoSQL.executeQuery();
+            
+            if(rs != null){
+                while(rs.next()){
+                    Venda item  = new Venda();
+                    item.setCodProduto(rs.getInt("ID"));
+                    item.setNomeProduto(rs.getString("NomeProduto"));
+                    item.setQtdeProduto(rs.getInt("Quantidade"));
+                    item.setPrecoProduto(rs.getDouble("PrecoUnitario"));
+                    
+                    list.add(item);
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return list;
+    }
+
+    public static boolean cadastrarPedido(Venda vendas, int idCliente){
+        
+        Connection conexao = null;
+        PreparedStatement comandoSQL = null;
+        boolean retorno = false;
+
+        try {
+            //Carregando o Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Abrir conexão com o Banco
+            conexao = DriverManager.getConnection(url, login, senha);
+
+            //Preparar comando SQL
+            comandoSQL = conexao.prepareStatement("INSERT INTO Pedido (FormaPagamento, DataPedido, FK_CLIENTES_ID) "
+                    + "VALUES(?, ?, ?)");
+            comandoSQL.setString(1, vendas.getPagamento());
+            comandoSQL.setString(2, vendas.getDataVenda());
+            comandoSQL.setInt(3, idCliente);
+
+            //Executando o comando preparado
+            int linhasAfetadas = comandoSQL.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                retorno = true;
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return retorno;
+    }
+    
+    public static Venda listarPedido(Venda retornoPedido){
+        Connection conexao = null;
+        PreparedStatement comandoSQL = null;
+        ResultSet rs = null;
+         
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+             //Passo 2 - Abrir a conexão com o banco
+            conexao = DriverManager.getConnection(url, login, senha);
+            
+            //Passo 3 - Preparar o comando SQL a ser executado
+            comandoSQL = conexao.prepareStatement("SELECT * FROM Pedido");
+            
+            rs = comandoSQL.executeQuery();
+            
+            if(rs != null){
+                while(rs.next()){
+                    retornoPedido.setIdPedido(rs.getInt("ID_PEDIDO"));
+                }
+               
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return retornoPedido;
+    }
+    
+    public static boolean cadastrarItemPedido(Venda vendas, int idProdutos){
+        
+        Connection conexao = null;
+        PreparedStatement comandoSQL = null;
+        boolean retorno = false;
+
+        try {
+            //Carregando o Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Abrir conexão com o Banco
+            conexao = DriverManager.getConnection(url, login, senha);
+
+            //Preparar comando SQL
+            comandoSQL = conexao.prepareStatement("INSERT INTO ITEMPEDIDO (FK_PRODUTOS_ID, FK_PEDIDO_ID_Pedido, Quantidade)" +
+                    "VALUES (?, ?, ?)");
+            comandoSQL.setInt(1, idProdutos);
+            comandoSQL.setInt(2, vendas.getIdPedido());
+            comandoSQL.setInt(3, vendas.getQtdeProduto());
+
+            //Executando o comando preparado
+            int linhasAfetadas = comandoSQL.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                retorno = true;
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return retorno;
+    }
 }

@@ -6,10 +6,13 @@ package com.mycompany.prototipos;
 
 import classes.Cliente;
 import classes.Produto;
+import classes.Venda;
 import com.mycompany.prototipos.dao.StreetClothingDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -61,7 +64,7 @@ public class TelaVenda extends javax.swing.JFrame {
         lblNomeProduto = new javax.swing.JLabel();
         lblPreco = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblVenda = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         lblTotalVenda = new javax.swing.JLabel();
@@ -275,24 +278,16 @@ public class TelaVenda extends javax.swing.JFrame {
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblNomeProduto, lblPreco, txtCodigo});
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tblVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
                 "Código", "Produto", "Qtde", "Preço", "Subtotal"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
+        ));
+        jScrollPane1.setViewportView(tblVenda);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Total da Venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
@@ -549,6 +544,7 @@ public class TelaVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdicionarItemKeyTyped
 
     float totalVenda = 0;
+    int count = 0;
     private void btnAdicionarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarItemActionPerformed
         int quantidade = 0;
         Validador adicionar = new Validador();
@@ -579,8 +575,43 @@ public class TelaVenda extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Digite apenas um ponto \".\" ou uma vírgula \",\".");
             }
         }
+        
+        Cliente pesquisa = new Cliente();
+        
+        pesquisa.setCpf(txtCPF.getText());
+        Cliente retorno = StreetClothingDAO.pesquisarClientes(pesquisa);
+        String dataVenda = "dd/MM/YYYY";
+        String pagamento = "pix";
+        Venda vendas = new Venda(dataVenda, pagamento);
+        
+        if(count == 0){
+            boolean cadastroPedido = StreetClothingDAO.cadastrarPedido(vendas, retorno.getIdCliente());
+        }
+        
+        Venda vendao = StreetClothingDAO.listarPedido(vendas);
+        vendas.setIdPedido(vendao.getIdPedido());
+        vendas.setQtdeProduto(Integer.parseInt(txtQuantidade.getText()));
+        StreetClothingDAO.cadastrarItemPedido(vendas, Integer.parseInt(txtCodigo.getText()));
+                
+        exibir();
     }//GEN-LAST:event_btnAdicionarItemActionPerformed
 
+    public void exibir(){
+        ArrayList<Venda> list = StreetClothingDAO.listarProdutosVenda();
+        
+        DefaultTableModel model = (DefaultTableModel) tblVenda.getModel();
+        model.setRowCount(0);
+        
+        for(Venda item : list){
+            model.addRow(new String[]{
+                        String.valueOf(item.getCodProduto()),
+                        String.valueOf(item.getNomeProduto()),
+                        String.valueOf(item.getQtdeProduto()),
+                        String.valueOf(item.getPrecoProduto())
+            });
+        }
+    }
+    
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         Validador adicionar = new Validador();
         adicionar.validarTexto(txtCodigo);
@@ -680,13 +711,13 @@ public class TelaVenda extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel lblNomeCliente;
     private javax.swing.JLabel lblNomeProduto;
     private javax.swing.JLabel lblPreco;
     private javax.swing.JLabel lblTotalVenda;
+    private javax.swing.JTable tblVenda;
     private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtQuantidade;

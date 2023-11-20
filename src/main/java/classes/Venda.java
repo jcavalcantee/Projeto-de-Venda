@@ -10,8 +10,10 @@ package classes;
  */
 public class Venda {
     
+    private int idPedido;
     private int codCliente;
     private int codProduto;
+    private String nomeProduto;
     private int qtdeProduto;
     private double precoProduto;
     private double subTotal;
@@ -31,10 +33,28 @@ public class Venda {
         this.totalVenda = totalVenda;
     }
 
-    public Venda(int codCliente, String dataVenda, String pagamento) {
-        this.codCliente = codCliente;
+    public Venda(String dataVenda, String pagamento) {
+        
         this.dataVenda = dataVenda;
         this.pagamento = pagamento;
+    }
+
+    public int getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
+    }
+    
+    
+
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
     }
 
     public int getCodCliente() {
