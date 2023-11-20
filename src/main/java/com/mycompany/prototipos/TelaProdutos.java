@@ -79,7 +79,7 @@ public class TelaProdutos extends javax.swing.JFrame {
 
         btnAtualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/edit.png"))); // NOI18N
-        btnAtualizar.setText("Atualizar");
+        btnAtualizar.setText("Alterar");
 
         btnCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/add.png"))); // NOI18N
