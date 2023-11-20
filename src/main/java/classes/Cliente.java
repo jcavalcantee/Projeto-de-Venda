@@ -48,7 +48,7 @@ public class Cliente {
         this.uf = uf;
     }
 
-    //Gerado construtor com todos os parametros para utilização no cadastro de cliente;
+    //Gerado construtor com todos os parametros para utilização no cadastro de cliente
     public Cliente(String cpf, String nome, Date dataNascimento, char sexo, String telefone, String email, String estCivil, String logradouro, int numero, String cidade, String uf) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
@@ -61,6 +61,22 @@ public class Cliente {
         this.numero = numero;
         this.cidade = cidade;
         this.uf = uf;
+    }
+    
+    //Gerado construtor com todos os parametros e id para utilização na alteração de cliente
+    public Cliente(String cpf, String nome, Date dataNascimento, char sexo, String telefone, String email, String estCivil, String logradouro, int numero, String cidade, String uf, int idCliente) {
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.cpf = cpf;
+        this.sexo = sexo;
+        this.telefone = telefone;
+        this.email = email;
+        this.estCivil = estCivil;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.cidade = cidade;
+        this.uf = uf;
+        this.idCliente = idCliente;
     }
 
     public int getIdCliente() {

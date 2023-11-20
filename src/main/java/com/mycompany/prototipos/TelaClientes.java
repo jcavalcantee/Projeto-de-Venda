@@ -23,7 +23,7 @@ import javax.swing.text.MaskFormatter;
  * @author jeffe
  */
 public class TelaClientes extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form TelaClientes
      */
@@ -105,6 +105,11 @@ public class TelaClientes extends javax.swing.JFrame {
         btnAtualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/edit.png"))); // NOI18N
         btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -431,6 +436,21 @@ public class TelaClientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtBuscaKeyReleased
 
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        int linhaSelecionada = tblClientes.getSelectedRow();
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
+        
+        int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString()) ;
+        
+        Cliente buscaAlterar = new Cliente();
+        buscaAlterar = StreetClothingDAO.buscarCliente(buscaAlterar,idSelecionado);
+        
+        //Instâncio a tela de cadastro
+        TelaCadastro tela = new TelaCadastro(buscaAlterar);
+        tela.setVisible(true);
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+ 
     /**
      * @param args the command line arguments
      */

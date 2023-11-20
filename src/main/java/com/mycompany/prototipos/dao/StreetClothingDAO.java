@@ -219,13 +219,72 @@ public class StreetClothingDAO {
         return lista;
     }
 
+    public static Cliente buscarCliente(Cliente busca, int idCliente) {
+
+        Connection conexao = null;
+        PreparedStatement comandoSQL = null;
+        ResultSet rs = null;
+
+        try {
+            //Passo 1 - Carregar o Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Passo 2 - Abrir a conexao com o mysql
+            conexao = DriverManager.getConnection(url, login, senha);
+
+            //Passo 3 - Preparar o comando SQL
+            comandoSQL = conexao.prepareStatement("SELECT * FROM Clientes WHERE id = ?");
+            comandoSQL.setInt(1, idCliente);
+
+            //Passo 4 - Executar o comando SQL
+            rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+
+                //Percorrer as linhas do result set
+                while (rs.next()) {
+                    busca.setIdCliente(rs.getInt("ID"));
+                    busca.setCpf(rs.getString("CPF"));
+                    busca.setNome(rs.getString("Nome"));
+                    busca.setEmail(rs.getString("E_mail"));
+                    busca.setLogradouro(rs.getString("Logradouro"));
+                    busca.setDataNascimento(rs.getDate("DataNascimento"));
+                    busca.setSexo(rs.getString("Sexo").charAt(0));
+                    busca.setTelefone(rs.getString("Telefone"));
+                    busca.setEstCivil(rs.getString("Estado_Civil"));
+                    busca.setNumero(rs.getInt("Numero"));
+                    busca.setCidade(rs.getString("Cidade"));
+                    busca.setUf(rs.getString("UF"));
+
+                }
+
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+
+        return busca;
+    }
+    
     //Método Alterar
     public static boolean alterarCliente(Cliente clienteAlterar) {
 
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement comandoSQL = null;
-        ResultSet rs = null;
 
         try {
             //Passo 1 - Carregar o Driver
@@ -235,13 +294,21 @@ public class StreetClothingDAO {
             conexao = DriverManager.getConnection(url, login, senha);
 
             //Passo 3 - Preparar o comando SQL a ser executado
-            comandoSQL = conexao.prepareStatement("UPDATE Clientes SET CPF = ?, Nome = ?, E_mail = ?, Rua = ? WHERE ID = ? ");
+            comandoSQL = conexao.prepareStatement("UPDATE Clientes SET CPF = ?, Nome = ?, DataNascimento = ?, Sexo = ?, Telefone = ?,"
+                    + " E_mail = ?, Estado_Civil = ?, Logradouro = ?, Numero = ?, Cidade = ?, UF = ? WHERE ID = ? ");
 
             comandoSQL.setString(1, clienteAlterar.getCpf());
             comandoSQL.setString(2, clienteAlterar.getNome());
-            comandoSQL.setString(3, clienteAlterar.getEmail());
-            comandoSQL.setString(4, clienteAlterar.getLogradouro());
-            comandoSQL.setInt(5, clienteAlterar.getIdCliente());
+            comandoSQL.setDate(3, new java.sql.Date(clienteAlterar.getDataNascimento().getTime()));
+            comandoSQL.setString(4, Character.toString(clienteAlterar.getSexo()));
+            comandoSQL.setString(5, clienteAlterar.getTelefone());
+            comandoSQL.setString(6, clienteAlterar.getEmail());
+            comandoSQL.setString(7, clienteAlterar.getEstCivil());
+            comandoSQL.setString(8, clienteAlterar.getLogradouro());
+            comandoSQL.setInt(9, clienteAlterar.getNumero());
+            comandoSQL.setString(10, clienteAlterar.getCidade());
+            comandoSQL.setString(11, clienteAlterar.getUf());
+            comandoSQL.setInt(12, clienteAlterar.getIdCliente());
 
             //Finalmente... vamos executar o comando!
             int linhasAfetadas = comandoSQL.executeUpdate();

@@ -18,7 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class TelaCadastro extends javax.swing.JFrame {
 
-    Cliente obj = null;
+    Cliente objCliente = null;
+    Produto objProduto = null;
 
     /**
      * Creates new form TelaCadastro
@@ -26,6 +27,13 @@ public class TelaCadastro extends javax.swing.JFrame {
     public TelaCadastro() {
         setLocationRelativeTo(null);
         initComponents();
+    }
+
+    public TelaCadastro(Cliente clienteAlterar) {
+        setLocationRelativeTo(null);
+        initComponents();
+        this.objCliente = clienteAlterar;
+        ExibirAlterarCliente();
     }
 
     /**
@@ -62,7 +70,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtCidade = new javax.swing.JTextField();
-        btnCadastrarCli = new javax.swing.JButton();
+        btnSalvarCli = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jcbUf = new javax.swing.JComboBox<>();
         jcbSexo = new javax.swing.JComboBox<>();
@@ -85,7 +93,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         txtEstoque = new javax.swing.JTextField();
         jcbUnidade = new javax.swing.JComboBox<>();
         jcbCategorias = new javax.swing.JComboBox<>();
-        btnCadastrarProd = new javax.swing.JButton();
+        btnSalvarProd = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
         txtPreco = new javax.swing.JFormattedTextField();
         jLabel25 = new javax.swing.JLabel();
@@ -166,11 +174,11 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
-        btnCadastrarCli.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnCadastrarCli.setText("Cadastrar");
-        btnCadastrarCli.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvarCli.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSalvarCli.setText("Salvar");
+        btnSalvarCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarCliActionPerformed(evt);
+                btnSalvarCliActionPerformed(evt);
             }
         });
 
@@ -284,7 +292,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                         .addContainerGap(46, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
-                .addComponent(btnCadastrarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSalvarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -334,7 +342,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcbUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(btnCadastrarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSalvarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel21)
                 .addGap(15, 15, 15))
@@ -391,11 +399,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         jcbCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Masculino", "Feminino", "Masculino Infantil", "Feminino Infantil", "Acessórios", " " }));
         jcbCategorias.setName("Categorias"); // NOI18N
 
-        btnCadastrarProd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnCadastrarProd.setText("Cadastrar");
-        btnCadastrarProd.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvarProd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSalvarProd.setText("Salvar");
+        btnSalvarProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarProdActionPerformed(evt);
+                btnSalvarProdActionPerformed(evt);
             }
         });
 
@@ -444,7 +452,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                                         .addComponent(jLabel14)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(btnCadastrarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnSalvarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(85, 85, 85))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -507,7 +515,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addComponent(btnCadastrarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSalvarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel25)
                 .addGap(19, 19, 19))
@@ -530,7 +538,8 @@ public class TelaCadastro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCadastrarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarCliActionPerformed
+
+    private void btnSalvarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarCliActionPerformed
 
         Validador validarDados = new Validador();
         validarDados.validarTexto(txtNome);
@@ -548,7 +557,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, validarDados.getMensagensErro());
         }
 
-        if (obj == null) {
+        if (objCliente == null) {
             String cpf = ftfCPF.getText().replace(".", "").replace("-", "");
             String nome = txtNome.getText();
             Date dataNascimento = dtcNascimento.getDate();
@@ -566,13 +575,63 @@ public class TelaCadastro extends javax.swing.JFrame {
             boolean retorno = StreetClothingDAO.cadastrarCliente(novoCliente);
 
             if (retorno == true) {
-                JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
+                JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso!");
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar!");
+                JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!");
+            }
+        } else {
+            String cpf = ftfCPF.getText().replace(".", "").replace("-", "");
+            String nome = txtNome.getText();
+            Date dataNascimento = dtcNascimento.getDate();
+            char sexo = ((String) jcbSexo.getSelectedItem()).charAt(0);
+            String telefone = ftfTelefone.getText();
+            String email = txtEmail.getText();
+            String estCivil = String.valueOf(jcbEstCivil.getSelectedItem());
+            String logradouro = txtLogradouro.getText();
+            int numero = Integer.parseInt(txtNumero.getText());
+            String cidade = txtCidade.getText();
+            String uf = String.valueOf(jcbUf.getSelectedItem());
+
+            Cliente alterarCliente = new Cliente(cpf, nome, dataNascimento, sexo, telefone, email, estCivil, logradouro, numero, cidade, uf, objCliente.getIdCliente());
+            
+            boolean retorno = StreetClothingDAO.alterarCliente(alterarCliente);
+            
+            if (retorno == true) {
+                JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!");
             }
         }
-    }//GEN-LAST:event_btnCadastrarCliActionPerformed
+    }//GEN-LAST:event_btnSalvarCliActionPerformed
 
+    public void ExibirAlterarCliente() {
+        txtNome.setText(objCliente.getNome());
+        dtcNascimento.setDate(objCliente.getDataNascimento());
+        ftfCPF.setText(objCliente.getCpf());
+        if (objCliente.getSexo() == 'M') {
+            jcbSexo.setSelectedIndex(1);
+        } else if (objCliente.getSexo() == 'F') {
+            jcbSexo.setSelectedIndex(2);
+        }
+        ftfTelefone.setText(objCliente.getTelefone());
+        txtEmail.setText(objCliente.getEmail());
+        if (objCliente.getEstCivil().equals("Solteiro(a)")){
+            jcbEstCivil.setSelectedIndex(0);
+        }else if (objCliente.getEstCivil().equals("Casado(a)")){
+            jcbEstCivil.setSelectedIndex(1);
+        }else if (objCliente.getEstCivil().equals("Viuvo(a)")){
+            jcbEstCivil.setSelectedIndex(2);
+        }
+        txtLogradouro.setText(objCliente.getLogradouro());
+        txtNumero.setText(String.valueOf(objCliente.getNumero()));
+        txtCidade.setText(objCliente.getCidade());
+        for(int i = 0; i < jcbUf.getItemCount(); i++){
+            String uf = jcbUf.getItemAt(i);
+            if (uf.equals(objCliente.getUf())){
+                jcbUf.setSelectedIndex(i);
+            }
+        }
+    }
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -623,7 +682,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         cidade.limiteTexto(txtCidade, evt, 20);
     }//GEN-LAST:event_txtCidadeKeyTyped
 
-    private void btnCadastrarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdActionPerformed
+    private void btnSalvarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProdActionPerformed
         int quantidade = 0;
 
         //Validação da tela de cadastro de produtos!
@@ -653,7 +712,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             txtEstoque.setBackground(Color.red);
         }
 
-        if (obj == null) {
+        if (objProduto == null) {
             String nomeProduto = txtNomeProd.getText();
             String categoria = String.valueOf(jcbCategorias.getSelectedItem());
             String tamanho = String.valueOf(jcbTamanho.getSelectedItem());
@@ -671,8 +730,10 @@ public class TelaCadastro extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar!");
             }
+        } else {
+
         }
-    }//GEN-LAST:event_btnCadastrarProdActionPerformed
+    }//GEN-LAST:event_btnSalvarProdActionPerformed
 
     private void ftfCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftfCPFActionPerformed
         // TODO add your handling code here:
@@ -723,8 +784,8 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPrecoKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrarCli;
-    private javax.swing.JButton btnCadastrarProd;
+    private javax.swing.JButton btnSalvarCli;
+    private javax.swing.JButton btnSalvarProd;
     private com.toedter.calendar.JDateChooser dtcNascimento;
     private javax.swing.JFormattedTextField ftfCPF;
     private javax.swing.JFormattedTextField ftfTelefone;
