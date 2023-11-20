@@ -284,7 +284,7 @@ public class TelaVenda extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Produto", "Qtde", "Preço", "Subtotal"
+                "Cod. Produto", "Produto", "Qtde", "Preço Unit.", "Subtotal"
             }
         ));
         jScrollPane1.setViewportView(tblVenda);
@@ -592,7 +592,15 @@ public class TelaVenda extends javax.swing.JFrame {
         Venda vendao = StreetClothingDAO.listarPedido(vendas);
         vendas.setIdPedido(vendao.getIdPedido());
         vendas.setQtdeProduto(Integer.parseInt(txtQuantidade.getText()));
-        StreetClothingDAO.cadastrarItemPedido(vendas, Integer.parseInt(txtCodigo.getText()));
+
+        Produto estoque = new Produto();
+        estoque = StreetClothingDAO.verifcaQuantidade(estoque, Integer.parseInt(txtCodigo.getText()));
+
+        if (estoque.getEstoqueInicial() < Integer.parseInt(txtQuantidade.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "A quantidade inserida é maior que o estoque de nossa loja!");
+        } else {
+            StreetClothingDAO.cadastrarItemPedido(vendas, Integer.parseInt(txtCodigo.getText().toString()));
+        }
 
         exibir(vendao.getIdPedido());
     }//GEN-LAST:event_btnAdicionarItemActionPerformed
@@ -608,7 +616,8 @@ public class TelaVenda extends javax.swing.JFrame {
                 String.valueOf(item.getCodProduto()),
                 String.valueOf(item.getNomeProduto()),
                 String.valueOf(item.getQtdeProduto()),
-                String.valueOf(item.getPrecoProduto())
+                String.valueOf(item.getPrecoProduto()),
+                String.valueOf(item.getSubTotal())
             });
         }
     }
