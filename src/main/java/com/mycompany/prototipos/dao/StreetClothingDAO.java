@@ -336,7 +336,7 @@ public class StreetClothingDAO {
         return pesquisar;
     }
     
-public static ArrayList<Venda> listarProdutosVenda(){
+public static ArrayList<Venda> listarProdutosVenda(int idPedido){
         ArrayList<Venda> list = new ArrayList<>();
         
         Connection connection = null;
@@ -350,8 +350,10 @@ public static ArrayList<Venda> listarProdutosVenda(){
             connection = DriverManager.getConnection(url, login, senha);
             //preparar comando sql
             comandoSQL = connection.prepareStatement("SELECT Produtos.ID, Produtos.NomeProduto, Produtos.PrecoUnitario,"
-                    + "ITEMPEDIDO.Quantidade FROM PRODUTOS INNER JOIN  ITEMPEDIDO on PRODUTOS.ID = FK_PRODUTOS_ID");
-            //comandoSQL = connection.prepareStatement("SELECT * FROM PRODUTOS");
+                    + " ITEMPEDIDO.Quantidade, ItemPedido.FK_PEDIDO_ID_Pedido "
+                    + " FROM PRODUTOS INNER JOIN ITEMPEDIDO on PRODUTOS.ID = FK_PRODUTOS_ID"
+                    + " WHERE ItemPedido.FK_PEDIDO_ID_Pedido = ?");
+            comandoSQL.setInt(1, idPedido);
             //executar comando sql
             rs = comandoSQL.executeQuery();
             
@@ -396,11 +398,10 @@ public static ArrayList<Venda> listarProdutosVenda(){
             conexao = DriverManager.getConnection(url, login, senha);
 
             //Preparar comando SQL
-            comandoSQL = conexao.prepareStatement("INSERT INTO Pedido (FormaPagamento, DataPedido, FK_CLIENTES_ID) "
-                    + "VALUES(?, ?, ?)");
+            comandoSQL = conexao.prepareStatement("INSERT INTO Pedido (FormaPagamento, FK_CLIENTES_ID) "
+                    + "VALUES(?, ?)");
             comandoSQL.setString(1, vendas.getPagamento());
-            comandoSQL.setString(2, vendas.getDataVenda());
-            comandoSQL.setInt(3, idCliente);
+            comandoSQL.setInt(2, idCliente);
 
             //Executando o comando preparado
             int linhasAfetadas = comandoSQL.executeUpdate();
