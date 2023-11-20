@@ -18,6 +18,7 @@ public class Produto {
     private int estoqueInicial;
     private String marca;
     private float precoUnit;
+    private double subtotal;
 
     public Produto() {
 
@@ -45,6 +46,14 @@ public class Produto {
         this.estoqueInicial = estoqueInicial;
         this.marca = marca;
         this.precoUnit = precoUnit;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
     }
 
     public int getId() {
