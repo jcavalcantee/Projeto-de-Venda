@@ -9,6 +9,7 @@ import classes.Produto;
 import com.mycompany.prototipos.dao.StreetClothingDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -71,7 +72,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         ftfTelefone = new javax.swing.JFormattedTextField();
         jLabel22 = new javax.swing.JLabel();
         jcbEstCivil = new javax.swing.JComboBox<>();
-        ftfDtNascimento = new javax.swing.JFormattedTextField();
+        dtcNascimento = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -217,16 +218,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jcbEstCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solteiro(a)", "Casado(a)", "Viuvo(a)" }));
 
-        try {
-            ftfDtNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        ftfDtNascimento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                ftfDtNascimentoKeyTyped(evt);
-            }
-        });
+        dtcNascimento.setDateFormatString("dd/MM/YYYY");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -236,7 +228,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel21)
                         .addGap(108, 108, 108))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -288,8 +280,8 @@ public class TelaCadastro extends javax.swing.JFrame {
                                             .addComponent(jcbEstCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(ftfDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(53, 53, 53))))
+                                        .addComponent(dtcNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(46, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(btnCadastrarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,16 +296,16 @@ public class TelaCadastro extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jLabel7))
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ftfDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dtcNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel8)
                             .addComponent(jLabel23))
-                        .addGap(4, 4, 4)
+                        .addGap(9, 9, 9)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jcbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ftfCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -341,7 +333,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcbUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(btnCadastrarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel21)
@@ -557,9 +549,9 @@ public class TelaCadastro extends javax.swing.JFrame {
         }
 
         if (obj == null) {
-            String cpf = ftfCPF.getText();
+            String cpf = ftfCPF.getText().replace(".", "").replace("-", "");
             String nome = txtNome.getText();
-            String dataNascimento = ftfDtNascimento.getText();
+            Date dataNascimento = dtcNascimento.getDate();
             char sexo = ((String) jcbSexo.getSelectedItem()).charAt(0);
             String telefone = ftfTelefone.getText();
             String email = txtEmail.getText();
@@ -603,11 +595,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         ftfCPF.setBackground(Color.white);
 
     }//GEN-LAST:event_ftfCPFKeyTyped
-
-    private void ftfDtNascimentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfDtNascimentoKeyTyped
-        /*Validador dtNascimento = new Validador();
-        dtNascimento.limiteTexto(txtNome, evt, WIDTH);*/
-    }//GEN-LAST:event_ftfDtNascimentoKeyTyped
 
     private void ftfTelefoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfTelefoneKeyTyped
 //        Validador telefone = new Validador();
@@ -673,7 +660,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             String unidade = String.valueOf(jcbUnidade.getSelectedItem());
             int estoque = Integer.parseInt(txtEstoque.getText());
             String marca = String.valueOf(txtMarca.getText());
-            float precoUni = Float.parseFloat(txtPreco.getText());
+            float precoUni = Float.parseFloat(txtPreco.getText().replace(",", "."));
 
             Produto novoProduto = new Produto(nomeProduto, categoria, tamanho, unidade, estoque, marca, precoUni);
 
@@ -738,8 +725,8 @@ public class TelaCadastro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarCli;
     private javax.swing.JButton btnCadastrarProd;
+    private com.toedter.calendar.JDateChooser dtcNascimento;
     private javax.swing.JFormattedTextField ftfCPF;
-    private javax.swing.JFormattedTextField ftfDtNascimento;
     private javax.swing.JFormattedTextField ftfTelefone;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel1;

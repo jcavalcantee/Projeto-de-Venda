@@ -90,7 +90,7 @@ public class StreetClothingDAO {
                     + "Cidade, UF) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             comandoSQL.setString(1, novoCliente.getCpf());
             comandoSQL.setString(2, novoCliente.getNome());
-            comandoSQL.setString(3, novoCliente.getDataNascimento());
+            comandoSQL.setDate(3, new java.sql.Date(novoCliente.getDataNascimento().getTime()));
             comandoSQL.setString(4, Character.toString(novoCliente.getSexo()));
             comandoSQL.setString(5, novoCliente.getTelefone());
             comandoSQL.setString(6, novoCliente.getEmail());

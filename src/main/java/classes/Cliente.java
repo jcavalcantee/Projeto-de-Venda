@@ -4,6 +4,8 @@
  */
 package classes;
 
+import java.util.Date;
+
 /**
  *
  * @author jeffe
@@ -11,7 +13,7 @@ package classes;
 public class Cliente {
     
     private String nome;
-    private String dataNascimento;
+    private Date dataNascimento;
     private String cpf;
     private char sexo;
     private String telefone;
@@ -37,7 +39,7 @@ public class Cliente {
         this.logradouro = logradouro;
     }
     //Construtor com os demais atributos "não obrigatórios".
-    public Cliente(String dataNascimento, String telefone, String estCivil, int numero, String cidade, String uf) {
+    public Cliente(Date dataNascimento, String telefone, String estCivil, int numero, String cidade, String uf) {
         this.dataNascimento = dataNascimento;
         this.telefone = telefone;
         this.estCivil = estCivil;
@@ -47,7 +49,7 @@ public class Cliente {
     }
 
     //Gerado construtor com todos os parametros para utilização no cadastro de cliente;
-    public Cliente(String cpf, String nome, String dataNascimento, char sexo, String telefone, String email, String estCivil, String logradouro, int numero, String cidade, String uf) {
+    public Cliente(String cpf, String nome, Date dataNascimento, char sexo, String telefone, String email, String estCivil, String logradouro, int numero, String cidade, String uf) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.cpf = cpf;
@@ -77,11 +79,11 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public String getDataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

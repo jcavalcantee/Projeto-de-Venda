@@ -520,22 +520,22 @@ public class TelaVenda extends javax.swing.JFrame {
         Validador pesquisar = new Validador();
 
         pesquisar.validarTexto(txtCPF);
-        if (pesquisar.hasErro())
+        if (pesquisar.hasErro()) {
             JOptionPane.showMessageDialog(rootPane, pesquisar.getMensagensErro());
-        
-        Cliente pesquisarCliente = new Cliente();
-        pesquisarCliente.setCpf(txtCPF.getText());
-        Cliente retorno = StreetClothingDAO.pesquisarClientes(pesquisarCliente);
-        
-        
-        
-        if(retorno.getNome() == null){
-            JOptionPane.showMessageDialog(rootPane, "Cliente não cadastrado!");
-        }else{
-            lblNomeCliente.setText(retorno.getNome());
-            
         }
-        
+
+        Cliente pesquisarCliente = new Cliente();
+        String cpf = txtCPF.getText().replace(".", "").replace("-", "");
+        pesquisarCliente.setCpf(cpf);
+        Cliente retorno = StreetClothingDAO.pesquisarClientes(pesquisarCliente);
+
+        if (retorno.getNome() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Cliente não cadastrado!");
+        } else {
+            lblNomeCliente.setText(retorno.getNome());
+
+        }
+
     }//GEN-LAST:event_btnPesquisarClienteActionPerformed
 
     private void btnAdicionarItemKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAdicionarItemKeyTyped
@@ -574,68 +574,67 @@ public class TelaVenda extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Digite apenas um ponto \".\" ou uma vírgula \",\".");
             }
         }
-        
+
         Cliente pesquisa = new Cliente();
-        
-        pesquisa.setCpf(txtCPF.getText());
+
+        String cpf = txtCPF.getText().replace(".", "").replace("-", "");
+        pesquisa.setCpf(cpf);
         Cliente retorno = StreetClothingDAO.pesquisarClientes(pesquisa);
         String pagamento = "pix";
         Venda vendas = new Venda();
         vendas.setPagamento(pagamento);
-        
-        if(count == 0){
+
+        if (count == 0) {
             boolean cadastroPedido = StreetClothingDAO.cadastrarPedido(vendas, retorno.getIdCliente());
             count++;
         }
-        
+
         Venda vendao = StreetClothingDAO.listarPedido(vendas);
         vendas.setIdPedido(vendao.getIdPedido());
         vendas.setQtdeProduto(Integer.parseInt(txtQuantidade.getText()));
         StreetClothingDAO.cadastrarItemPedido(vendas, Integer.parseInt(txtCodigo.getText()));
-                
+
         exibir(vendao.getIdPedido());
     }//GEN-LAST:event_btnAdicionarItemActionPerformed
 
-    public void exibir(int idPedido){
+    public void exibir(int idPedido) {
         ArrayList<Venda> list = StreetClothingDAO.listarProdutosVenda(idPedido);
-        
+
         DefaultTableModel model = (DefaultTableModel) tblVenda.getModel();
         model.setRowCount(0);
-        
-        for(Venda item : list){
+
+        for (Venda item : list) {
             model.addRow(new String[]{
-                        String.valueOf(item.getCodProduto()),
-                        String.valueOf(item.getNomeProduto()),
-                        String.valueOf(item.getQtdeProduto()),
-                        String.valueOf(item.getPrecoProduto())
+                String.valueOf(item.getCodProduto()),
+                String.valueOf(item.getNomeProduto()),
+                String.valueOf(item.getQtdeProduto()),
+                String.valueOf(item.getPrecoProduto())
             });
         }
     }
-    
+
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         Validador adicionar = new Validador();
         adicionar.validarTexto(txtCodigo);
         if (adicionar.hasErro()) {
             JOptionPane.showMessageDialog(rootPane, adicionar.getMensagensErro());
         }
-        
+
         Produto pesquisarProduto = new Produto();
         pesquisarProduto.setId(Integer.parseInt(txtCodigo.getText()));
         Produto retorno = StreetClothingDAO.pesquisarProdutos(pesquisarProduto);
-        
-        
-        
-        if(retorno.getNome() == null){
+
+        if (retorno.getNome() == null) {
             JOptionPane.showMessageDialog(rootPane, "Produto não cadastrado!");
-        }else{
+        } else {
             lblNomeProduto.setText(retorno.getNome());
             lblPreco.setText(String.valueOf(retorno.getPrecoUnit()));
         }
-        
+
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
-       
+
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDinheiroActionPerformed
