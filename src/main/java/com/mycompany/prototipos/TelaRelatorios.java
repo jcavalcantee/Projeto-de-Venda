@@ -4,8 +4,10 @@
  */
 package com.mycompany.prototipos;
 
+import com.toedter.calendar.JDateChooser;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import javax.swing.JOptionPane;
 
@@ -39,18 +41,8 @@ public class TelaRelatorios extends javax.swing.JFrame {
         btnBuscarSintetico = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jcbDtInicialSintetico = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        jcbMesInicialSintetico = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        jcbAnoInicialSintetico = new javax.swing.JComboBox<>();
-        jLabel9 = new javax.swing.JLabel();
-        jcbDtFinalSintetico = new javax.swing.JComboBox<>();
-        jcbMesFinalSintetico = new javax.swing.JComboBox<>();
-        jcbAnoFinalSintetico = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        dtcDtInicial = new com.toedter.calendar.JDateChooser();
+        dtcDtFinal = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRelatorioSintetico = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -110,47 +102,9 @@ public class TelaRelatorios extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Data final");
 
-        jcbDtInicialSintetico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        jcbDtInicialSintetico.setName(""); // NOI18N
+        dtcDtInicial.setDateFormatString("dd/MM/yyyy");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setText("Dia");
-
-        jcbMesInicialSintetico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-        jcbMesInicialSintetico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbMesInicialSinteticoActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setText("Mês");
-
-        jcbAnoInicialSintetico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2023", "2024", "2025", "2026", "2027", "2028" }));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel9.setText("Ano");
-
-        jcbDtFinalSintetico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        jcbDtFinalSintetico.setName(""); // NOI18N
-
-        jcbMesFinalSintetico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-        jcbMesFinalSintetico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbMesFinalSinteticoActionPerformed(evt);
-            }
-        });
-
-        jcbAnoFinalSintetico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2023", "2024", "2025", "2026", "2027", "2028" }));
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel10.setText("Dia");
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel11.setText("Mês");
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel12.setText("Ano");
+        dtcDtFinal.setDateFormatString("dd/MM/yyyy");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -159,36 +113,12 @@ public class TelaRelatorios extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel7)
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel9))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jcbDtInicialSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jcbMesInicialSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jcbAnoInicialSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jcbDtFinalSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jcbMesFinalSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jcbAnoFinalSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel6))))
+                    .addComponent(jLabel2)
+                    .addComponent(dtcDtInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(94, 94, 94)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(dtcDtFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBuscarSintetico)
                 .addGap(93, 93, 93))
@@ -202,29 +132,16 @@ public class TelaRelatorios extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jcbDtInicialSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcbMesInicialSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcbAnoInicialSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcbDtFinalSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcbMesFinalSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcbAnoFinalSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(dtcDtInicial, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(dtcDtFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 13, Short.MAX_VALUE)
                         .addComponent(btnBuscarSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-
-        jcbDtInicialSintetico.getAccessibleContext().setAccessibleName("");
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -335,49 +252,33 @@ public class TelaRelatorios extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private static LocalDate getSelectedDate(JDateChooser dateChooser) {
+        return dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+    
     private void btnBuscarSinteticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarSinteticoActionPerformed
         try {
-            Integer diaInicial = Integer.parseInt((String) jcbDtInicialSintetico.getSelectedItem());
-            Integer diaFinal = Integer.parseInt((String) jcbDtFinalSintetico.getSelectedItem());
 
-            Integer mesInicial = Integer.parseInt((String) jcbMesInicialSintetico.getSelectedItem());
-            Integer mesFinal = Integer.parseInt((String) jcbMesFinalSintetico.getSelectedItem());
-
-            Integer anoInicial = Integer.parseInt((String) jcbAnoInicialSintetico.getSelectedItem());
-            Integer anoFinal = Integer.parseInt((String) jcbAnoFinalSintetico.getSelectedItem());
-
-            LocalDate dataInicial = LocalDate.of(anoInicial, mesInicial, diaInicial);
-            LocalDate dataFinal = LocalDate.of(anoFinal, mesFinal, diaFinal);
+            LocalDate dataInicial = getSelectedDate(dtcDtInicial);
+            LocalDate dataFinal = getSelectedDate(dtcDtFinal);
 
             long numeroDias = ChronoUnit.DAYS.between(dataInicial, dataFinal);
 
-            if ((mesInicial == mesFinal) && (diaInicial > diaFinal)) {
+            if (dataInicial.isAfter(dataFinal)) {
                 JOptionPane.showMessageDialog(rootPane,
                         "O periodo inicial selecionado não pode ser maior que o periodo final.");
-            } else if ((mesInicial > mesFinal) || (anoInicial > anoFinal)) {
-                JOptionPane.showMessageDialog(rootPane,
-                        "O periodo inicial selecionado não pode ser maior que o periodo final.");
-            } else {
-                if (numeroDias <= 31) {
+            } else if (numeroDias <= 31) {
                     JOptionPane.showMessageDialog(rootPane, "RELATORIO SINTÉTICO GERADO COM SUCESSO :)");
                 } else {
                     JOptionPane.showMessageDialog(rootPane,
                             "O periodo selecionado para o relatório não pode ter um intervalo maior que 31 dias");
                 }
-            }
+            
         } catch (DateTimeException e) {
-            JOptionPane.showMessageDialog(rootPane, "O dia selecionado não existe.");
+            JOptionPane.showMessageDialog(rootPane, "O dia selecionado não existe, escolha uma data válida.");
         }
 
     }//GEN-LAST:event_btnBuscarSinteticoActionPerformed
-
-    private void jcbMesInicialSinteticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbMesInicialSinteticoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbMesInicialSinteticoActionPerformed
-
-    private void jcbMesFinalSinteticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbMesFinalSinteticoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbMesFinalSinteticoActionPerformed
 
     private void btnDetalharVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalharVendaActionPerformed
         TelaRelatorioAnalitico relatorioAnalitico = new TelaRelatorioAnalitico();
@@ -422,26 +323,16 @@ public class TelaRelatorios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarSintetico;
     private javax.swing.JButton btnDetalharVenda;
+    private com.toedter.calendar.JDateChooser dtcDtFinal;
+    private com.toedter.calendar.JDateChooser dtcDtInicial;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JComboBox<String> jcbAnoFinalSintetico;
-    private javax.swing.JComboBox<String> jcbAnoInicialSintetico;
-    private javax.swing.JComboBox<String> jcbDtFinalSintetico;
-    private javax.swing.JComboBox<String> jcbDtInicialSintetico;
-    private javax.swing.JComboBox<String> jcbMesFinalSintetico;
-    private javax.swing.JComboBox<String> jcbMesInicialSintetico;
     private javax.swing.JPanel pnlSintetico;
     private javax.swing.JTable tblRelatorioSintetico;
     private javax.swing.JTable tblTotalVendasSintetico;
