@@ -520,7 +520,6 @@ public class TelaVenda extends javax.swing.JFrame {
         Validador pesquisar = new Validador();
 
         pesquisar.validarTexto(txtCPF);
-//        pesquisar.validarTexto(txtNomeCliente);
         if (pesquisar.hasErro())
             JOptionPane.showMessageDialog(rootPane, pesquisar.getMensagensErro());
         
@@ -580,12 +579,13 @@ public class TelaVenda extends javax.swing.JFrame {
         
         pesquisa.setCpf(txtCPF.getText());
         Cliente retorno = StreetClothingDAO.pesquisarClientes(pesquisa);
-        String dataVenda = "dd/MM/YYYY";
         String pagamento = "pix";
-        Venda vendas = new Venda(dataVenda, pagamento);
+        Venda vendas = new Venda();
+        vendas.setPagamento(pagamento);
         
         if(count == 0){
             boolean cadastroPedido = StreetClothingDAO.cadastrarPedido(vendas, retorno.getIdCliente());
+            count++;
         }
         
         Venda vendao = StreetClothingDAO.listarPedido(vendas);
@@ -593,11 +593,11 @@ public class TelaVenda extends javax.swing.JFrame {
         vendas.setQtdeProduto(Integer.parseInt(txtQuantidade.getText()));
         StreetClothingDAO.cadastrarItemPedido(vendas, Integer.parseInt(txtCodigo.getText()));
                 
-        exibir();
+        exibir(vendao.getIdPedido());
     }//GEN-LAST:event_btnAdicionarItemActionPerformed
 
-    public void exibir(){
-        ArrayList<Venda> list = StreetClothingDAO.listarProdutosVenda();
+    public void exibir(int idPedido){
+        ArrayList<Venda> list = StreetClothingDAO.listarProdutosVenda(idPedido);
         
         DefaultTableModel model = (DefaultTableModel) tblVenda.getModel();
         model.setRowCount(0);
