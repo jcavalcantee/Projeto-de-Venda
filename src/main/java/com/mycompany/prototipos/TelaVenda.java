@@ -70,7 +70,7 @@ public class TelaVenda extends javax.swing.JFrame {
         lblTotalVenda = new javax.swing.JLabel();
         btnFinalizar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnExcItem = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -334,8 +334,13 @@ public class TelaVenda extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton8.setText("Excluir Item");
+        btnExcItem.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnExcItem.setText("Excluir Item");
+        btnExcItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcItemActionPerformed(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel13.setText("Street Clothing - Tela de Venda");
@@ -439,7 +444,7 @@ public class TelaVenda extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnExcItem, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -469,7 +474,7 @@ public class TelaVenda extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnFinalizar)
                             .addComponent(btnCancelar)
-                            .addComponent(jButton8)))
+                            .addComponent(btnExcItem)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -650,6 +655,41 @@ public class TelaVenda extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDinheiroActionPerformed
 
+    private void btnExcItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcItemActionPerformed
+
+        int linhaSelecionada = tblVenda.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) tblVenda.getModel();
+        int excVenda = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
+
+        boolean retorno = StreetClothingDAO.excluirCliente(excVenda);
+
+        if (retorno) {
+            JOptionPane.showMessageDialog(rootPane, "Excluído com Sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao tentar excluir.");
+        }
+        
+        recarregarTabela();
+    }//GEN-LAST:event_btnExcItemActionPerformed
+
+    public void recarregarTabela(){
+    
+        ArrayList<Venda> lista = StreetClothingDAO.listarProdutosVenda(SOMEBITS);
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblVenda.getModel();
+        modelo.setRowCount(0);
+        
+        //Para cada item na lista retornada do banco, adiciono à nossa tabela
+        for (Venda item : lista) {
+            modelo.addRow(new String[]{
+                        String.valueOf(item.getCodProduto()),
+                        String.valueOf(item.getNomeProduto()),
+                        String.valueOf(item.getQtdeProduto()),
+                        String.valueOf(item.getPrecoProduto()),
+                        String.valueOf(item.getSubTotal())
+            });
+        }       
+    }
     /**
      * @param args the command line arguments
      */
@@ -691,6 +731,7 @@ public class TelaVenda extends javax.swing.JFrame {
     private javax.swing.JButton btnCredito;
     private javax.swing.JButton btnDebito;
     private javax.swing.JButton btnDinheiro;
+    private javax.swing.JButton btnExcItem;
     private javax.swing.JButton btnFinalizar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnPesquisarCliente;
@@ -698,7 +739,6 @@ public class TelaVenda extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

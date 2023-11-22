@@ -278,7 +278,7 @@ public class StreetClothingDAO {
 
         return busca;
     }
-    
+
     //Método Alterar
     public static boolean alterarCliente(Cliente clienteAlterar) {
 
@@ -659,5 +659,46 @@ public class StreetClothingDAO {
             }
         }
         return subtotal;
+    }
+
+    public static boolean excluirItemVenda(int excVenda) {
+        Connection conexao = null;
+        boolean retorno = false;
+        PreparedStatement comandoSQL;
+
+        try {
+            //Carregando o Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Abrindo conexão com o Banco
+            conexao = DriverManager.getConnection(url, login, senha);
+
+            //Preparando o comando SQL
+            comandoSQL = conexao.prepareStatement("DELETE FROM Pedido WHERE id = ?");
+            comandoSQL.setInt(1, excVenda);
+
+            //Executar o comando SQL preparado
+            int linhasAfetadas = comandoSQL.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                retorno = true;
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return retorno;
+
     }
 }
