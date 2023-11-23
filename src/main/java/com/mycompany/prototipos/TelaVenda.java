@@ -594,8 +594,8 @@ public class TelaVenda extends javax.swing.JFrame {
             count++;
         }
 
-        Venda vendao = StreetClothingDAO.listarPedido(vendas);
-        vendas.setIdPedido(vendao.getIdPedido());
+        Venda objIdPedido = StreetClothingDAO.listarPedido(vendas);
+        vendas.setIdPedido(objIdPedido.getIdPedido());
         vendas.setQtdeProduto(Integer.parseInt(txtQuantidade.getText()));
 
         Produto estoque = new Produto();
@@ -607,7 +607,7 @@ public class TelaVenda extends javax.swing.JFrame {
             StreetClothingDAO.cadastrarItemPedido(vendas, Integer.parseInt(txtCodigo.getText().toString()));
         }
 
-        exibir(vendao.getIdPedido());
+        exibir(objIdPedido.getIdPedido());
     }//GEN-LAST:event_btnAdicionarItemActionPerformed
 
     public void exibir(int idPedido) {
@@ -659,37 +659,41 @@ public class TelaVenda extends javax.swing.JFrame {
 
         int linhaSelecionada = tblVenda.getSelectedRow();
         DefaultTableModel modelo = (DefaultTableModel) tblVenda.getModel();
-        int excVenda = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
-
-        boolean retorno = StreetClothingDAO.excluirCliente(excVenda);
+        Venda objIdPedido = new Venda();
+        objIdPedido = StreetClothingDAO.listarPedido(objIdPedido);
+        
+        boolean retorno = StreetClothingDAO.excluirItemVenda(objIdPedido.getIdPedido());
 
         if (retorno) {
             JOptionPane.showMessageDialog(rootPane, "Excluído com Sucesso!");
         } else {
             JOptionPane.showMessageDialog(rootPane, "Erro ao tentar excluir.");
         }
-        
+
         recarregarTabela();
     }//GEN-LAST:event_btnExcItemActionPerformed
 
-    public void recarregarTabela(){
-    
-        ArrayList<Venda> lista = StreetClothingDAO.listarProdutosVenda(SOMEBITS);
-        
+    public void recarregarTabela() {
+
+        Venda objIdPedido = new Venda();
+        objIdPedido = StreetClothingDAO.listarPedido(objIdPedido);
+        ArrayList<Venda> lista = StreetClothingDAO.listarProdutosVenda(objIdPedido.getIdPedido());
+
         DefaultTableModel modelo = (DefaultTableModel) tblVenda.getModel();
         modelo.setRowCount(0);
-        
+
         //Para cada item na lista retornada do banco, adiciono à nossa tabela
         for (Venda item : lista) {
             modelo.addRow(new String[]{
-                        String.valueOf(item.getCodProduto()),
-                        String.valueOf(item.getNomeProduto()),
-                        String.valueOf(item.getQtdeProduto()),
-                        String.valueOf(item.getPrecoProduto()),
-                        String.valueOf(item.getSubTotal())
+                String.valueOf(item.getCodProduto()),
+                String.valueOf(item.getNomeProduto()),
+                String.valueOf(item.getQtdeProduto()),
+                String.valueOf(item.getPrecoProduto()),
+                String.valueOf(item.getSubTotal())
             });
-        }       
+        }
     }
+
     /**
      * @param args the command line arguments
      */
