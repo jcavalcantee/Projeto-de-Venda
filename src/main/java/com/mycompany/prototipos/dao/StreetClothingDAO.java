@@ -674,7 +674,7 @@ public class StreetClothingDAO {
             conexao = DriverManager.getConnection(url, login, senha);
 
             //Preparando o comando SQL
-            comandoSQL = conexao.prepareStatement("DELETE FROM Pedido WHERE id = ?");
+            comandoSQL = conexao.prepareStatement("DELETE FROM itemPedido WHERE FK_PEDIDO_ID_Pedido = ?");
             comandoSQL.setInt(1, excVenda);
 
             //Executar o comando SQL preparado
