@@ -182,7 +182,7 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="46" max="32767" attributes="0"/>
+                              <EmptySpace pref="53" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -204,7 +204,7 @@
                                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txtNome" min="-2" max="-2" attributes="0"/>
                                   <Component id="dtcNascimento" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -466,7 +466,7 @@
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="dtcNascimento">
               <Properties>
-                <Property name="dateFormatString" type="java.lang.String" value="dd/MM/YYYY"/>
+                <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
               </Properties>
             </Component>
           </SubComponents>
