@@ -434,7 +434,7 @@ public class StreetClothingDAO {
             //preparar comando sql
             comandoSQL = connection.prepareStatement("SELECT Produtos.ID, Produtos.NomeProduto, Produtos.PrecoUnitario,"
                     + " ITEMPEDIDO.Quantidade, ItemPedido.FK_PEDIDO_ID_Pedido, "
-                    + " SUM(ITEMPEDIDO.Quantidade * Produtos.PrecoUnitario) AS subtotal"
+                    + " ROUND(SUM(ITEMPEDIDO.Quantidade * Produtos.PrecoUnitario), 2) AS subtotal"
                     + " FROM PRODUTOS INNER JOIN ITEMPEDIDO ON PRODUTOS.ID = FK_PRODUTOS_ID"
                     + " WHERE ItemPedido.FK_PEDIDO_ID_Pedido = ?"
                     + " GROUP BY ItemPedido.PK_ITEMPEDIDO");
