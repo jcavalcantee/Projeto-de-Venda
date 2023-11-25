@@ -540,7 +540,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
 
     private void btnSalvarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarCliActionPerformed
-
+        
         Validador validarDados = new Validador();
         validarDados.validarTexto(txtNome);
         validarDados.validarCPF(ftfCPF);
@@ -550,7 +550,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         validarDados.validarNumero(txtNumero);
         validarDados.validarTexto(txtCidade);
         validarDados.comboBox(jcbUf);
-        //validarDados.ValidarFloat(txtPreco);
 
         if (validarDados.hasErro()) {
             JOptionPane.showMessageDialog(rootPane, "Não foi possível cadastrar o usuário.");

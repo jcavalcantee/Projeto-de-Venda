@@ -311,8 +311,11 @@ public class TelaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-
+         
         int linhaSelecionada = tblClientes.getSelectedRow();
+        if(linhaSelecionada<0){
+            JOptionPane.showMessageDialog(rootPane, "Selecione uma linha da tabela para excluir!");
+        }else{
         DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
         int excCliente = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
 
@@ -323,8 +326,9 @@ public class TelaClientes extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(rootPane, "Erro ao tentar excluir.");
         }
-
+        
         recarregarTabela();
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
