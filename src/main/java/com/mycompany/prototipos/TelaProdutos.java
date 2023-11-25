@@ -8,6 +8,7 @@ import classes.Produto;
 import com.mycompany.prototipos.dao.StreetClothingDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -45,7 +46,7 @@ public class TelaProdutos extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        txtBusca = new javax.swing.JTextField();
+        txtBuscaProd = new javax.swing.JTextField();
         rdbCodigo = new javax.swing.JRadioButton();
         rdbNome = new javax.swing.JRadioButton();
         btnBuscar = new javax.swing.JButton();
@@ -81,6 +82,11 @@ public class TelaProdutos extends javax.swing.JFrame {
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/delete.png"))); // NOI18N
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnAtualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/edit.png"))); // NOI18N
@@ -132,10 +138,10 @@ public class TelaProdutos extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consultar Produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        txtBusca.setName("busca"); // NOI18N
-        txtBusca.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtBuscaProd.setName("busca"); // NOI18N
+        txtBuscaProd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtBuscaKeyTyped(evt);
+                txtBuscaProdKeyTyped(evt);
             }
         });
 
@@ -172,7 +178,7 @@ public class TelaProdutos extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBuscaProd, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -190,7 +196,7 @@ public class TelaProdutos extends javax.swing.JFrame {
                     .addComponent(rdbNome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBuscaProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
@@ -247,49 +253,49 @@ public class TelaProdutos extends javax.swing.JFrame {
 
     private void rdbCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbCodigoActionPerformed
         //Limpa o campo quando a opção é selecionada
-        txtBusca.setText("");
+        txtBuscaProd.setText("");
     }//GEN-LAST:event_rdbCodigoActionPerformed
 
-    private void txtBuscaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyTyped
+    private void txtBuscaProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaProdKeyTyped
         if (rdbCodigo.isSelected()) {
             Validador codigo = new Validador();
             char c = evt.getKeyChar();
             if ((c < '0' || c > '9') && c != KeyEvent.VK_BACK_SPACE) {
                 evt.consume();
             }
-            codigo.limiteTexto(txtBusca, evt, 4);
+            codigo.limiteTexto(txtBuscaProd, evt, 4);
         }
-        txtBusca.setBackground(Color.white);
+        txtBuscaProd.setBackground(Color.white);
 
         if (rdbNome.isSelected()) {
             Validador nome = new Validador();
-            nome.limiteTexto(txtBusca, evt, 50);
-            nome.textoSemNumeros(txtBusca, evt);
+            nome.limiteTexto(txtBuscaProd, evt, 50);
+            nome.textoSemNumeros(txtBuscaProd, evt);
         }
-    }//GEN-LAST:event_txtBuscaKeyTyped
-public void recarregarTabelaProdutos(){
-    
+    }//GEN-LAST:event_txtBuscaProdKeyTyped
+    public void recarregarTabelaProdutos() {
+
         ArrayList<Produto> lista = StreetClothingDAO.listarProduto();
-        
+
         DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
         modelo.setRowCount(0);
-        
+
         //Para cada item na lista retornada do banco, adiciono à nossa tabela
         for (Produto item : lista) {
             modelo.addRow(new String[]{
-                        String.valueOf(item.getId()),
-                        String.valueOf(item.getNome()),
-                        String.valueOf(item.getCategoria()),
-                        String.valueOf(item.getEstoqueInicial())
+                String.valueOf(item.getId()),
+                String.valueOf(item.getNome()),
+                String.valueOf(item.getCategoria()),
+                String.valueOf(item.getEstoqueInicial())
             });
-        }       
+        }
     }
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         Validador produto = new Validador();
         if (rdbCodigo.isSelected()) {
-            produto.validarNumero(txtBusca);
-        }else if (rdbNome.isSelected()) {
-            produto.validarTexto(txtBusca);
+            produto.validarNumero(txtBuscaProd);
+        } else if (rdbNome.isSelected()) {
+            produto.validarTexto(txtBuscaProd);
         } else {
             JOptionPane.showMessageDialog(rootPane, "Selecione uma opção para realizar a busca!");
         }
@@ -300,8 +306,35 @@ public void recarregarTabelaProdutos(){
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void rdbNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbNomeActionPerformed
-        txtBusca.setText("");
+        txtBuscaProd.setText("");
     }//GEN-LAST:event_rdbNomeActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        try {
+
+            int linhaSelecionada = tblProdutos.getSelectedRow();
+            if (linhaSelecionada < 0) {
+                JOptionPane.showMessageDialog(rootPane,"Selecione uma linha para excluir");
+            } else {
+                DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
+                int excProduto = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
+
+                boolean retorno = StreetClothingDAO.excluirProduto(excProduto);
+
+                if (retorno) {
+                    JOptionPane.showMessageDialog(rootPane, "Excluído com Sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao tentar excluir.");
+                    throw new SQLIntegrityConstraintViolationException();
+                }
+            }
+        } catch (SQLIntegrityConstraintViolationException e) {
+            JOptionPane.showMessageDialog(rootPane, "Não é possivel excluir um produto que esteve em um pedido!");
+        }
+
+        recarregarTabelaProdutos();
+
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,20 +353,20 @@ public void recarregarTabelaProdutos(){
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new TelaClientes().setVisible(true);
+                new TelaProdutos().setVisible(true);
             }
         });
     }
@@ -353,6 +386,6 @@ public void recarregarTabelaProdutos(){
     private javax.swing.JRadioButton rdbCodigo;
     private javax.swing.JRadioButton rdbNome;
     private javax.swing.JTable tblProdutos;
-    private javax.swing.JTextField txtBusca;
+    private javax.swing.JTextField txtBuscaProd;
     // End of variables declaration//GEN-END:variables
 }
