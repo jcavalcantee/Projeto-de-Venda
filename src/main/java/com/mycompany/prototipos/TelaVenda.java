@@ -674,6 +674,7 @@ public class TelaVenda extends javax.swing.JFrame {
         String formaPagamento = "";
         Venda pedido = new Venda();
 
+        try{
         if (rdbPix.isSelected()) {
             formaPagamento = "Pix";
         } else if (rdbCredito.isSelected()) {
@@ -688,61 +689,46 @@ public class TelaVenda extends javax.swing.JFrame {
         if (pedido.getPagamento().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Escolha uma forma de pagamento!");
         } else {
+            //Pega o CPF do cliente
             Cliente pesquisarCliente = new Cliente();
             String cpf = txtCPF.getText().replace(".", "").replace("-", "");
             pesquisarCliente.setCpf(cpf);
+
+            //Recebe o ID do cliente da DAO
             pesquisarCliente = StreetClothingDAO.pesquisarClientes(pesquisarCliente);
 
-            //Gera um pedido
+            //Grava o pedido no banco de dados
             StreetClothingDAO.cadastrarPedido(pedido, pesquisarCliente.getIdCliente());
             Venda idPedido = new Venda();
             idPedido = StreetClothingDAO.listarPedido(idPedido);
 
+            //Grava os itens do pedido no banco de dados
             for (Venda item : itensPedido) {
                 Venda itemVenda = new Venda(idPedido.getIdPedido(), item.getCodProduto(), item.getQtdeProduto());
                 StreetClothingDAO.cadastrarItemPedido(itemVenda);
             }
+            JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso!");
+            this.dispose();
+        }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(rootPane, "Não foi possível finalizar a venda!", "Finalização venda", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnExcItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcItemActionPerformed
 
-        int linhaSelecionada = tblVenda.getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) tblVenda.getModel();
-        Venda objIdPedido = new Venda();
-        objIdPedido = StreetClothingDAO.listarPedido(objIdPedido);
-
-        boolean retorno = StreetClothingDAO.excluirItemVenda(objIdPedido.getIdPedido());
-
-        if (retorno) {
+        try {
+            int linhaSelecionada = tblVenda.getSelectedRow();
+            Venda itemExcluido = itensPedido.get(linhaSelecionada);
+            totalVenda -= itemExcluido.getSubTotal();
+            lblTotalVenda.setText(Double.toString(totalVenda));
+            itensPedido.remove(linhaSelecionada);
+            exibir();
             JOptionPane.showMessageDialog(rootPane, "Excluído com Sucesso!");
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Erro ao tentar excluir.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir o item da venda!", "Exclusão item da venda", JOptionPane.WARNING_MESSAGE);
         }
-
-        recarregarTabela();
     }//GEN-LAST:event_btnExcItemActionPerformed
-
-    public void recarregarTabela() {
-
-        Venda objIdPedido = new Venda();
-        objIdPedido = StreetClothingDAO.listarPedido(objIdPedido);
-        ArrayList<Venda> lista = StreetClothingDAO.listarProdutosVenda(objIdPedido.getIdPedido());
-
-        DefaultTableModel modelo = (DefaultTableModel) tblVenda.getModel();
-        modelo.setRowCount(0);
-
-        //Para cada item na lista retornada do banco, adiciono à nossa tabela
-        for (Venda item : lista) {
-            modelo.addRow(new String[]{
-                String.valueOf(item.getCodProduto()),
-                String.valueOf(item.getNomeProduto()),
-                String.valueOf(item.getQtdeProduto()),
-                String.valueOf(item.getPrecoProduto()),
-                String.valueOf(item.getSubTotal())
-            });
-        }
-    }
 
     /**
      * @param args the command line arguments
