@@ -233,6 +233,60 @@ public class StreetClothingDAO {
 
         return lista;
     }
+ public static ArrayList<Produto> listarProduto() {
+
+        ArrayList<Produto> lista = new ArrayList<>();
+
+        Connection conexao = null;
+        PreparedStatement comandoSQL = null;
+        ResultSet rs = null;
+
+        try {
+            //Passo 1 - Carregar o Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Passo 2 - Abrir a conexao com o mysql
+            conexao = DriverManager.getConnection(url, login, senha);
+
+            //Passo 3 - Preparar o comando SQL
+            comandoSQL = conexao.prepareStatement("SELECT * FROM Produtos");
+
+            //Passo 4 - Executar o comando SQL
+            rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+
+                //Percorrer as linhas do result set
+                while (rs.next()) {
+                    Produto item = new Produto();
+                    item.setId(rs.getInt("ID"));
+                    item.setNome(rs.getString("NomeProduto"));
+                    item.setCategoria(rs.getString("Categoria"));
+                    item.setEstoqueInicial(rs.getInt("Estoque"));
+                    lista.add(item);
+
+                }
+
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+
+        return lista;
+    }
 
     public static Cliente buscarCliente(Cliente busca, int idCliente) {
 
