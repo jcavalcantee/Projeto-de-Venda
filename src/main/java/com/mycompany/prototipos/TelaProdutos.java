@@ -25,6 +25,7 @@ public class TelaProdutos extends javax.swing.JFrame {
     public TelaProdutos() {
         initComponents();
         recarregarTabelaProdutos();
+        this.dispose();
     }
 
     /**
@@ -249,6 +250,7 @@ public class TelaProdutos extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         TelaCadastro tela = new TelaCadastro();
         tela.setVisible(true);
+        
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void rdbCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbCodigoActionPerformed
@@ -314,7 +316,7 @@ public class TelaProdutos extends javax.swing.JFrame {
 
             int linhaSelecionada = tblProdutos.getSelectedRow();
             if (linhaSelecionada < 0) {
-                JOptionPane.showMessageDialog(rootPane,"Selecione uma linha para excluir");
+                JOptionPane.showMessageDialog(rootPane, "Selecione uma linha para excluir");
             } else {
                 DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
                 int excProduto = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
@@ -323,6 +325,7 @@ public class TelaProdutos extends javax.swing.JFrame {
 
                 if (retorno) {
                     JOptionPane.showMessageDialog(rootPane, "Excluído com Sucesso!");
+                    recarregarTabelaProdutos();
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Erro ao tentar excluir.");
                     throw new SQLIntegrityConstraintViolationException();
@@ -332,7 +335,6 @@ public class TelaProdutos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Não é possivel excluir um produto que esteve em um pedido!");
         }
 
-        recarregarTabelaProdutos();
 
     }//GEN-LAST:event_btnExcluirActionPerformed
 

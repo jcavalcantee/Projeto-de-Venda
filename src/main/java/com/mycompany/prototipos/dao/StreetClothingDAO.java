@@ -169,6 +169,8 @@ public class StreetClothingDAO {
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (SQLIntegrityConstraintViolationException e) {
+            Logger.getLogger("Ocorreu uma exceção de violação de integridade: " + e.getMessage());
         } catch (SQLException ex) {
             Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
