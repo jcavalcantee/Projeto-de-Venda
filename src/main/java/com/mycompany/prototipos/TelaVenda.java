@@ -590,8 +590,11 @@ public class TelaVenda extends javax.swing.JFrame {
         }
         
         double subTotal = Integer.parseInt(txtQuantidade.getText().toString()) * Double.parseDouble(lblPreco.getText());
+        double subTotalArredondado = Math.round(subTotal * Math.pow(10, 2)) / Math.pow(10, 2);
 
-        Venda itemPedido = new Venda(Integer.parseInt(txtCodigo.getText()), lblNomeProduto.getText(), Integer.parseInt(txtQuantidade.getText()), Double.parseDouble(lblPreco.getText()), subTotal);
+        
+        
+        Venda itemPedido = new Venda(Integer.parseInt(txtCodigo.getText()), lblNomeProduto.getText(), Integer.parseInt(txtQuantidade.getText()), Double.parseDouble(lblPreco.getText()), subTotalArredondado);
 
         itensPedido.add(itemPedido);
         
