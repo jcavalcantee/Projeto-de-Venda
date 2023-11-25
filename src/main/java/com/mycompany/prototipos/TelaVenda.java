@@ -20,6 +20,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaVenda extends javax.swing.JFrame {
 
+    double totalVenda = 0;
+    ArrayList<Venda> itensPedido = new ArrayList<>();
+
     /**
      * Creates new form TelaVenda
      */
@@ -45,7 +48,7 @@ public class TelaVenda extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        btnGrupo1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -76,10 +79,14 @@ public class TelaVenda extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        btnPix = new javax.swing.JButton();
-        btnCredito = new javax.swing.JButton();
-        btnDebito = new javax.swing.JButton();
-        btnDinheiro = new javax.swing.JButton();
+        rdbPix = new javax.swing.JRadioButton();
+        rdbCredito = new javax.swing.JRadioButton();
+        rdbDebito = new javax.swing.JRadioButton();
+        rdbDinheiro = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         jLabel5.setText("jLabel5");
 
@@ -307,7 +314,7 @@ public class TelaVenda extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblTotalVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,58 +400,76 @@ public class TelaVenda extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forma de Pagamento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
-        btnPix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-pix (1).png"))); // NOI18N
-        btnPix.setText("PIX");
-        buttonGroup1.add(btnPix);
+        btnGrupo1.add(rdbPix);
+        rdbPix.setText("Pix");
 
-        btnCredito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartoes-de-credito.png"))); // NOI18N
-        btnCredito.setText("Crédito");
-        buttonGroup1.add(btnCredito);
+        btnGrupo1.add(rdbCredito);
+        rdbCredito.setText("Crédito");
 
-        btnDebito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visto.png"))); // NOI18N
-        btnDebito.setText("Débito");
-        buttonGroup1.add(btnDebito);
+        btnGrupo1.add(rdbDebito);
+        rdbDebito.setText("Débito");
 
-        btnDinheiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dinheiro.png"))); // NOI18N
-        btnDinheiro.setText("Dinheiro");
-        buttonGroup1.add(btnDinheiro);
-        btnDinheiro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDinheiroActionPerformed(evt);
-            }
-        });
+        btnGrupo1.add(rdbDinheiro);
+        rdbDinheiro.setText("Dinheiro");
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-pix (1).png"))); // NOI18N
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartoes-de-credito.png"))); // NOI18N
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visto.png"))); // NOI18N
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dinheiro.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnPix)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCredito)
-                .addGap(12, 12, 12)
-                .addComponent(btnDebito)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDinheiro)
-                .addGap(12, 12, 12))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rdbPix)
+                    .addComponent(jLabel3))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rdbCredito)
+                        .addGap(67, 67, 67))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(rdbDebito)
+                        .addGap(89, 89, 89)
+                        .addComponent(rdbDinheiro)
+                        .addContainerGap())
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel16)
+                        .addGap(20, 20, 20))))
         );
-
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCredito, btnDebito, btnPix});
-
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel16)
+                        .addComponent(jLabel15)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPix)
-                    .addComponent(btnCredito)
-                    .addComponent(btnDebito)
-                    .addComponent(btnDinheiro))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(rdbPix)
+                    .addComponent(rdbCredito)
+                    .addComponent(rdbDebito)
+                    .addComponent(rdbDinheiro))
+                .addContainerGap())
         );
-
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCredito, btnDebito, btnDinheiro, btnPix});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -567,8 +592,6 @@ public class TelaVenda extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdicionarItemKeyTyped
 
-    double totalVenda = 0;
-    ArrayList<Venda> itensPedido = new ArrayList<>();
     private void btnAdicionarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarItemActionPerformed
         int quantidade = 0;
         Validador adicionar = new Validador();
@@ -588,16 +611,14 @@ public class TelaVenda extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Digite um valor válido para o campo quantidade");
             }
         }
-        
+
         double subTotal = Integer.parseInt(txtQuantidade.getText().toString()) * Double.parseDouble(lblPreco.getText());
         double subTotalArredondado = Math.round(subTotal * Math.pow(10, 2)) / Math.pow(10, 2);
 
-        
-        
         Venda itemPedido = new Venda(Integer.parseInt(txtCodigo.getText()), lblNomeProduto.getText(), Integer.parseInt(txtQuantidade.getText()), Double.parseDouble(lblPreco.getText()), subTotalArredondado);
 
         itensPedido.add(itemPedido);
-        
+
         if (quantidade < 1) {
             JOptionPane.showMessageDialog(null, "Aviso: A quantidade inicial não pode ser menor que 1.", "Aviso", JOptionPane.WARNING_MESSAGE);
             txtQuantidade.setBackground(Color.red);
@@ -605,7 +626,7 @@ public class TelaVenda extends javax.swing.JFrame {
             totalVenda += itemPedido.getSubTotal();
             lblTotalVenda.setText(Double.toString(totalVenda));
         }
-        
+
         txtCodigo.setText("");
         txtQuantidade.setText("");
         lblNomeProduto.setText("");
@@ -652,39 +673,37 @@ public class TelaVenda extends javax.swing.JFrame {
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         String formaPagamento = "";
         Venda pedido = new Venda();
-        
-        if(btnPix.isSelected()){
+
+        if (rdbPix.isSelected()) {
             formaPagamento = "Pix";
-        } else if (btnCredito.isSelected()){
+        } else if (rdbCredito.isSelected()) {
             formaPagamento = "Credito";
-        } else if (btnDebito.isSelected()){
+        } else if (rdbDebito.isSelected()) {
             formaPagamento = "Débito";
-        } else if (btnDinheiro.isSelected()){
+        } else if (rdbDinheiro.isSelected()) {
             formaPagamento = "Dinheiro";
         }
-        
         pedido.setPagamento(formaPagamento);
-        
-        Cliente pesquisarCliente = new Cliente();
-        String cpf = txtCPF.getText().replace(".", "").replace("-", "");
-        pesquisarCliente.setCpf(cpf);
-        pesquisarCliente = StreetClothingDAO.pesquisarClientes(pesquisarCliente);
-        
-        //Gera um pedido
-        StreetClothingDAO.cadastrarPedido(pedido, pesquisarCliente.getIdCliente());
-        Venda idPedido = new Venda();
-        idPedido = StreetClothingDAO.listarPedido(idPedido);
-        
-        for(Venda item : itensPedido){
-            Venda itemVenda = new Venda(idPedido.getIdPedido(), item.getCodProduto(), item.getQtdeProduto());
-            StreetClothingDAO.cadastrarItemPedido(itemVenda);
-        }
-        
-    }//GEN-LAST:event_btnFinalizarActionPerformed
 
-    private void btnDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDinheiroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDinheiroActionPerformed
+        if (pedido.getPagamento().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Escolha uma forma de pagamento!");
+        } else {
+            Cliente pesquisarCliente = new Cliente();
+            String cpf = txtCPF.getText().replace(".", "").replace("-", "");
+            pesquisarCliente.setCpf(cpf);
+            pesquisarCliente = StreetClothingDAO.pesquisarClientes(pesquisarCliente);
+
+            //Gera um pedido
+            StreetClothingDAO.cadastrarPedido(pedido, pesquisarCliente.getIdCliente());
+            Venda idPedido = new Venda();
+            idPedido = StreetClothingDAO.listarPedido(idPedido);
+
+            for (Venda item : itensPedido) {
+                Venda itemVenda = new Venda(idPedido.getIdPedido(), item.getCodProduto(), item.getQtdeProduto());
+                StreetClothingDAO.cadastrarItemPedido(itemVenda);
+            }
+        }
+    }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnExcItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcItemActionPerformed
 
@@ -763,15 +782,11 @@ public class TelaVenda extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarItem;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCredito;
-    private javax.swing.JButton btnDebito;
-    private javax.swing.JButton btnDinheiro;
     private javax.swing.JButton btnExcItem;
     private javax.swing.JButton btnFinalizar;
+    private javax.swing.ButtonGroup btnGrupo1;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnPesquisarCliente;
-    private javax.swing.JButton btnPix;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton7;
     private javax.swing.JFormattedTextField jFormattedTextField1;
@@ -780,7 +795,11 @@ public class TelaVenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -801,6 +820,10 @@ public class TelaVenda extends javax.swing.JFrame {
     private javax.swing.JLabel lblNomeProduto;
     private javax.swing.JLabel lblPreco;
     private javax.swing.JLabel lblTotalVenda;
+    private javax.swing.JRadioButton rdbCredito;
+    private javax.swing.JRadioButton rdbDebito;
+    private javax.swing.JRadioButton rdbDinheiro;
+    private javax.swing.JRadioButton rdbPix;
     private javax.swing.JTable tblVenda;
     private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtCodigo;

@@ -5,7 +5,6 @@ com\mycompany\prototipos\TelaVenda$1.class
 com\mycompany\prototipos\TelaVenda$11.class
 com\mycompany\prototipos\TelaClientes$8.class
 com\mycompany\prototipos\TelaCadastro$17.class
-classes\RelatorioAnalitico.class
 com\mycompany\prototipos\TelaProdutos$2.class
 com\mycompany\prototipos\TelaVenda$4.class
 com\mycompany\prototipos\TelaCadastro$2.class
@@ -40,7 +39,6 @@ com\mycompany\prototipos\TelaRelatorios$4.class
 com\mycompany\prototipos\TelaVenda$2.class
 com\mycompany\prototipos\TelaCadastro$7.class
 com\mycompany\prototipos\TelaClientes$6.class
-classes\RelatorioSintetico.class
 com\mycompany\prototipos\dao\StreetClothingDAO.class
 com\mycompany\prototipos\TelaPrincipal.class
 com\mycompany\prototipos\TelaCadastro$11.class
@@ -78,7 +76,6 @@ com\mycompany\prototipos\TelaProdutos$3.class
 com\mycompany\prototipos\TelaPrincipal$4.class
 com\mycompany\prototipos\TelaClientes$3.class
 com\mycompany\prototipos\TelaVenda$6.class
-com\mycompany\prototipos\TelaVenda$13.class
 com\mycompany\prototipos\TelaRelatorios$1.class
 com\mycompany\prototipos\TelaLogin$3.class
 com\mycompany\prototipos\TelaClientes$12.class
