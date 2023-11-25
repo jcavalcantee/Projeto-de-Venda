@@ -508,8 +508,8 @@ public class TelaVenda extends javax.swing.JFrame {
         if (resposta == JOptionPane.YES_NO_OPTION) {
             this.dispose();
         }
-        
-        
+
+
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
@@ -567,8 +567,8 @@ public class TelaVenda extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdicionarItemKeyTyped
 
-    float totalVenda = 0;
-    int count = 0;
+    double totalVenda = 0;
+    ArrayList<Venda> itensPedido = new ArrayList<>();
     private void btnAdicionarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarItemActionPerformed
         int quantidade = 0;
         Validador adicionar = new Validador();
@@ -588,55 +588,37 @@ public class TelaVenda extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Digite um valor válido para o campo quantidade");
             }
         }
+        
+        double subTotal = Integer.parseInt(txtQuantidade.getText().toString()) * Double.parseDouble(lblPreco.getText());
+        double subTotalArredondado = Math.round(subTotal * Math.pow(10, 2)) / Math.pow(10, 2);
+
+        
+        
+        Venda itemPedido = new Venda(Integer.parseInt(txtCodigo.getText()), lblNomeProduto.getText(), Integer.parseInt(txtQuantidade.getText()), Double.parseDouble(lblPreco.getText()), subTotalArredondado);
+
+        itensPedido.add(itemPedido);
+        
         if (quantidade < 1) {
             JOptionPane.showMessageDialog(null, "Aviso: A quantidade inicial não pode ser menor que 1.", "Aviso", JOptionPane.WARNING_MESSAGE);
             txtQuantidade.setBackground(Color.red);
         } else {
-            try {
-                totalVenda += quantidade * Float.parseFloat(lblPreco.getText().replace(",", "."));
-                lblTotalVenda.setText(totalVenda + "");
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(rootPane, "Digite apenas um ponto \".\" ou uma vírgula \",\".");
-            }
+            totalVenda += itemPedido.getSubTotal();
+            lblTotalVenda.setText(Double.toString(totalVenda));
         }
-
-        Cliente pesquisa = new Cliente();
-
-        String cpf = txtCPF.getText().replace(".", "").replace("-", "");
-        pesquisa.setCpf(cpf);
-        Cliente retorno = StreetClothingDAO.pesquisarClientes(pesquisa);
-        String pagamento = "pix";
-        Venda vendas = new Venda();
-        vendas.setPagamento(pagamento);
-
-        if (count == 0) {
-            boolean cadastroPedido = StreetClothingDAO.cadastrarPedido(vendas, retorno.getIdCliente());
-            count++;
-        }
-
-        Venda objIdPedido = StreetClothingDAO.listarPedido(vendas);
-        vendas.setIdPedido(objIdPedido.getIdPedido());
-        vendas.setQtdeProduto(Integer.parseInt(txtQuantidade.getText()));
-
-        Produto estoque = new Produto();
-        estoque = StreetClothingDAO.verifcaQuantidade(estoque, Integer.parseInt(txtCodigo.getText()));
-
-        if (estoque.getEstoqueInicial() < Integer.parseInt(txtQuantidade.getText())) {
-            JOptionPane.showMessageDialog(rootPane, "A quantidade inserida é maior que o estoque de nossa loja!");
-        } else {
-            StreetClothingDAO.cadastrarItemPedido(vendas, Integer.parseInt(txtCodigo.getText().toString()));
-        }
-
-        exibir(objIdPedido.getIdPedido());
+        
+        txtCodigo.setText("");
+        txtQuantidade.setText("");
+        lblNomeProduto.setText("");
+        lblPreco.setText("");
+        exibir();
     }//GEN-LAST:event_btnAdicionarItemActionPerformed
 
-    public void exibir(int idPedido) {
-        ArrayList<Venda> list = StreetClothingDAO.listarProdutosVenda(idPedido);
+    public void exibir() {
 
         DefaultTableModel model = (DefaultTableModel) tblVenda.getModel();
         model.setRowCount(0);
 
-        for (Venda item : list) {
+        for (Venda item : itensPedido) {
             model.addRow(new String[]{
                 String.valueOf(item.getCodProduto()),
                 String.valueOf(item.getNomeProduto()),
@@ -668,7 +650,36 @@ public class TelaVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
-
+        String formaPagamento = "";
+        Venda pedido = new Venda();
+        
+        if(btnPix.isSelected()){
+            formaPagamento = "Pix";
+        } else if (btnCredito.isSelected()){
+            formaPagamento = "Credito";
+        } else if (btnDebito.isSelected()){
+            formaPagamento = "Débito";
+        } else if (btnDinheiro.isSelected()){
+            formaPagamento = "Dinheiro";
+        }
+        
+        pedido.setPagamento(formaPagamento);
+        
+        Cliente pesquisarCliente = new Cliente();
+        String cpf = txtCPF.getText().replace(".", "").replace("-", "");
+        pesquisarCliente.setCpf(cpf);
+        pesquisarCliente = StreetClothingDAO.pesquisarClientes(pesquisarCliente);
+        
+        //Gera um pedido
+        StreetClothingDAO.cadastrarPedido(pedido, pesquisarCliente.getIdCliente());
+        Venda idPedido = new Venda();
+        idPedido = StreetClothingDAO.listarPedido(idPedido);
+        
+        for(Venda item : itensPedido){
+            Venda itemVenda = new Venda(idPedido.getIdPedido(), item.getCodProduto(), item.getQtdeProduto());
+            StreetClothingDAO.cadastrarItemPedido(itemVenda);
+        }
+        
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDinheiroActionPerformed
@@ -681,7 +692,7 @@ public class TelaVenda extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tblVenda.getModel();
         Venda objIdPedido = new Venda();
         objIdPedido = StreetClothingDAO.listarPedido(objIdPedido);
-        
+
         boolean retorno = StreetClothingDAO.excluirItemVenda(objIdPedido.getIdPedido());
 
         if (retorno) {

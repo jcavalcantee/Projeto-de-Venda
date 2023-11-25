@@ -543,7 +543,7 @@ public class StreetClothingDAO {
         return retornoPedido;
     }
 
-    public static boolean cadastrarItemPedido(Venda vendas, int idProdutos) {
+    public static boolean cadastrarItemPedido(Venda vendas) {
 
         Connection conexao = null;
         PreparedStatement comandoSQL = null;
@@ -559,7 +559,7 @@ public class StreetClothingDAO {
             //Preparar comando SQL
             comandoSQL = conexao.prepareStatement("INSERT INTO ITEMPEDIDO (FK_PRODUTOS_ID, FK_PEDIDO_ID_Pedido, Quantidade)"
                     + "VALUES (?, ?, ?)");
-            comandoSQL.setInt(1, idProdutos);
+            comandoSQL.setInt(1, vendas.getCodProduto());
             comandoSQL.setInt(2, vendas.getIdPedido());
             comandoSQL.setInt(3, vendas.getQtdeProduto());
 
@@ -585,7 +585,7 @@ public class StreetClothingDAO {
         }
         return retorno;
     }
-
+    
     public static Produto verifcaQuantidade(Produto codProduto, int idProduto) {
 
         Connection conexao = null;
