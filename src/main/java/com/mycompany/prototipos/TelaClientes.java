@@ -9,6 +9,7 @@ import classes.Produto;
 import com.mycompany.prototipos.dao.StreetClothingDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -24,7 +25,7 @@ import javax.swing.text.MaskFormatter;
  * @author jeffe
  */
 public class TelaClientes extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form TelaClientes
      */
@@ -280,7 +281,6 @@ public class TelaClientes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
     //Variável para verificação se o campo está ou não com a máscara
     private boolean mascaraAplicada;
 
@@ -306,28 +306,33 @@ public class TelaClientes extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         TelaCadastro tela = new TelaCadastro();
-        this.dispose();
         tela.setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-         
-        int linhaSelecionada = tblClientes.getSelectedRow();
-        if(linhaSelecionada<0){
-            JOptionPane.showMessageDialog(rootPane, "Selecione uma linha da tabela para excluir!");
-        }else{
-        DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
-        int excCliente = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
+        try {
+            int linhaSelecionada = tblClientes.getSelectedRow();
+            if (linhaSelecionada < 0) {
+                JOptionPane.showMessageDialog(rootPane, "Selecione uma linha da tabela para excluir!");
+            } else {
+                DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
+                int excCliente = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
 
-        boolean retorno = StreetClothingDAO.excluirCliente(excCliente);
+                boolean retorno = StreetClothingDAO.excluirCliente(excCliente);
 
-        if (retorno) {
-            JOptionPane.showMessageDialog(rootPane, "Excluído com Sucesso!");
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Erro ao tentar excluir.");
-        }
-        
-        recarregarTabela();
+                if (retorno) {
+                    JOptionPane.showMessageDialog(rootPane, "Excluído com Sucesso!");
+                     recarregarTabela();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao tentar excluir.");
+                    throw new SQLIntegrityConstraintViolationException();
+                }
+            }
+        } catch (SQLIntegrityConstraintViolationException e) {
+            JOptionPane.showMessageDialog(rootPane, "Não é possivel excluir um cliente ativo!");
+
+            recarregarTabela();
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -416,26 +421,26 @@ public class TelaClientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    public void recarregarTabela(){
-    
+    public void recarregarTabela() {
+
         ArrayList<Cliente> lista = StreetClothingDAO.listarCliente();
-        
+
         DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
         modelo.setRowCount(0);
-        
+
         //Para cada item na lista retornada do banco, adiciono à nossa tabela
         for (Cliente item : lista) {
             modelo.addRow(new String[]{
-                        String.valueOf(item.getIdCliente()),
-                        String.valueOf(item.getCpf()),
-                        String.valueOf(item.getNome()),
-                        String.valueOf(item.getEmail()),
-                        String.valueOf(item.getLogradouro())
+                String.valueOf(item.getIdCliente()),
+                String.valueOf(item.getCpf()),
+                String.valueOf(item.getNome()),
+                String.valueOf(item.getEmail()),
+                String.valueOf(item.getLogradouro())
             });
-        }       
+        }
     }
-     
-    
+
+
     private void txtBuscaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyReleased
         if (rdbUF.isSelected()) {
             txtBusca.setText(this.txtBusca.getText().toUpperCase());
@@ -444,19 +449,19 @@ public class TelaClientes extends javax.swing.JFrame {
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         int linhaSelecionada = tblClientes.getSelectedRow();
-        
+
         DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
-        
-        int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString()) ;
-        
+
+        int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
+
         Cliente buscaAlterar = new Cliente();
-        buscaAlterar = StreetClothingDAO.buscarCliente(buscaAlterar,idSelecionado);
-        
+        buscaAlterar = StreetClothingDAO.buscarCliente(buscaAlterar, idSelecionado);
+
         //Instâncio a tela de cadastro
         TelaCadastro tela = new TelaCadastro(buscaAlterar);
         tela.setVisible(true);
     }//GEN-LAST:event_btnAtualizarActionPerformed
- 
+
     /**
      * @param args the command line arguments
      */

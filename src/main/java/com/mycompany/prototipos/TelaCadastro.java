@@ -575,6 +575,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             if (retorno == true) {
                 JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso!");
+               this. dispose();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!");
             }
@@ -726,6 +727,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             if (retorno == true) {
                 JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
+               this. dispose();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar!");
             }
