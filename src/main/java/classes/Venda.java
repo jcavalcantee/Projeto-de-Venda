@@ -41,6 +41,12 @@ public class Venda {
         this.subTotal = subTotal;
     }
 
+    public Venda(int idPedido, int codProduto, int qtdeProduto) {
+        this.idPedido = idPedido;
+        this.codProduto = codProduto;
+        this.qtdeProduto = qtdeProduto;
+    }
+
     public int getIdPedido() {
         return idPedido;
     }
