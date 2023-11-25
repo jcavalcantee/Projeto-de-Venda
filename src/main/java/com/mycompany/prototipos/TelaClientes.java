@@ -5,6 +5,7 @@
 package com.mycompany.prototipos;
 
 import classes.Cliente;
+import classes.Produto;
 import com.mycompany.prototipos.dao.StreetClothingDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -429,6 +430,7 @@ public class TelaClientes extends javax.swing.JFrame {
             });
         }       
     }
+     
     
     private void txtBuscaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyReleased
         if (rdbUF.isSelected()) {

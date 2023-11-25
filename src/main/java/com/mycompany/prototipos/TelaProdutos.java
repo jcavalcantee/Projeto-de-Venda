@@ -4,9 +4,13 @@
  */
 package com.mycompany.prototipos;
 
+import classes.Produto;
+import com.mycompany.prototipos.dao.StreetClothingDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +23,7 @@ public class TelaProdutos extends javax.swing.JFrame {
      */
     public TelaProdutos() {
         initComponents();
+        recarregarTabelaProdutos();
     }
 
     /**
@@ -32,7 +37,7 @@ public class TelaProdutos extends javax.swing.JFrame {
 
         opcaoConsulta = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProdutos = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnExcluir = new javax.swing.JButton();
@@ -50,7 +55,7 @@ public class TelaProdutos extends javax.swing.JFrame {
         setTitle("Street Clothing - Menu de Produtos");
         setBackground(new java.awt.Color(51, 51, 51));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -66,7 +71,7 @@ public class TelaProdutos extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblProdutos);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -262,7 +267,23 @@ public class TelaProdutos extends javax.swing.JFrame {
             nome.textoSemNumeros(txtBusca, evt);
         }
     }//GEN-LAST:event_txtBuscaKeyTyped
-
+public void recarregarTabelaProdutos(){
+    
+        ArrayList<Produto> lista = StreetClothingDAO.listarProduto();
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
+        modelo.setRowCount(0);
+        
+        //Para cada item na lista retornada do banco, adiciono à nossa tabela
+        for (Produto item : lista) {
+            modelo.addRow(new String[]{
+                        String.valueOf(item.getId()),
+                        String.valueOf(item.getNome()),
+                        String.valueOf(item.getCategoria()),
+                        String.valueOf(item.getEstoqueInicial())
+            });
+        }       
+    }
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         Validador produto = new Validador();
         if (rdbCodigo.isSelected()) {
@@ -328,10 +349,10 @@ public class TelaProdutos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.ButtonGroup opcaoConsulta;
     private javax.swing.JRadioButton rdbCodigo;
     private javax.swing.JRadioButton rdbNome;
+    private javax.swing.JTable tblProdutos;
     private javax.swing.JTextField txtBusca;
     // End of variables declaration//GEN-END:variables
 }
