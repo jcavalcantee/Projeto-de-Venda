@@ -33,10 +33,12 @@ public class Venda {
         this.totalVenda = totalVenda;
     }
 
-    public Venda(String dataVenda, String pagamento) {
-        
-        this.dataVenda = dataVenda;
-        this.pagamento = pagamento;
+    public Venda(int codProduto, String nomeProduto, int qtdeProduto, double precoProduto, double subTotal) {
+        this.codProduto = codProduto;
+        this.nomeProduto = nomeProduto;
+        this.qtdeProduto = qtdeProduto;
+        this.precoProduto = precoProduto;
+        this.subTotal = subTotal;
     }
 
     public int getIdPedido() {

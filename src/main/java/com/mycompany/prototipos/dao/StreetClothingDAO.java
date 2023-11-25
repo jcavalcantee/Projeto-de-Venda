@@ -470,47 +470,47 @@ public class StreetClothingDAO {
         return list;
     }
 
-    public static boolean cadastrarPedido(Venda vendas, int idCliente) {
-
-        Connection conexao = null;
-        PreparedStatement comandoSQL = null;
-        boolean retorno = false;
-
-        try {
-            //Carregando o Driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            //Abrir conexão com o Banco
-            conexao = DriverManager.getConnection(url, login, senha);
-
-            //Preparar comando SQL
-            comandoSQL = conexao.prepareStatement("INSERT INTO Pedido (FormaPagamento, FK_CLIENTES_ID) "
-                    + "VALUES(?, ?)");
-            comandoSQL.setString(1, vendas.getPagamento());
-            comandoSQL.setInt(2, idCliente);
-
-            //Executando o comando preparado
-            int linhasAfetadas = comandoSQL.executeUpdate();
-
-            if (linhasAfetadas > 0) {
-                retorno = true;
-            }
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (conexao != null) {
-                try {
-                    conexao.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        return retorno;
-    }
+//    public static boolean cadastrarPedido(Venda vendas, int idCliente) {
+//
+//        Connection conexao = null;
+//        PreparedStatement comandoSQL = null;
+//        boolean retorno = false;
+//
+//        try {
+//            //Carregando o Driver
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+//            //Abrir conexão com o Banco
+//            conexao = DriverManager.getConnection(url, login, senha);
+//
+//            //Preparar comando SQL
+//            comandoSQL = conexao.prepareStatement("INSERT INTO Pedido (FormaPagamento, FK_CLIENTES_ID) "
+//                    + "VALUES(?, ?)");
+//            comandoSQL.setString(1, vendas.getPagamento());
+//            comandoSQL.setInt(2, idCliente);
+//
+//            //Executando o comando preparado
+//            int linhasAfetadas = comandoSQL.executeUpdate();
+//
+//            if (linhasAfetadas > 0) {
+//                retorno = true;
+//            }
+//
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            if (conexao != null) {
+//                try {
+//                    conexao.close();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
+//        return retorno;
+//    }
 
     public static Venda listarPedido(Venda retornoPedido) {
         Connection conexao = null;
@@ -543,49 +543,49 @@ public class StreetClothingDAO {
         return retornoPedido;
     }
 
-    public static boolean cadastrarItemPedido(Venda vendas, int idProdutos) {
-
-        Connection conexao = null;
-        PreparedStatement comandoSQL = null;
-        boolean retorno = false;
-
-        try {
-            //Carregando o Driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            //Abrir conexão com o Banco
-            conexao = DriverManager.getConnection(url, login, senha);
-
-            //Preparar comando SQL
-            comandoSQL = conexao.prepareStatement("INSERT INTO ITEMPEDIDO (FK_PRODUTOS_ID, FK_PEDIDO_ID_Pedido, Quantidade)"
-                    + "VALUES (?, ?, ?)");
-            comandoSQL.setInt(1, idProdutos);
-            comandoSQL.setInt(2, vendas.getIdPedido());
-            comandoSQL.setInt(3, vendas.getQtdeProduto());
-
-            //Executando o comando preparado
-            int linhasAfetadas = comandoSQL.executeUpdate();
-
-            if (linhasAfetadas > 0) {
-                retorno = true;
-            }
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (conexao != null) {
-                try {
-                    conexao.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        return retorno;
-    }
-
+//    public static boolean cadastrarItemPedido(Venda vendas, int idProdutos) {
+//
+//        Connection conexao = null;
+//        PreparedStatement comandoSQL = null;
+//        boolean retorno = false;
+//
+//        try {
+//            //Carregando o Driver
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+//            //Abrir conexão com o Banco
+//            conexao = DriverManager.getConnection(url, login, senha);
+//
+//            //Preparar comando SQL
+//            comandoSQL = conexao.prepareStatement("INSERT INTO ITEMPEDIDO (FK_PRODUTOS_ID, FK_PEDIDO_ID_Pedido, Quantidade)"
+//                    + "VALUES (?, ?, ?)");
+//            comandoSQL.setInt(1, idProdutos);
+//            comandoSQL.setInt(2, vendas.getIdPedido());
+//            comandoSQL.setInt(3, vendas.getQtdeProduto());
+//
+//            //Executando o comando preparado
+//            int linhasAfetadas = comandoSQL.executeUpdate();
+//
+//            if (linhasAfetadas > 0) {
+//                retorno = true;
+//            }
+//
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            if (conexao != null) {
+//                try {
+//                    conexao.close();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
+//        return retorno;
+//    }
+//
     public static Produto verifcaQuantidade(Produto codProduto, int idProduto) {
 
         Connection conexao = null;
