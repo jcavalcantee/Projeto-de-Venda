@@ -118,6 +118,9 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jTextField2.setText("jTextField2");
 
+        setTitle("Cadastro");
+        setResizable(false);
+
         jLabel1.setText("Nome * :");
 
         jLabel2.setText("CPF * :");
