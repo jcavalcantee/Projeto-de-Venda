@@ -30,13 +30,17 @@ public class Cliente {
     }
     
     //Construtor com os dados obrigatórios para cadastro de clientes.
-    public Cliente(String nome, String cpf, char sexo, String email, String logradouro) {
+    public Cliente(String nome, String cpf, char sexo, String email, String logradouro, int numero, String cidade, String uf) {    
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;
         this.email = email;
         this.logradouro = logradouro;
+        this.numero = numero;
+        this.cidade = cidade;
+        this.uf = uf;
     }
+
     //Construtor com os demais atributos "não obrigatórios".
     public Cliente(Date dataNascimento, String telefone, String estCivil, int numero, String cidade, String uf) {
         this.dataNascimento = dataNascimento;
