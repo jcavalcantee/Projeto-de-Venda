@@ -1,3 +1,4 @@
+com\mycompany\prototipos\TelaProdutos$8.class
 com\mycompany\prototipos\TelaClientes$2.class
 com\mycompany\prototipos\TelaClientes$5.class
 com\mycompany\prototipos\TelaCadastro$14.class
@@ -14,7 +15,6 @@ com\mycompany\prototipos\TelaRelatorios$2.class
 com\mycompany\prototipos\TelaVenda$7.class
 classes\Venda.class
 classes\Produto.class
-com\mycompany\prototipos\TelaPagamento$3.class
 classes\Cliente.class
 com\mycompany\prototipos\TelaCadastro$5.class
 com\mycompany\prototipos\TelaProdutos$5.class
@@ -30,7 +30,6 @@ com\mycompany\prototipos\TelaCadastro$12.class
 com\mycompany\prototipos\TelaPrincipal$8.class
 com\mycompany\prototipos\TelaVenda$3.class
 com\mycompany\prototipos\TelaCadastro$1.class
-com\mycompany\prototipos\TelaPagamento$2.class
 com\mycompany\prototipos\TelaVenda$9.class
 com\mycompany\prototipos\TelaProdutos.class
 com\mycompany\prototipos\TelaCadastro$18.class
@@ -48,8 +47,6 @@ com\mycompany\prototipos\TelaCadastro$3.class
 com\mycompany\prototipos\TelaPrincipal$9.class
 com\mycompany\prototipos\TelaVenda$5.class
 com\mycompany\prototipos\TelaCadastro$20.class
-com\mycompany\prototipos\TelaPagamento$1.class
-com\mycompany\prototipos\TelaPagamento.class
 com\mycompany\prototipos\TelaCadastro$6.class
 com\mycompany\prototipos\TelaRelatorios$3.class
 com\mycompany\prototipos\TelaPrincipal$6.class
@@ -69,7 +66,6 @@ com\mycompany\prototipos\TelaCadastro$10.class
 com\mycompany\prototipos\TelaVenda$12.class
 com\mycompany\prototipos\TelaCadastro$16.class
 com\mycompany\prototipos\TelaClientes$4.class
-com\mycompany\prototipos\TelaPagamento$hora.class
 com\mycompany\prototipos\TelaPrincipal$hora.class
 com\mycompany\prototipos\TelaPrincipal$10.class
 com\mycompany\prototipos\TelaProdutos$3.class

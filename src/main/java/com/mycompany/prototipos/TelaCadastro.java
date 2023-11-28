@@ -118,6 +118,9 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jTextField2.setText("jTextField2");
 
+        setTitle("Cadastro");
+        setResizable(false);
+
         jLabel1.setText("Nome * :");
 
         jLabel2.setText("CPF * :");
@@ -540,7 +543,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
 
     private void btnSalvarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarCliActionPerformed
-
+        
         Validador validarDados = new Validador();
         validarDados.validarTexto(txtNome);
         validarDados.validarCPF(ftfCPF);
@@ -550,7 +553,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         validarDados.validarNumero(txtNumero);
         validarDados.validarTexto(txtCidade);
         validarDados.comboBox(jcbUf);
-        //validarDados.ValidarFloat(txtPreco);
 
         if (validarDados.hasErro()) {
             JOptionPane.showMessageDialog(rootPane, "Não foi possível cadastrar o usuário.");
@@ -576,6 +578,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             if (retorno == true) {
                 JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso!");
+               this. dispose();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!");
             }
@@ -727,6 +730,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             if (retorno == true) {
                 JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
+               this. dispose();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar!");
             }

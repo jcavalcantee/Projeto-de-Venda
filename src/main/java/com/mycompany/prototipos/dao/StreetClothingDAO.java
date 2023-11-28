@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -73,12 +74,14 @@ public class StreetClothingDAO {
         }
         return retorno;
     }
-    
+
     /**
      * Metódo responsável por cadastrar um cliente no Banco de Dados.
-     * @param novoCliente  Objeto do tipo Cliente
+     *
+     * @param novoCliente Objeto do tipo Cliente
      * @return boolean - true: sucesso no cadastro, false: falha no cadastro
-     * @throws SQLException Se ocorrer um erro durante a execução da operação no banco de dados.
+     * @throws SQLException Se ocorrer um erro durante a execução da operação no
+     * banco de dados.
      * @throws ClassNotFoundException Se o driver JDBC não puder ser carregado.
      */
     public static boolean cadastrarCliente(Cliente novoCliente) { //Metódo para Cadastrar cliente no banco.
@@ -117,6 +120,8 @@ public class StreetClothingDAO {
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }  catch (SQLIntegrityConstraintViolationException e) {
+          e.printStackTrace();
         } catch (SQLException ex) {
             Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -129,16 +134,17 @@ public class StreetClothingDAO {
             }
         }
         return retorno;
-    }    
-    
+    }
+
     /**
      * Método responsável por Excluir um cliente cadastrado do Banco de Dados.
+     *
      * @param excCliente O ID do cliente a ser excluído
      * @return boolean - true: sucesso na exclusão, false: falha na exclusão
-     * @throws SQLException Se ocorrer um erro durante a execução da operação no banco de dados.
+     * @throws SQLException Se ocorrer um erro durante a execução da operação no
+     * banco de dados.
      * @throws ClassNotFoundException Se o driver JDBC não puder ser carregado.
      */
-    
     public static boolean excluirCliente(int excCliente) { //Metódo para Excluir cliente do banco.
         Connection conexao = null;
         PreparedStatement comandoSQL = null;
@@ -164,6 +170,49 @@ public class StreetClothingDAO {
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (SQLIntegrityConstraintViolationException e) {
+            Logger.getLogger("Ocorreu uma exceção de violação de integridade: " + e.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return retorno;
+    }
+
+    public static boolean excluirProduto(int excProduto) { //Metódo para Excluir cliente do banco.
+        Connection conexao = null;
+        PreparedStatement comandoSQL = null;
+        boolean retorno = false;
+
+        try {
+            //Carregando o Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Abrindo conexão com o Banco
+            conexao = DriverManager.getConnection(url, login, senha);
+
+            //Preparar o comando SQL
+            comandoSQL = conexao.prepareStatement("DELETE FROM produtos WHERE ID = ?");
+            comandoSQL.setInt(1, excProduto);
+
+            //Executar o comando SQL preparado
+            int linhasAfetadas = comandoSQL.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                retorno = true;
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLIntegrityConstraintViolationException e) {
+            Logger.getLogger("Ocorreu uma exceção de violação de integridade: " + e.getMessage());
         } catch (SQLException ex) {
             Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -234,7 +283,8 @@ public class StreetClothingDAO {
 
         return lista;
     }
- public static ArrayList<Produto> listarProduto() {
+
+    public static ArrayList<Produto> listarProduto() {
 
         ArrayList<Produto> lista = new ArrayList<>();
 
@@ -640,7 +690,7 @@ public class StreetClothingDAO {
         }
         return retorno;
     }
-    
+
     public static Produto verifcaQuantidade(Produto codProduto, int idProduto) {
 
         Connection conexao = null;
@@ -771,12 +821,12 @@ public class StreetClothingDAO {
         return retorno;
 
     }
-    
+
     public static boolean excluirVenda(int excPedido) {
         Connection conexao = null;
         PreparedStatement comandoSQL = null;
         boolean retorno = false;
-        
+
         try {
             //Carregar o Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
