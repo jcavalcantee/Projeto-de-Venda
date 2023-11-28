@@ -12,6 +12,7 @@ public class Venda {
     
     private int idPedido;
     private int codCliente;
+    private String nomeCliente;
     private int codProduto;
     private String nomeProduto;
     private int qtdeProduto;
@@ -24,6 +25,20 @@ public class Venda {
     public Venda() {
         
     }
+
+    public Venda(int idPedido, int codCliente, String nomeCliente, String nomeProduto, int qtdeProduto, double precoProduto, /*double totalVenda,*/ String dataVenda, String pagamento) {
+        this.idPedido = idPedido;
+        this.codCliente = codCliente;
+        this.nomeCliente = nomeCliente;
+        this.nomeProduto = nomeProduto;
+        this.qtdeProduto = qtdeProduto;
+        this.precoProduto = precoProduto;
+//        this.totalVenda = totalVenda;
+        this.dataVenda = dataVenda;
+        this.pagamento = pagamento;
+    }
+    
+    
 
     public Venda(int codProduto, int qtdeProduto, double precoProduto, double subTotal, double totalVenda) {
         this.codProduto = codProduto;
@@ -54,8 +69,6 @@ public class Venda {
     public void setIdPedido(int idPedido) {
         this.idPedido = idPedido;
     }
-    
-    
 
     public String getNomeProduto() {
         return nomeProduto;
@@ -73,6 +86,14 @@ public class Venda {
         this.codCliente = codCliente;
     }
 
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+    
     public int getCodProduto() {
         return codProduto;
     }

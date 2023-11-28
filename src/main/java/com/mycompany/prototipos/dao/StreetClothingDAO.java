@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -859,5 +860,87 @@ public class StreetClothingDAO {
         }
 
         return retorno;
+    }
+    
+    public static ArrayList<Venda> gerarRelatorio(LocalDate dataInicial, LocalDate dataFinal) {
+        ArrayList<Venda> list = new ArrayList<>();
+
+        Connection connection = null;
+        PreparedStatement comandoSQL = null;
+        ResultSet rs = null;
+
+        try {
+            //carregar o drive
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            //abrir conexão com o mysql
+            connection = DriverManager.getConnection(url, login, senha);
+            //preparar comando sql
+             comandoSQL = connection.prepareStatement("SELECT " +
+                                                                                               "PEDIDO.ID_Pedido AS idpedido, " +
+                                                                                               "CLIENTES.ID AS idcliente, " +
+                                                                                               "CLIENTES.Nome AS nomecliente, " +
+                                                                                               "PRODUTOS.NomeProduto AS nomeproduto, " +
+                                                                                               "MAX(ITEMPEDIDO.Quantidade) AS quantidade, " +
+                                                                                               "PRODUTOS.PrecoUnitario AS precounitario, " +
+//                                                                                               "COALESCE(ROUND(SUM(CAST(quantidade AS DECIMAL(10,2)) * CAST(precounitario AS DECIMAL(10,2))), 2), 0) AS subtotal, " +
+//                                                                                               "COALESCE(ROUND(SUM(ITEMPEDIDO.Quantidade * PRODUTOS.PrecoUnitario), 2), 0) AS subtotal, " +
+//                                                                                               "ROUND(SUM(quantidade * precounitario), 2) AS subtotal, " +
+                                                                                               "PEDIDO.DataPedido AS datapedido, " +
+                                                                                               "PEDIDO.FormaPagamento AS formapagamento " +
+                                                                                            "FROM " +
+                                                                                                "CLIENTES " +
+                                                                                            "INNER JOIN " +
+                                                                                                "PEDIDO ON CLIENTES.ID = PEDIDO.FK_CLIENTES_ID " +
+                                                                                            "INNER JOIN " +
+                                                                                                "ITEMPEDIDO ON PEDIDO.ID_Pedido = ITEMPEDIDO.FK_PEDIDO_ID_Pedido " +
+                                                                                            "INNER JOIN " +
+                                                                                                "PRODUTOS ON ITEMPEDIDO.FK_PRODUTOS_ID = PRODUTOS.ID " +
+                                                                                            "WHERE " +
+                                                                                                "PEDIDO.DataPedido BETWEEN ? AND ? " +
+                                                                                            "GROUP BY " +
+                                                                                                "CLIENTES.ID, " +
+                                                                                                "PEDIDO.ID_Pedido, " +
+                                                                                                "PRODUTOS.ID;");
+
+            //passa as datas selecionas em "LocalDate" para o formato "java.sql.Date" aceito pelo JDBC
+            java.sql.Date sqlDataInicial = java.sql.Date.valueOf(dataInicial);
+            java.sql.Date sqlDataFinal = java.sql.Date.valueOf(dataFinal);
+            
+            comandoSQL.setDate(1, sqlDataInicial);
+            comandoSQL.setDate(2, sqlDataFinal);
+            
+            //executar comando sql
+            rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Venda itemVenda = new Venda(
+                            rs.getInt("idpedido"), 
+                            rs.getInt("idcliente"), 
+                            rs.getString("nomecliente"), 
+                            rs.getString("nomeproduto"),
+                            rs.getInt("quantidade"),
+                            rs.getDouble("precounitario"),
+//                            rs.getDouble("subtotal"),
+                            rs.getString("datapedido"),
+                            rs.getString("formapagamento"));
+                   
+                    list.add(itemVenda);
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return list;
     }
 }
