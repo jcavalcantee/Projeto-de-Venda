@@ -4,12 +4,16 @@
  */
 package com.mycompany.prototipos;
 
+import classes.Venda;
+import com.mycompany.prototipos.dao.StreetClothingDAO;
 import com.toedter.calendar.JDateChooser;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -151,7 +155,8 @@ public class TelaRelatorios extends javax.swing.JFrame {
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         tblRelatorioSintetico.setBackground(new java.awt.Color(68, 68, 68));
-        tblRelatorioSintetico.setForeground(new java.awt.Color(66, 66, 66));
+        tblRelatorioSintetico.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tblRelatorioSintetico.setForeground(new java.awt.Color(255, 255, 255));
         tblRelatorioSintetico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -277,7 +282,24 @@ public class TelaRelatorios extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane,
                         "O periodo inicial selecionado não pode ser maior que o periodo final.");
             } else if (numeroDias <= 31) {
+                
+                     // chamar a DAO
+                    ArrayList<Venda> list = StreetClothingDAO.gerarRelatorio(dataInicial, dataFinal);
+
+                    DefaultTableModel modelo = (DefaultTableModel) tblRelatorioSintetico.getModel();
+                    modelo.setRowCount(0);
+
+                    //adicionar na tabela cada item da lista retornada 
+                    for (Venda itemVenda : list) {
+                        modelo.addRow(new String[]{
+                            String.valueOf(itemVenda.getNomeCliente()),
+                            String.valueOf(itemVenda.getDataVenda()),
+//                            String.valueOf(itemVenda.getSubTotal()),
+                        });
+                    }
+                
                     JOptionPane.showMessageDialog(rootPane, "RELATORIO SINTÉTICO GERADO COM SUCESSO :)");
+                    
                 } else {
                     JOptionPane.showMessageDialog(rootPane,
                             "O periodo selecionado para o relatório não pode ter um intervalo maior que 31 dias");
