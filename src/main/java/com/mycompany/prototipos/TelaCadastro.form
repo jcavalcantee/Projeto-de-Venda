@@ -453,10 +453,11 @@
             <Component class="javax.swing.JComboBox" name="jcbEstCivil">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="Solteiro(a)"/>
-                    <StringItem index="1" value="Casado(a)"/>
-                    <StringItem index="2" value="Viuvo(a)"/>
+                  <StringArray count="4">
+                    <StringItem index="0" value="Selecione"/>
+                    <StringItem index="1" value="Solteiro(a)"/>
+                    <StringItem index="2" value="Casado(a)"/>
+                    <StringItem index="3" value="Viuvo(a)"/>
                   </StringArray>
                 </Property>
               </Properties>

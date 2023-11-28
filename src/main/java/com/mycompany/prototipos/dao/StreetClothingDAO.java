@@ -101,7 +101,11 @@ public class StreetClothingDAO {
                     + "Cidade, UF) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             comandoSQL.setString(1, novoCliente.getCpf());
             comandoSQL.setString(2, novoCliente.getNome());
-            comandoSQL.setDate(3, new java.sql.Date(novoCliente.getDataNascimento().getTime()));
+            if(novoCliente.getDataNascimento() != null) {
+                comandoSQL.setDate(3, new java.sql.Date(novoCliente.getDataNascimento().getTime()));
+            } else {
+                comandoSQL.setDate(3, null);
+            }
             comandoSQL.setString(4, Character.toString(novoCliente.getSexo()));
             comandoSQL.setString(5, novoCliente.getTelefone());
             comandoSQL.setString(6, novoCliente.getEmail());
@@ -418,7 +422,11 @@ public class StreetClothingDAO {
 
             comandoSQL.setString(1, clienteAlterar.getCpf());
             comandoSQL.setString(2, clienteAlterar.getNome());
-            comandoSQL.setDate(3, new java.sql.Date(clienteAlterar.getDataNascimento().getTime()));
+            if(clienteAlterar.getDataNascimento() != null) {
+                comandoSQL.setDate(3, new java.sql.Date(clienteAlterar.getDataNascimento().getTime()));
+            } else {
+                comandoSQL.setDate(3, null);
+            }
             comandoSQL.setString(4, Character.toString(clienteAlterar.getSexo()));
             comandoSQL.setString(5, clienteAlterar.getTelefone());
             comandoSQL.setString(6, clienteAlterar.getEmail());

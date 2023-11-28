@@ -224,7 +224,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jLabel22.setText("Estado Civil:");
 
-        jcbEstCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solteiro(a)", "Casado(a)", "Viuvo(a)" }));
+        jcbEstCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Solteiro(a)", "Casado(a)", "Viuvo(a)" }));
 
         dtcNascimento.setDateFormatString("dd/MM/yyyy");
 
@@ -540,7 +540,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
 
     private void btnSalvarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarCliActionPerformed
-        
+
         Validador validarDados = new Validador();
         validarDados.validarTexto(txtNome);
         validarDados.validarCPF(ftfCPF);
@@ -559,42 +559,92 @@ public class TelaCadastro extends javax.swing.JFrame {
         if (objCliente == null) {
             String cpf = ftfCPF.getText().replace(".", "").replace("-", "");
             String nome = txtNome.getText();
-            Date dataNascimento = dtcNascimento.getDate();
-            char sexo = ((String) jcbSexo.getSelectedItem()).charAt(0);
-            String telefone = ftfTelefone.getText();
+            Date dataNascimento = null;
+            if (!dtcNascimento.toString().equals("")) {
+                dataNascimento = dtcNascimento.getDate();
+            } else {
+                dataNascimento = null;
+            }
+            char sexo = 'T';
+            if (jcbSexo.getSelectedIndex() != 0) {
+                sexo = ((String) jcbSexo.getSelectedItem()).charAt(0);
+            }
+            String telefone = ftfTelefone.getText().replace("(", "").replace(")", "").replace("-", "");
+            System.out.println(telefone);
+            if (telefone.equals("           ")) {
+                telefone = null;
+            }
             String email = txtEmail.getText();
-            String estCivil = String.valueOf(jcbEstCivil.getSelectedItem());
+            String estCivil = "";
+            if (jcbEstCivil.getSelectedIndex() != 0) {
+                estCivil = String.valueOf(jcbEstCivil.getSelectedItem());
+            } else {
+                estCivil = null;
+            }
             String logradouro = txtLogradouro.getText();
-            int numero = Integer.parseInt(txtNumero.getText());
+            int numero = 1;
+            if (!txtNumero.getText().equals("")) {
+                numero = Integer.parseInt(txtNumero.getText());
+            }
             String cidade = txtCidade.getText();
             String uf = String.valueOf(jcbUf.getSelectedItem());
 
-            Cliente novoCliente = new Cliente(cpf, nome, dataNascimento, sexo, telefone, email, estCivil, logradouro, numero, cidade, uf);
+            boolean retorno = false;
+            if (!cpf.equals("") && !nome.equals("") && jcbSexo.getSelectedIndex() != 0 && !email.equals("")
+                    && !logradouro.equals("") && !txtNumero.getText().equals("") && !cidade.equals("")
+                    && jcbUf.getSelectedIndex() != 0) {
 
-            boolean retorno = StreetClothingDAO.cadastrarCliente(novoCliente);
+                Cliente novoCliente = new Cliente(cpf, nome, dataNascimento, sexo, telefone, email, estCivil, logradouro, numero, cidade, uf);
+                retorno = StreetClothingDAO.cadastrarCliente(novoCliente);
+            }
 
             if (retorno == true) {
                 JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso!");
-               this. dispose();
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!");
             }
         } else {
             String cpf = ftfCPF.getText().replace(".", "").replace("-", "");
             String nome = txtNome.getText();
-            Date dataNascimento = dtcNascimento.getDate();
-            char sexo = ((String) jcbSexo.getSelectedItem()).charAt(0);
-            String telefone = ftfTelefone.getText();
+            Date dataNascimento = null;
+            if (!dtcNascimento.toString().equals("")) {
+                dataNascimento = dtcNascimento.getDate();
+            } else {
+                dataNascimento = null;
+            }
+            char sexo = 'T';
+            if (jcbSexo.getSelectedIndex() != 0) {
+                sexo = ((String) jcbSexo.getSelectedItem()).charAt(0);
+            }
+            String telefone = ftfTelefone.getText().replace("(", "").replace(")", "").replace("-", "");
+            System.out.println(telefone);
+            if (telefone.equals("           ")) {
+                telefone = null;
+            }
             String email = txtEmail.getText();
-            String estCivil = String.valueOf(jcbEstCivil.getSelectedItem());
+            String estCivil = "";
+            if (jcbEstCivil.getSelectedIndex() != 0) {
+                estCivil = String.valueOf(jcbEstCivil.getSelectedItem());
+            } else {
+                estCivil = null;
+            }
             String logradouro = txtLogradouro.getText();
-            int numero = Integer.parseInt(txtNumero.getText());
+            int numero = 1;
+            if (!txtNumero.getText().equals("")) {
+                numero = Integer.parseInt(txtNumero.getText());
+            }
             String cidade = txtCidade.getText();
             String uf = String.valueOf(jcbUf.getSelectedItem());
 
-            Cliente alterarCliente = new Cliente(cpf, nome, dataNascimento, sexo, telefone, email, estCivil, logradouro, numero, cidade, uf, objCliente.getIdCliente());
-            
-            boolean retorno = StreetClothingDAO.alterarCliente(alterarCliente);
+            boolean retorno = false;
+            if (!cpf.equals("") && !nome.equals("") && jcbSexo.getSelectedIndex() != 0 && !email.equals("")
+                    && !logradouro.equals("") && !txtNumero.getText().equals("") && !cidade.equals("")
+                    && jcbUf.getSelectedIndex() != 0) {
+                
+                Cliente alterarCliente = new Cliente(cpf, nome, dataNascimento, sexo, telefone, email, estCivil, logradouro, numero, cidade, uf, objCliente.getIdCliente());
+                retorno = StreetClothingDAO.alterarCliente(alterarCliente);
+            }
             
             if (retorno == true) {
                 JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso!");
@@ -606,29 +656,38 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     public void ExibirAlterarCliente() {
         txtNome.setText(objCliente.getNome());
-        dtcNascimento.setDate(objCliente.getDataNascimento());
         ftfCPF.setText(objCliente.getCpf());
+        txtEmail.setText(objCliente.getEmail());
+        txtLogradouro.setText(objCliente.getLogradouro());
+        txtNumero.setText(String.valueOf(objCliente.getNumero()));
+        txtCidade.setText(objCliente.getCidade());
         if (objCliente.getSexo() == 'M') {
             jcbSexo.setSelectedIndex(1);
         } else if (objCliente.getSexo() == 'F') {
             jcbSexo.setSelectedIndex(2);
         }
-        ftfTelefone.setText(objCliente.getTelefone());
-        txtEmail.setText(objCliente.getEmail());
-        if (objCliente.getEstCivil().equals("Solteiro(a)")){
-            jcbEstCivil.setSelectedIndex(0);
-        }else if (objCliente.getEstCivil().equals("Casado(a)")){
-            jcbEstCivil.setSelectedIndex(1);
-        }else if (objCliente.getEstCivil().equals("Viuvo(a)")){
-            jcbEstCivil.setSelectedIndex(2);
-        }
-        txtLogradouro.setText(objCliente.getLogradouro());
-        txtNumero.setText(String.valueOf(objCliente.getNumero()));
-        txtCidade.setText(objCliente.getCidade());
-        for(int i = 0; i < jcbUf.getItemCount(); i++){
+        for (int i = 0; i < jcbUf.getItemCount(); i++) {
             String uf = jcbUf.getItemAt(i);
-            if (uf.equals(objCliente.getUf())){
+            if (uf.equals(objCliente.getUf())) {
                 jcbUf.setSelectedIndex(i);
+            }
+        }
+
+        if (objCliente.getDataNascimento() != null) {
+            dtcNascimento.setDate(objCliente.getDataNascimento());
+        }
+        if (objCliente.getTelefone() != null) {
+            ftfTelefone.setText(objCliente.getTelefone());
+        } else {
+            ftfTelefone.setText("");
+        }
+        if (objCliente.getEstCivil() != null) {
+            if (objCliente.getEstCivil().equals("Solteiro(a)")) {
+                jcbEstCivil.setSelectedIndex(1);
+            } else if (objCliente.getEstCivil().equals("Casado(a)")) {
+                jcbEstCivil.setSelectedIndex(2);
+            } else if (objCliente.getEstCivil().equals("Viuvo(a)")) {
+                jcbEstCivil.setSelectedIndex(3);
             }
         }
     }
@@ -727,7 +786,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             if (retorno == true) {
                 JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
-               this. dispose();
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar!");
             }
@@ -815,7 +874,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalvarCli;
     private javax.swing.JButton btnSalvarProd;

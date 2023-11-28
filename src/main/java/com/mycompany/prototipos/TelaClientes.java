@@ -307,7 +307,7 @@ public class TelaClientes extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         TelaCadastro tela = new TelaCadastro();
         tela.setVisible(true);
-         this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -323,7 +323,7 @@ public class TelaClientes extends javax.swing.JFrame {
 
                 if (retorno) {
                     JOptionPane.showMessageDialog(rootPane, "Excluído com Sucesso!");
-                     recarregarTabela();
+                    recarregarTabela();
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Erro ao tentar excluir.");
                     throw new SQLIntegrityConstraintViolationException();
@@ -450,16 +450,20 @@ public class TelaClientes extends javax.swing.JFrame {
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         int linhaSelecionada = tblClientes.getSelectedRow();
 
-        DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
+        if (linhaSelecionada < 0) {
+            JOptionPane.showMessageDialog(rootPane, "Selecione uma linha da tabela para alterar!");
+        } else {
+            DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
 
-        int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
+            int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
 
-        Cliente buscaAlterar = new Cliente();
-        buscaAlterar = StreetClothingDAO.buscarCliente(buscaAlterar, idSelecionado);
+            Cliente buscaAlterar = new Cliente();
+            buscaAlterar = StreetClothingDAO.buscarCliente(buscaAlterar, idSelecionado);
 
-        //Instâncio a tela de cadastro
-        TelaCadastro tela = new TelaCadastro(buscaAlterar);
-        tela.setVisible(true);
+            //Instâncio a tela de cadastro
+            TelaCadastro tela = new TelaCadastro(buscaAlterar);
+            tela.setVisible(true);
+        }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     /**
