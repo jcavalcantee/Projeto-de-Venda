@@ -9,7 +9,11 @@ import classes.Produto;
 import com.mycompany.prototipos.dao.StreetClothingDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -566,46 +570,46 @@ public class TelaCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, validarDados.getMensagensErro());
         }
 
-        if (objCliente == null) {
-            String cpf = ftfCPF.getText().replace(".", "").replace("-", "").trim();
-            String nome = txtNome.getText();
-            Date dataNascimento = null;
-            if (!dtcNascimento.toString().equals("")) {
-                dataNascimento = dtcNascimento.getDate();
-            } else {
-                dataNascimento = null;
-            }
-            char sexo = 'T';
-            if (jcbSexo.getSelectedIndex() != 0) {
-                sexo = ((String) jcbSexo.getSelectedItem()).charAt(0);
-            }
-            String telefone = ftfTelefone.getText().replace("(", "").replace(")", "").replace("-", "");
-            System.out.println(telefone);
-            if (telefone.equals("           ")) {
-                telefone = null;
-            }
-            String email = txtEmail.getText();
-            String estCivil = "";
-            if (jcbEstCivil.getSelectedIndex() != 0) {
-                estCivil = String.valueOf(jcbEstCivil.getSelectedItem());
-            } else {
-                estCivil = null;
-            }
-            String logradouro = txtLogradouro.getText();
-            int numero = 1;
-            if (!txtNumero.getText().equals("")) {
-                numero = Integer.parseInt(txtNumero.getText());
-            }
-            String cidade = txtCidade.getText();
-            String uf = String.valueOf(jcbUf.getSelectedItem());
+        String cpf = ftfCPF.getText().replace(".", "").replace("-", "").trim();
+        String nome = txtNome.getText();
+        Date dataNascimento = null;
+        if (!dtcNascimento.toString().equals("")) {
+            dataNascimento = dtcNascimento.getDate();
+        } else {
+            dataNascimento = null;
+        }
+        char sexo = 'T';
+        if (jcbSexo.getSelectedIndex() != 0) {
+            sexo = ((String) jcbSexo.getSelectedItem()).charAt(0);
+        }
+        String telefone = ftfTelefone.getText().replace("(", "").replace(")", "").replace("-", "");
+        System.out.println(telefone);
+        if (telefone.equals("           ")) {
+            telefone = null;
+        }
+        String email = txtEmail.getText();
+        String estCivil = "";
+        if (jcbEstCivil.getSelectedIndex() != 0) {
+            estCivil = String.valueOf(jcbEstCivil.getSelectedItem());
+        } else {
+            estCivil = null;
+        }
+        String logradouro = txtLogradouro.getText();
+        int numero = 1;
+        if (!txtNumero.getText().equals("")) {
+            numero = Integer.parseInt(txtNumero.getText());
+        }
+        String cidade = txtCidade.getText();
+        String uf = String.valueOf(jcbUf.getSelectedItem());
 
+        if (objCliente == null) {
             boolean retorno = false;
             if (!cpf.equals("") && !nome.equals("") && jcbSexo.getSelectedIndex() != 0 && !email.equals("")
                     && !logradouro.equals("") && !txtNumero.getText().equals("") && !cidade.equals("")
                     && jcbUf.getSelectedIndex() != 0) {
 
-                Cliente novoCliente = new Cliente(cpf, nome, dataNascimento, sexo, telefone, email, estCivil, logradouro, numero, cidade, uf);
-                retorno = StreetClothingDAO.cadastrarCliente(novoCliente);
+                    Cliente novoCliente = new Cliente(cpf, nome, dataNascimento, sexo, telefone, email, estCivil, logradouro, numero, cidade, uf);
+                    retorno = StreetClothingDAO.cadastrarCliente(novoCliente);
             }
 
             if (retorno == true) {
@@ -615,37 +619,6 @@ public class TelaCadastro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!");
             }
         } else {
-            String cpf = ftfCPF.getText().replace(".", "").replace("-", "").trim();
-            String nome = txtNome.getText();
-            Date dataNascimento = null;
-            if (!dtcNascimento.toString().equals("")) {
-                dataNascimento = dtcNascimento.getDate();
-            } else {
-                dataNascimento = null;
-            }
-            char sexo = 'T';
-            if (jcbSexo.getSelectedIndex() != 0) {
-                sexo = ((String) jcbSexo.getSelectedItem()).charAt(0);
-            }
-            String telefone = ftfTelefone.getText().replace("(", "").replace(")", "").replace("-", "");
-            if (telefone.equals("           ")) {
-                telefone = null;
-            }
-            String email = txtEmail.getText();
-            String estCivil = "";
-            if (jcbEstCivil.getSelectedIndex() != 0) {
-                estCivil = String.valueOf(jcbEstCivil.getSelectedItem());
-            } else {
-                estCivil = null;
-            }
-            String logradouro = txtLogradouro.getText();
-            int numero = 1;
-            if (!txtNumero.getText().equals("")) {
-                numero = Integer.parseInt(txtNumero.getText());
-            }
-            String cidade = txtCidade.getText();
-            String uf = String.valueOf(jcbUf.getSelectedItem());
-
             boolean retorno = false;
             if (!cpf.equals("") && !nome.equals("") && jcbSexo.getSelectedIndex() != 0 && !email.equals("")
                     && !logradouro.equals("") && !txtNumero.getText().equals("") && !cidade.equals("")
@@ -791,14 +764,13 @@ public class TelaCadastro extends javax.swing.JFrame {
             txtEstoque.setBackground(Color.red);
         }
         String nomeProduto = txtNomeProd.getText();
-            String categoria = String.valueOf(jcbCategorias.getSelectedItem());
-            String tamanho = String.valueOf(jcbTamanho.getSelectedItem());
-            String unidade = String.valueOf(jcbUnidade.getSelectedItem());
-            int estoque = Integer.parseInt(txtEstoque.getText());
-            String marca = String.valueOf(txtMarca.getText());
-            float precoUni = Float.parseFloat(txtPreco.getText().replace(",", "."));
+        String categoria = String.valueOf(jcbCategorias.getSelectedItem());
+        String tamanho = String.valueOf(jcbTamanho.getSelectedItem());
+        String unidade = String.valueOf(jcbUnidade.getSelectedItem());
+        int estoque = Integer.parseInt(txtEstoque.getText());
+        String marca = String.valueOf(txtMarca.getText());
+        float precoUni = Float.parseFloat(txtPreco.getText().replace(",", "."));
         if (objProduto == null) {
-            
 
             boolean retorno = false;
             if (!nomeProduto.equals("") && jcbCategorias.getSelectedIndex() != 0 && jcbTamanho.getSelectedIndex() != 0 && jcbUnidade.getSelectedIndex() != 0
@@ -815,10 +787,10 @@ public class TelaCadastro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar!");
             }
         } else {
-           boolean retorno = false;
+            boolean retorno = false;
             if (!nomeProduto.equals("") && jcbCategorias.getSelectedIndex() != 0 && jcbTamanho.getSelectedIndex() != 0 && jcbUnidade.getSelectedIndex() != 0
                     && estoque != 0 && !txtMarca.getText().equals("") && precoUni != 0) {
-                Produto alterarProduto = new Produto(nomeProduto, categoria, tamanho, unidade, estoque, marca, precoUni,objProduto.getId());
+                Produto alterarProduto = new Produto(nomeProduto, categoria, tamanho, unidade, estoque, marca, precoUni, objProduto.getId());
 
                 retorno = StreetClothingDAO.alterarProduto(alterarProduto);
             }
@@ -890,16 +862,24 @@ public class TelaCadastro extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClientes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClientes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClientes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClientes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
