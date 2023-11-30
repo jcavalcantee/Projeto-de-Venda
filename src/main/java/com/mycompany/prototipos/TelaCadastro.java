@@ -36,6 +36,13 @@ public class TelaCadastro extends javax.swing.JFrame {
         ExibirAlterarCliente();
     }
 
+    public TelaCadastro(Produto produtoAlterar) {
+        setLocationRelativeTo(null);
+        initComponents();
+        this.objProduto = produtoAlterar;
+        ExibirAlterarProduto();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -530,7 +537,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -560,7 +567,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         }
 
         if (objCliente == null) {
-            String cpf = ftfCPF.getText().replace(".", "").replace("-", "");
+            String cpf = ftfCPF.getText().replace(".", "").replace("-", "").trim();
             String nome = txtNome.getText();
             Date dataNascimento = null;
             if (!dtcNascimento.toString().equals("")) {
@@ -608,7 +615,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!");
             }
         } else {
-            String cpf = ftfCPF.getText().replace(".", "").replace("-", "");
+            String cpf = ftfCPF.getText().replace(".", "").replace("-", "").trim();
             String nome = txtNome.getText();
             Date dataNascimento = null;
             if (!dtcNascimento.toString().equals("")) {
@@ -621,7 +628,6 @@ public class TelaCadastro extends javax.swing.JFrame {
                 sexo = ((String) jcbSexo.getSelectedItem()).charAt(0);
             }
             String telefone = ftfTelefone.getText().replace("(", "").replace(")", "").replace("-", "");
-            System.out.println(telefone);
             if (telefone.equals("           ")) {
                 telefone = null;
             }
@@ -644,11 +650,11 @@ public class TelaCadastro extends javax.swing.JFrame {
             if (!cpf.equals("") && !nome.equals("") && jcbSexo.getSelectedIndex() != 0 && !email.equals("")
                     && !logradouro.equals("") && !txtNumero.getText().equals("") && !cidade.equals("")
                     && jcbUf.getSelectedIndex() != 0) {
-                
+
                 Cliente alterarCliente = new Cliente(cpf, nome, dataNascimento, sexo, telefone, email, estCivil, logradouro, numero, cidade, uf, objCliente.getIdCliente());
                 retorno = StreetClothingDAO.alterarCliente(alterarCliente);
             }
-            
+
             if (retorno == true) {
                 JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso!");
             } else {
@@ -693,6 +699,17 @@ public class TelaCadastro extends javax.swing.JFrame {
                 jcbEstCivil.setSelectedIndex(3);
             }
         }
+    }
+
+    public void ExibirAlterarProduto() {
+        txtNomeProd.setText(objProduto.getNome());
+        jcbCategorias.setSelectedItem(objProduto.getCategoria());
+        jcbTamanho.setSelectedItem(objProduto.getTamanho());
+        jcbUnidade.setSelectedItem(objProduto.getUnidade());
+        txtEstoque.setText(String.valueOf(objProduto.getEstoqueInicial()));
+        txtPreco.setText(String.valueOf(objProduto.getPrecoUnit()));
+        txtMarca.setText(objProduto.getMarca());
+
     }
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -773,19 +790,23 @@ public class TelaCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Aviso: O estoque inicial não pode ser menor que 1.", "Aviso", JOptionPane.WARNING_MESSAGE);
             txtEstoque.setBackground(Color.red);
         }
-
-        if (objProduto == null) {
-            String nomeProduto = txtNomeProd.getText();
+        String nomeProduto = txtNomeProd.getText();
             String categoria = String.valueOf(jcbCategorias.getSelectedItem());
             String tamanho = String.valueOf(jcbTamanho.getSelectedItem());
             String unidade = String.valueOf(jcbUnidade.getSelectedItem());
             int estoque = Integer.parseInt(txtEstoque.getText());
             String marca = String.valueOf(txtMarca.getText());
             float precoUni = Float.parseFloat(txtPreco.getText().replace(",", "."));
+        if (objProduto == null) {
+            
 
-            Produto novoProduto = new Produto(nomeProduto, categoria, tamanho, unidade, estoque, marca, precoUni);
+            boolean retorno = false;
+            if (!nomeProduto.equals("") && jcbCategorias.getSelectedIndex() != 0 && jcbTamanho.getSelectedIndex() != 0 && jcbUnidade.getSelectedIndex() != 0
+                    && estoque != 0 && !txtMarca.getText().equals("") && precoUni != 0) {
+                Produto novoProduto = new Produto(nomeProduto, categoria, tamanho, unidade, estoque, marca, precoUni);
 
-            boolean retorno = StreetClothingDAO.cadastrarProduto(novoProduto);
+                retorno = StreetClothingDAO.cadastrarProduto(novoProduto);
+            }
 
             if (retorno == true) {
                 JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
@@ -794,7 +815,19 @@ public class TelaCadastro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar!");
             }
         } else {
+           boolean retorno = false;
+            if (!nomeProduto.equals("") && jcbCategorias.getSelectedIndex() != 0 && jcbTamanho.getSelectedIndex() != 0 && jcbUnidade.getSelectedIndex() != 0
+                    && estoque != 0 && !txtMarca.getText().equals("") && precoUni != 0) {
+                Produto alterarProduto = new Produto(nomeProduto, categoria, tamanho, unidade, estoque, marca, precoUni,objProduto.getId());
 
+                retorno = StreetClothingDAO.alterarProduto(alterarProduto);
+            }
+
+            if (retorno == true) {
+                JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!");
+            }
         }
     }//GEN-LAST:event_btnSalvarProdActionPerformed
 

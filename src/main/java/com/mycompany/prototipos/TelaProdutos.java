@@ -151,6 +151,11 @@ public class TelaProdutos extends javax.swing.JFrame {
         btnAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/edit.png"))); // NOI18N
         btnAtualizar.setText("Alterar");
         btnAtualizar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black));
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -257,7 +262,7 @@ public class TelaProdutos extends javax.swing.JFrame {
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnBuscar)))))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAtualizar, btnCadastrar, btnExcluir});
@@ -313,7 +318,7 @@ public class TelaProdutos extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         TelaCadastro tela = new TelaCadastro();
         tela.setVisible(true);
-        
+        this.dispose();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void rdbCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbCodigoActionPerformed
@@ -400,6 +405,28 @@ public class TelaProdutos extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+
+        int linhaSelecionada = tblProdutos.getSelectedRow();
+
+        if (linhaSelecionada < 0) {
+            JOptionPane.showMessageDialog(rootPane, "Selecione uma linha da tabela para alterar!");
+        } else {
+            DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
+
+            int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
+
+            Produto buscaAlterar = new Produto();
+            buscaAlterar = StreetClothingDAO.buscarProduto(buscaAlterar, idSelecionado);
+
+            //Instâncio a tela de cadastro
+            TelaCadastro telaProd = new TelaCadastro(buscaAlterar);
+            telaProd.setVisible(true);
+            this.dispose();
+        }
+    recarregarTabelaProdutos();
+    }//GEN-LAST:event_btnAtualizarActionPerformed
 
     /**
      * @param args the command line arguments
