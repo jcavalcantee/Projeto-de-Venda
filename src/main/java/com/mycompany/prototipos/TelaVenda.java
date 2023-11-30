@@ -7,7 +7,10 @@ package com.mycompany.prototipos;
 import classes.Cliente;
 import classes.Produto;
 import classes.Venda;
+import com.mycompany.prototipos.dao.ClientesDAO;
+import com.mycompany.prototipos.dao.ProdutosDAO;
 import com.mycompany.prototipos.dao.StreetClothingDAO;
+import com.mycompany.prototipos.dao.VendasDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -727,7 +730,7 @@ public class TelaVenda extends javax.swing.JFrame {
         Cliente pesquisarCliente = new Cliente();
         String cpf = txtCPF.getText().replace(".", "").replace("-", "");
         pesquisarCliente.setCpf(cpf);
-        Cliente retorno = StreetClothingDAO.pesquisarClientes(pesquisarCliente);
+        Cliente retorno = ClientesDAO.pesquisarClientes(pesquisarCliente);
 
         if (retorno.getNome() == null) {
             JOptionPane.showMessageDialog(rootPane, "Cliente não cadastrado!");
@@ -813,7 +816,7 @@ public class TelaVenda extends javax.swing.JFrame {
 
         Produto pesquisarProduto = new Produto();
         pesquisarProduto.setId(Integer.parseInt(txtCodigo.getText()));
-        Produto retorno = StreetClothingDAO.pesquisarProdutos(pesquisarProduto);
+        Produto retorno = ProdutosDAO.pesquisarProdutos(pesquisarProduto);
 
         if (retorno.getNome() == null) {
             JOptionPane.showMessageDialog(rootPane, "Produto não cadastrado!");
@@ -867,17 +870,17 @@ public class TelaVenda extends javax.swing.JFrame {
             pesquisarCliente.setCpf(cpf);
 
             //Recebe o ID do cliente da DAO
-            pesquisarCliente = StreetClothingDAO.pesquisarClientes(pesquisarCliente);
+            pesquisarCliente = ClientesDAO.pesquisarClientes(pesquisarCliente);
 
             //Grava o pedido no banco de dados
-            StreetClothingDAO.cadastrarPedido(pedido, pesquisarCliente.getIdCliente());
+            VendasDAO.cadastrarPedido(pedido, pesquisarCliente.getIdCliente());
             Venda idPedido = new Venda();
-            idPedido = StreetClothingDAO.listarPedido(idPedido);
+            idPedido = VendasDAO.listarPedido(idPedido);
 
             //Grava os itens do pedido no banco de dados
             for (Venda item : itensPedido) {
                 Venda itemVenda = new Venda(idPedido.getIdPedido(), item.getCodProduto(), item.getQtdeProduto());
-                StreetClothingDAO.cadastrarItemPedido(itemVenda);
+                VendasDAO.cadastrarItemPedido(itemVenda);
             }
             JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso!");
             this.dispose();

@@ -6,6 +6,8 @@ package com.mycompany.prototipos;
 
 import classes.Cliente;
 import classes.Produto;
+import com.mycompany.prototipos.dao.ClientesDAO;
+import com.mycompany.prototipos.dao.ProdutosDAO;
 import com.mycompany.prototipos.dao.StreetClothingDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -609,7 +611,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                     && jcbUf.getSelectedIndex() != 0) {
 
                     Cliente novoCliente = new Cliente(cpf, nome, dataNascimento, sexo, telefone, email, estCivil, logradouro, numero, cidade, uf);
-                    retorno = StreetClothingDAO.cadastrarCliente(novoCliente);
+                    retorno = ClientesDAO.cadastrarCliente(novoCliente);
             }
 
             if (retorno == true) {
@@ -625,7 +627,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                     && jcbUf.getSelectedIndex() != 0) {
 
                 Cliente alterarCliente = new Cliente(cpf, nome, dataNascimento, sexo, telefone, email, estCivil, logradouro, numero, cidade, uf, objCliente.getIdCliente());
-                retorno = StreetClothingDAO.alterarCliente(alterarCliente);
+                retorno = ClientesDAO.alterarCliente(alterarCliente);
             }
 
             if (retorno == true) {
@@ -777,7 +779,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                     && estoque != 0 && !txtMarca.getText().equals("") && precoUni != 0) {
                 Produto novoProduto = new Produto(nomeProduto, categoria, tamanho, unidade, estoque, marca, precoUni);
 
-                retorno = StreetClothingDAO.cadastrarProduto(novoProduto);
+                retorno = ProdutosDAO.cadastrarProduto(novoProduto);
             }
 
             if (retorno == true) {
@@ -792,7 +794,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                     && estoque != 0 && !txtMarca.getText().equals("") && precoUni != 0) {
                 Produto alterarProduto = new Produto(nomeProduto, categoria, tamanho, unidade, estoque, marca, precoUni, objProduto.getId());
 
-                retorno = StreetClothingDAO.alterarProduto(alterarProduto);
+                retorno = ProdutosDAO.alterarProduto(alterarProduto);
             }
 
             if (retorno == true) {

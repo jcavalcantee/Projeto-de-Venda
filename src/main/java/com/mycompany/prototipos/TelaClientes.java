@@ -6,6 +6,7 @@ package com.mycompany.prototipos;
 
 import classes.Cliente;
 import classes.Produto;
+import com.mycompany.prototipos.dao.ClientesDAO;
 import com.mycompany.prototipos.dao.StreetClothingDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -378,7 +379,7 @@ public class TelaClientes extends javax.swing.JFrame {
                 DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
                 int excCliente = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
 
-                boolean retorno = StreetClothingDAO.excluirCliente(excCliente);
+                boolean retorno = ClientesDAO.excluirCliente(excCliente);
 
                 if (retorno) {
                     JOptionPane.showMessageDialog(rootPane, "Excluído com Sucesso!");
@@ -469,7 +470,7 @@ public class TelaClientes extends javax.swing.JFrame {
                 // TODO: Chamar a DAO
 
                 String buscar = txtBusca.getText().replace(".", "").replace("-", "").trim();
-                ArrayList<Cliente> lista = StreetClothingDAO.buscarPorCPFCliente(buscar);
+                ArrayList<Cliente> lista = ClientesDAO.buscarPorCPFCliente(buscar);
 
                 DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
                 modelo.setRowCount(0);
@@ -496,7 +497,7 @@ public class TelaClientes extends javax.swing.JFrame {
 
     public void recarregarTabela() {
 
-        ArrayList<Cliente> lista = StreetClothingDAO.listarCliente();
+        ArrayList<Cliente> lista = ClientesDAO.listarCliente();
 
         DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
         modelo.setRowCount(0);
@@ -531,7 +532,7 @@ public class TelaClientes extends javax.swing.JFrame {
             int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
 
             Cliente buscaAlterar = new Cliente();
-            buscaAlterar = StreetClothingDAO.buscarCliente(buscaAlterar, idSelecionado);
+            buscaAlterar = ClientesDAO.buscarCliente(buscaAlterar, idSelecionado);
 
             //Instâncio a tela de cadastro
             TelaCadastro tela = new TelaCadastro(buscaAlterar);
