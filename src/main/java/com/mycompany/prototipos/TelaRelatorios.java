@@ -162,19 +162,12 @@ public class TelaRelatorios extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cliente", "Data da compra", "Total"
+                "ID Cliente", "Nome Cliente", "ID Pedido", "Data da compra", "Total"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class
-            };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -191,16 +184,9 @@ public class TelaRelatorios extends javax.swing.JFrame {
                 "Valor total das vendas"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Double.class
-            };
             boolean[] canEdit = new boolean [] {
                 false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -284,21 +270,35 @@ public class TelaRelatorios extends javax.swing.JFrame {
             } else if (numeroDias <= 31) {
                 
                      // chamar a DAO
-                    ArrayList<Venda> list = StreetClothingDAO.gerarRelatorio(dataInicial, dataFinal);
+                    ArrayList<Venda> list = StreetClothingDAO.gerarRelatorioSintetico(dataInicial, dataFinal);
 
-                    DefaultTableModel modelo = (DefaultTableModel) tblRelatorioSintetico.getModel();
-                    modelo.setRowCount(0);
+                    DefaultTableModel relatorioSintetico = (DefaultTableModel) tblRelatorioSintetico.getModel();
+                    relatorioSintetico.setRowCount(0);
 
                     //adicionar na tabela cada item da lista retornada 
-                    for (Venda itemVenda : list) {
-                        modelo.addRow(new String[]{
-                            String.valueOf(itemVenda.getNomeCliente()),
-                            String.valueOf(itemVenda.getDataVenda()),
-//                            String.valueOf(itemVenda.getSubTotal()),
+                    for (Venda relatorio : list) {
+                        relatorioSintetico.addRow(new String[]{
+                            String.valueOf(relatorio.getCodCliente()),
+                            String.valueOf(relatorio.getNomeCliente()),
+                            String.valueOf(relatorio.getIdPedido()),
+                            String.valueOf(relatorio.getDataVenda()),
+                            String.valueOf(relatorio.getTotalVenda())
                         });
                     }
+                    
+                    DefaultTableModel totalVendas = (DefaultTableModel) tblTotalVendasSintetico.getModel();
+                    totalVendas.setRowCount(0);
+                    
+                    double valorTotalVendas = 0;
+                    for (Venda relatorio : list) {
+                        valorTotalVendas += relatorio.getTotalVenda();
+                    }
+                    
+                    totalVendas.addRow(new String[]{
+                        String.valueOf(valorTotalVendas)
+                    });
                 
-                    JOptionPane.showMessageDialog(rootPane, "RELATORIO SINTÉTICO GERADO COM SUCESSO :)");
+                    JOptionPane.showMessageDialog(rootPane, "Relatório gerado!");
                     
                 } else {
                     JOptionPane.showMessageDialog(rootPane,

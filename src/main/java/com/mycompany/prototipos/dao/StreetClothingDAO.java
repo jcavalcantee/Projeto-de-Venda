@@ -870,7 +870,80 @@ public class StreetClothingDAO {
         return retorno;
     }
     
-    public static ArrayList<Venda> gerarRelatorio(LocalDate dataInicial, LocalDate dataFinal) {
+     public static ArrayList<Venda> gerarRelatorioSintetico(LocalDate dataInicial, LocalDate dataFinal) {
+        ArrayList<Venda> list = new ArrayList<>();
+
+        Connection connection = null;
+        PreparedStatement comandoSQL = null;
+        ResultSet rs = null;
+
+        try {
+            //carregar o drive
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            //abrir conexão com o mysql
+            connection = DriverManager.getConnection(url, login, senha);
+            //preparar comando sql
+             comandoSQL = connection.prepareStatement("SELECT " +
+                                                                                            "CLIENTES.ID AS idcliente, " +
+                                                                                            "CLIENTES.Nome AS nomecliente, " +
+                                                                                            "PEDIDO.ID_Pedido AS idpedido, " +
+                                                                                            "PEDIDO.DataPedido AS datapedido, " +
+                                                                                            "COALESCE(SUM(ROUND(ITEMPEDIDO.Quantidade * PRODUTOS.PrecoUnitario, 2)), 0) AS total_pedido " +
+                                                                                        "FROM " +
+                                                                                            "CLIENTES " +
+                                                                                        "INNER JOIN " +
+                                                                                            "PEDIDO ON CLIENTES.ID = PEDIDO.FK_CLIENTES_ID " +
+                                                                                        "INNER JOIN " +
+                                                                                            "ITEMPEDIDO ON PEDIDO.ID_Pedido = ITEMPEDIDO.FK_PEDIDO_ID_Pedido " +
+                                                                                        "INNER JOIN " +
+                                                                                            "PRODUTOS ON ITEMPEDIDO.FK_PRODUTOS_ID = PRODUTOS.ID " +
+                                                                                        "WHERE " +
+                                                                                            "PEDIDO.DataPedido BETWEEN ? AND ? " +
+                                                                                        "GROUP BY " +
+                                                                                            "CLIENTES.ID, " +
+                                                                                            "PEDIDO.ID_Pedido, " +
+                                                                                            "PEDIDO.DataPedido;");
+
+            //passa as datas selecionas em "LocalDate" para o formato "java.sql.Date" aceito pelo JDBC
+            java.sql.Date sqlDataInicial = java.sql.Date.valueOf(dataInicial);
+            java.sql.Date sqlDataFinal = java.sql.Date.valueOf(dataFinal);
+            
+            comandoSQL.setDate(1, sqlDataInicial);
+            comandoSQL.setDate(2, sqlDataFinal);
+            
+            //executar comando sql
+            rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Venda relatorio = new Venda();
+                           
+                    relatorio.setCodCliente(rs.getInt("idcliente"));
+                    relatorio.setNomeCliente(rs.getString("nomecliente"));
+                    relatorio.setIdPedido(rs.getInt("idpedido"));
+                    relatorio.setDataVenda(rs.getString("datapedido"));
+                    relatorio.setTotalVenda(rs.getDouble("total_pedido"));
+                   
+                    list.add(relatorio);
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return list;
+    }
+    
+    public static ArrayList<Venda> gerarRelatorioAnalitico(LocalDate dataInicial, LocalDate dataFinal) {
         ArrayList<Venda> list = new ArrayList<>();
 
         Connection connection = null;
@@ -890,8 +963,6 @@ public class StreetClothingDAO {
                                                                                                "PRODUTOS.NomeProduto AS nomeproduto, " +
                                                                                                "MAX(ITEMPEDIDO.Quantidade) AS quantidade, " +
                                                                                                "PRODUTOS.PrecoUnitario AS precounitario, " +
-//                                                                                               "COALESCE(ROUND(SUM(CAST(quantidade AS DECIMAL(10,2)) * CAST(precounitario AS DECIMAL(10,2))), 2), 0) AS subtotal, " +
-//                                                                                               "COALESCE(ROUND(SUM(ITEMPEDIDO.Quantidade * PRODUTOS.PrecoUnitario), 2), 0) AS subtotal, " +
 //                                                                                               "ROUND(SUM(quantidade * precounitario), 2) AS subtotal, " +
                                                                                                "PEDIDO.DataPedido AS datapedido, " +
                                                                                                "PEDIDO.FormaPagamento AS formapagamento " +
@@ -922,16 +993,7 @@ public class StreetClothingDAO {
 
             if (rs != null) {
                 while (rs.next()) {
-                    Venda itemVenda = new Venda(
-                            rs.getInt("idpedido"), 
-                            rs.getInt("idcliente"), 
-                            rs.getString("nomecliente"), 
-                            rs.getString("nomeproduto"),
-                            rs.getInt("quantidade"),
-                            rs.getDouble("precounitario"),
-//                            rs.getDouble("subtotal"),
-                            rs.getString("datapedido"),
-                            rs.getString("formapagamento"));
+                    Venda itemVenda = new Venda();
                    
                     list.add(itemVenda);
                 }

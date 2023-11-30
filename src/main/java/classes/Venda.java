@@ -26,19 +26,6 @@ public class Venda {
         
     }
 
-    public Venda(int idPedido, int codCliente, String nomeCliente, String nomeProduto, int qtdeProduto, double precoProduto, /*double totalVenda,*/ String dataVenda, String pagamento) {
-        this.idPedido = idPedido;
-        this.codCliente = codCliente;
-        this.nomeCliente = nomeCliente;
-        this.nomeProduto = nomeProduto;
-        this.qtdeProduto = qtdeProduto;
-        this.precoProduto = precoProduto;
-//        this.totalVenda = totalVenda;
-        this.dataVenda = dataVenda;
-        this.pagamento = pagamento;
-    }
-    
-    
 
     public Venda(int codProduto, int qtdeProduto, double precoProduto, double subTotal, double totalVenda) {
         this.codProduto = codProduto;
