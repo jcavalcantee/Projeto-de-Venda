@@ -697,11 +697,13 @@ public class TelaVenda extends javax.swing.JFrame {
             evt.consume();
         }
         cod.limiteTexto(txtCodigo, evt, 4);
+        
     }//GEN-LAST:event_txtCodigoKeyTyped
 
     private void txtCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCPFKeyTyped
         Validador pesquisar = new Validador();
         pesquisar.validarCPF(txtCPF);
+        txtCPF.setBackground(Color.BLACK);
     }//GEN-LAST:event_txtCPFKeyTyped
 
     private void txtQuantidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantidadeKeyTyped
@@ -718,6 +720,7 @@ public class TelaVenda extends javax.swing.JFrame {
         Validador pesquisar = new Validador();
 
         pesquisar.validarTexto(txtCPF);
+        txtCPF.setBackground(Color.BLACK);
         if (pesquisar.hasErro()) {
             JOptionPane.showMessageDialog(rootPane, pesquisar.getMensagensErro());
         }
@@ -804,6 +807,8 @@ public class TelaVenda extends javax.swing.JFrame {
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         Validador adicionar = new Validador();
         adicionar.validarTexto(txtCodigo);
+        txtCodigo.setBackground(Color.BLACK);
+        
         if (adicionar.hasErro()) {
             JOptionPane.showMessageDialog(rootPane, adicionar.getMensagensErro());
         }
