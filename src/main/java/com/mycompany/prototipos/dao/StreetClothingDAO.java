@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -125,7 +126,8 @@ public class StreetClothingDAO {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
         }  catch (SQLIntegrityConstraintViolationException e) {
-          e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Esse CPF já foi cadastrado!", "CPF CADASTRADO", JOptionPane.WARNING_MESSAGE);
+            Logger.getLogger("CPF Duplicado");
         } catch (SQLException ex) {
             Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
