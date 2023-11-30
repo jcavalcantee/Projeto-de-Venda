@@ -364,6 +364,30 @@ public class TelaProdutos extends javax.swing.JFrame {
         Validador produto = new Validador();
         if (rdbCodigo.isSelected()) {
             produto.validarNumero(txtBuscaProd);
+             if(txtBuscaProd.getText().trim().equals("")){
+               recarregarTabelaProdutos();
+      } else{        
+        // TODO: Chamar a DAO
+        
+        String buscar = txtBuscaProd.getText();
+        ArrayList<Produto> lista = StreetClothingDAO.buscarPorCodigoProd(buscar);
+
+        DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
+        modelo.setRowCount(0);
+
+        for (Produto it : lista) {
+            modelo.addRow(new String[]{
+                String.valueOf(it.getId()),
+                String.valueOf(it.getNome()),
+                String.valueOf(it.getCategoria()),
+                String.valueOf(it.getEstoqueInicial()),
+                String.valueOf(it.getTamanho()),
+                String.valueOf(it.getUnidade()),
+                String.valueOf(it.getMarca()),
+                String.valueOf(it.getPrecoUnit())
+            });
+        }
+      }
         } else if (rdbNome.isSelected()) {
             produto.validarTexto(txtBuscaProd);
         } else {
