@@ -702,6 +702,7 @@ public class TelaVenda extends javax.swing.JFrame {
     private void txtCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCPFKeyTyped
         Validador pesquisar = new Validador();
         pesquisar.validarCPF(txtCPF);
+        txtCPF.setBackground(Color.BLACK);
     }//GEN-LAST:event_txtCPFKeyTyped
 
     private void txtQuantidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantidadeKeyTyped
@@ -718,6 +719,7 @@ public class TelaVenda extends javax.swing.JFrame {
         Validador pesquisar = new Validador();
 
         pesquisar.validarTexto(txtCPF);
+        txtCPF.setBackground(Color.BLACK);
         if (pesquisar.hasErro()) {
             JOptionPane.showMessageDialog(rootPane, pesquisar.getMensagensErro());
         }
@@ -753,19 +755,21 @@ public class TelaVenda extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, adicionar.getMensagensErro());
         }
         try {
-            quantidade = Integer.parseInt(txtQuantidade.getText());
+            if(!txtQuantidade.getText().equals("")){
+                quantidade = Integer.parseInt(txtQuantidade.getText());
+            }
         } catch (NumberFormatException e) {
             if (!txtQuantidade.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(rootPane, "Digite um valor válido para o campo quantidade");
             }
         }
 
-        double subTotal = Integer.parseInt(txtQuantidade.getText().toString()) * Double.parseDouble(lblPreco.getText());
+        double subTotal =quantidade * Double.parseDouble(lblPreco.getText());
         double subTotalArredondado = Math.round(subTotal * Math.pow(10, 2)) / Math.pow(10, 2);
 
-        Venda itemPedido = new Venda(Integer.parseInt(txtCodigo.getText()), lblNomeProduto.getText(), Integer.parseInt(txtQuantidade.getText()), Double.parseDouble(lblPreco.getText()), subTotalArredondado);
+        Venda itemPedido = new Venda(Integer.parseInt(txtCodigo.getText()), lblNomeProduto.getText(), quantidade, Double.parseDouble(lblPreco.getText()), subTotalArredondado);
 
-        itensPedido.add(itemPedido);
+        
 
         if (quantidade < 1) {
             JOptionPane.showMessageDialog(null, "Aviso: A quantidade inicial não pode ser menor que 1.", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -773,6 +777,7 @@ public class TelaVenda extends javax.swing.JFrame {
         } else {
             totalVenda += itemPedido.getSubTotal();
             lblTotalVenda.setText(Double.toString(totalVenda));
+            itensPedido.add(itemPedido);
         }
 
         txtCodigo.setText("");
@@ -801,6 +806,7 @@ public class TelaVenda extends javax.swing.JFrame {
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         Validador adicionar = new Validador();
         adicionar.validarTexto(txtCodigo);
+        txtCodigo.setBackground(Color.BLACK);
         if (adicionar.hasErro()) {
             JOptionPane.showMessageDialog(rootPane, adicionar.getMensagensErro());
         }
@@ -817,11 +823,29 @@ public class TelaVenda extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnPesquisarActionPerformed
-
+    
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblVenda.getModel();
+        int rowCount = model.getRowCount();
+        int colCount = model.getColumnCount();
+        boolean retorno = false;
+        for (int row = 0; row < rowCount; row++) {
+            for (int col = 0; col < colCount; col++) {
+                Object value = model.getValueAt(row, col);
+                // Verificar se o valor na célula não é nulo e não é uma string vazia
+                if (value != null && !value.toString().trim().isEmpty()) {
+                    retorno = true; // Pelo menos uma célula está preenchida
+                }
+            }
+        }
+         
+        if(retorno == false){
+            JOptionPane.showMessageDialog(rootPane, "Você precisa adicionar um produto!");
+        }else{
+            
+         Venda pedido = new Venda();    
         String formaPagamento = "";
-        Venda pedido = new Venda();
-
+       
         try{
         if (rdbPix.isSelected()) {
             formaPagamento = "Pix";
@@ -860,6 +884,7 @@ public class TelaVenda extends javax.swing.JFrame {
         }
         }catch (Exception e){
             JOptionPane.showMessageDialog(rootPane, "Não foi possível finalizar a venda!", "Finalização venda", JOptionPane.WARNING_MESSAGE);
+        }
         }
     }//GEN-LAST:event_btnFinalizarActionPerformed
 

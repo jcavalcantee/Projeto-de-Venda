@@ -47,6 +47,16 @@ public class Produto {
         this.marca = marca;
         this.precoUnit = precoUnit;
     }
+    public Produto(String nome, String categoria, String tamanho, String unidade, int estoqueInicial, String marca, float precoUnit, int id) {
+        this.id = id;
+        this.nome = nome;
+        this.categoria = categoria;
+        this.tamanho = tamanho;
+        this.unidade = unidade;
+        this.estoqueInicial = estoqueInicial;
+        this.marca = marca;
+        this.precoUnit = precoUnit;
+    }
 
     public double getSubtotal() {
         return subtotal;

@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -125,7 +126,8 @@ public class StreetClothingDAO {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
         }  catch (SQLIntegrityConstraintViolationException e) {
-          e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Esse CPF já foi cadastrado!", "CPF CADASTRADO", JOptionPane.WARNING_MESSAGE);
+            Logger.getLogger("CPF Duplicado");
         } catch (SQLException ex) {
             Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -402,9 +404,62 @@ public class StreetClothingDAO {
 
         return busca;
     }
+     public static Produto buscarProduto (Produto busca, int idProduto) {
 
-    //Método Alterar
-    public static boolean alterarCliente(Cliente clienteAlterar) {
+        Connection conexao = null;
+        PreparedStatement comandoSQL = null;
+        ResultSet rs = null;
+
+        try {
+            //Passo 1 - Carregar o Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Passo 2 - Abrir a conexao com o mysql
+            conexao = DriverManager.getConnection(url, login, senha);
+
+            //Passo 3 - Preparar o comando SQL
+            comandoSQL = conexao.prepareStatement("SELECT * FROM Produtos WHERE id = ?");
+            comandoSQL.setInt(1, idProduto);
+
+            //Passo 4 - Executar o comando SQL
+            rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+
+                //Percorrer as linhas do result set
+                while (rs.next()) {
+                    busca.setId(rs.getInt("ID"));
+                    busca.setNome(rs.getString("NomeProduto"));
+                    busca.setCategoria(rs.getString("Categoria"));
+                    busca.setTamanho(rs.getString("Tamanho"));
+                    busca.setUnidade(rs.getString("UnidadeMedida"));
+                    busca.setEstoqueInicial(rs.getInt("Estoque"));
+                    busca.setPrecoUnit(rs.getFloat("PrecoUnitario"));
+                    busca.setMarca(rs.getString("Marca"));
+                }
+
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+
+        return busca;
+    }
+
+     public static boolean alterarCliente(Cliente clienteAlterar) {
 
         boolean retorno = false;
         Connection conexao = null;
@@ -497,6 +552,59 @@ public class StreetClothingDAO {
 
         return pesquisar;
     }
+    public static boolean alterarProduto(Produto produtoAlterar) {
+
+        boolean retorno = false;
+        Connection conexao = null;
+        PreparedStatement comandoSQL = null;
+
+        try {
+            //Passo 1 - Carregar o Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Passo 2 - Abrir a conexão com o banco
+            conexao = DriverManager.getConnection(url, login, senha);
+
+            //Passo 3 - Preparar o comando SQL a ser executado
+            comandoSQL = conexao.prepareStatement("UPDATE Produtos SET NomeProduto = ?, Categoria = ?, Tamanho = ?, UnidadeMedida = ?, Estoque = ?,"
+                    + " PrecoUnitario = ?, Marca = ? WHERE ID = ? ");
+
+            comandoSQL.setString(1, produtoAlterar.getNome());
+            comandoSQL.setString(2, produtoAlterar.getCategoria());
+            comandoSQL.setString(3, produtoAlterar.getTamanho());
+            comandoSQL.setString(4, produtoAlterar.getUnidade());
+            comandoSQL.setInt(5, produtoAlterar.getEstoqueInicial());
+            comandoSQL.setFloat(6, produtoAlterar.getPrecoUnit());
+            comandoSQL.setString(7, produtoAlterar.getMarca());
+            comandoSQL.setInt(8, produtoAlterar.getId());
+            //Finalmente... vamos executar o comando!
+            int linhasAfetadas = comandoSQL.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                retorno = true;
+
+            }
+
+        } catch (ClassNotFoundException ex) {
+            retorno = false;
+        } catch (SQLException ex) {
+            retorno = false;
+        } finally {
+
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+
+        return retorno;
+    }
+    //Método Alterar
+   
 
     public static Produto pesquisarProdutos(Produto pesquisar) {
         Connection conexao = null;
@@ -829,6 +937,62 @@ public class StreetClothingDAO {
         return retorno;
 
     }
+     public static ArrayList<Produto> buscarPorCodigoProd(String buscaProcessador){
+        ArrayList<Produto> lista = new ArrayList<>();
+        
+        Connection conexao = null;
+        PreparedStatement comandoSQL = null;
+        ResultSet rs = null;
+        
+        
+        try {
+            // Passo 1: Carregar o Drive
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            // Passo 2: Abri a conexão com o mySQL
+            conexao = DriverManager.getConnection(url, login, senha);
+            
+            //Prepara o comando SQL
+            comandoSQL= conexao.prepareStatement("SELECT  * FROM produtos WHERE ID = ?");
+            comandoSQL.setString(1, buscaProcessador);
+            //Executa Comando SQL
+            rs = comandoSQL.executeQuery();
+            
+            if(rs != null){
+                // Percorres as linhas do result set
+                while(rs.next()){
+                    Produto item = new Produto();
+                    item.setId(rs.getInt("ID"));
+                    item.setNome(rs.getString("NomeProduto"));
+                    item.setCategoria(rs.getString("Categoria"));
+                    item.setTamanho(rs.getString("Tamanho"));
+                     item.setEstoqueInicial(rs.getInt("Estoque"));
+                    item.setUnidade(rs.getString("UnidadeMedida"));
+                    item.setPrecoUnit(rs.getFloat("PrecoUnitario"));
+                    item.setMarca(rs.getString("Marca"));
+                    
+                    lista.add(item);
+                }
+            }
+            
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (conexao != null){
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+        return lista;
+    }
+
 
     public static boolean excluirVenda(int excPedido) {
         Connection conexao = null;
