@@ -1177,4 +1177,62 @@ public class StreetClothingDAO {
         }
         return list;
     }
+    
+    public static int verificarQuantidade(int idProduto) {
+        Connection conexao = null;
+        PreparedStatement comandoSQL = null;
+        ResultSet rs = null;
+
+        int estoque = -1; // Valor padrão se a consulta falhar
+
+        try {
+            // Passo 1 - Carregar o Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Passo 2 - Abrir a conexão com o MySQL
+            conexao = DriverManager.getConnection(url, login, senha);
+
+            // Passo 3 - Preparar o comando SQL
+            comandoSQL = conexao.prepareStatement("SELECT Estoque FROM Produtos WHERE ID = ?");
+            comandoSQL.setInt(1, idProduto);
+
+            // Passo 4 - Executar o comando SQL
+            rs = comandoSQL.executeQuery();
+
+            // Passo 5 - Processar o resultado
+            if (rs != null && rs.next()) {
+                estoque = rs.getInt("Estoque");
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            // Passo 6 - Fechar os recursos no bloco finally
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            if (comandoSQL != null) {
+                try {
+                    comandoSQL.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return estoque;
+    }
 }
