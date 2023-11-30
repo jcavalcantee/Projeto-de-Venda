@@ -103,7 +103,7 @@ public class StreetClothingDAO {
                     + "Cidade, UF) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             comandoSQL.setString(1, novoCliente.getCpf());
             comandoSQL.setString(2, novoCliente.getNome());
-            if(novoCliente.getDataNascimento() != null) {
+            if (novoCliente.getDataNascimento() != null) {
                 comandoSQL.setDate(3, new java.sql.Date(novoCliente.getDataNascimento().getTime()));
             } else {
                 comandoSQL.setDate(3, null);
@@ -125,7 +125,7 @@ public class StreetClothingDAO {
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }  catch (SQLIntegrityConstraintViolationException e) {
+        } catch (SQLIntegrityConstraintViolationException e) {
             JOptionPane.showMessageDialog(null, "Esse CPF já foi cadastrado!", "CPF CADASTRADO", JOptionPane.WARNING_MESSAGE);
             Logger.getLogger("CPF Duplicado");
         } catch (SQLException ex) {
@@ -176,7 +176,7 @@ public class StreetClothingDAO {
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }catch (SQLIntegrityConstraintViolationException e) {
+        } catch (SQLIntegrityConstraintViolationException e) {
             Logger.getLogger("Ocorreu uma exceção de violação de integridade: " + e.getMessage());
         } catch (SQLException ex) {
             Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -404,7 +404,8 @@ public class StreetClothingDAO {
 
         return busca;
     }
-     public static Produto buscarProduto (Produto busca, int idProduto) {
+
+    public static Produto buscarProduto(Produto busca, int idProduto) {
 
         Connection conexao = null;
         PreparedStatement comandoSQL = null;
@@ -459,7 +460,7 @@ public class StreetClothingDAO {
         return busca;
     }
 
-     public static boolean alterarCliente(Cliente clienteAlterar) {
+    public static boolean alterarCliente(Cliente clienteAlterar) {
 
         boolean retorno = false;
         Connection conexao = null;
@@ -478,7 +479,7 @@ public class StreetClothingDAO {
 
             comandoSQL.setString(1, clienteAlterar.getCpf());
             comandoSQL.setString(2, clienteAlterar.getNome());
-            if(clienteAlterar.getDataNascimento() != null) {
+            if (clienteAlterar.getDataNascimento() != null) {
                 comandoSQL.setDate(3, new java.sql.Date(clienteAlterar.getDataNascimento().getTime()));
             } else {
                 comandoSQL.setDate(3, null);
@@ -552,6 +553,7 @@ public class StreetClothingDAO {
 
         return pesquisar;
     }
+
     public static boolean alterarProduto(Produto produtoAlterar) {
 
         boolean retorno = false;
@@ -604,7 +606,6 @@ public class StreetClothingDAO {
         return retorno;
     }
     //Método Alterar
-   
 
     public static Produto pesquisarProdutos(Produto pesquisar) {
         Connection conexao = null;
@@ -937,13 +938,13 @@ public class StreetClothingDAO {
         return retorno;
 
     }
-     public static ArrayList<Produto> buscarPorCodigoProd(String buscaProcessador){
-        ArrayList<Produto> lista = new ArrayList<>();
+    
+    public static ArrayList<Cliente> buscarPorCPFCliente(String buscaCliente){
+        ArrayList<Cliente> lista = new ArrayList<>();
         
         Connection conexao = null;
         PreparedStatement comandoSQL = null;
         ResultSet rs = null;
-        
         
         try {
             // Passo 1: Carregar o Drive
@@ -953,24 +954,21 @@ public class StreetClothingDAO {
             conexao = DriverManager.getConnection(url, login, senha);
             
             //Prepara o comando SQL
-            comandoSQL= conexao.prepareStatement("SELECT  * FROM produtos WHERE ID = ?");
-            comandoSQL.setString(1, buscaProcessador);
+            comandoSQL= conexao.prepareStatement("SELECT * FROM Clientes WHERE CPF = ?");
+            comandoSQL.setString(1, buscaCliente);
             //Executa Comando SQL
             rs = comandoSQL.executeQuery();
             
-            if(rs != null){
+            if (rs != null){
                 // Percorres as linhas do result set
                 while(rs.next()){
-                    Produto item = new Produto();
-                    item.setId(rs.getInt("ID"));
-                    item.setNome(rs.getString("NomeProduto"));
-                    item.setCategoria(rs.getString("Categoria"));
-                    item.setTamanho(rs.getString("Tamanho"));
-                     item.setEstoqueInicial(rs.getInt("Estoque"));
-                    item.setUnidade(rs.getString("UnidadeMedida"));
-                    item.setPrecoUnit(rs.getFloat("PrecoUnitario"));
-                    item.setMarca(rs.getString("Marca"));
-                    
+                    Cliente item = new Cliente();
+                    item.setIdCliente(rs.getInt("ID"));
+                    item.setCpf(rs.getString("CPF"));
+                    item.setNome(rs.getString("Nome"));
+                    item.setEmail(rs.getString("E_mail"));
+                    item.setLogradouro(rs.getString("Logradouro"));
+         
                     lista.add(item);
                 }
             }
@@ -993,6 +991,59 @@ public class StreetClothingDAO {
         return lista;
     }
 
+    public static ArrayList<Produto> buscarPorCodigoProd(String buscaProd) {
+        ArrayList<Produto> lista = new ArrayList<>();
+
+        Connection conexao = null;
+        PreparedStatement comandoSQL = null;
+        ResultSet rs = null;
+
+        try {
+            // Passo 1: Carregar o Drive
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Passo 2: Abri a conexão com o mySQL
+            conexao = DriverManager.getConnection(url, login, senha);
+
+            //Prepara o comando SQL
+            comandoSQL = conexao.prepareStatement("SELECT * FROM produtos WHERE ID = ?");
+            comandoSQL.setString(1, buscaProd);
+            //Executa Comando SQL
+            rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                // Percorres as linhas do result set
+                while (rs.next()) {
+                    Produto item = new Produto();
+                    item.setId(rs.getInt("ID"));
+                    item.setNome(rs.getString("NomeProduto"));
+                    item.setCategoria(rs.getString("Categoria"));
+                    //item.setTamanho(rs.getString("Tamanho"));
+                    item.setEstoqueInicial(rs.getInt("Estoque"));
+                    //item.setUnidade(rs.getString("UnidadeMedida"));
+                    //item.setPrecoUnit(rs.getFloat("PrecoUnitario"));
+                    //item.setMarca(rs.getString("Marca"));
+
+                    lista.add(item);
+                }
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return lista;
+    }
 
     public static boolean excluirVenda(int excPedido) {
         Connection conexao = null;
@@ -1033,8 +1084,8 @@ public class StreetClothingDAO {
 
         return retorno;
     }
-    
-     public static ArrayList<Venda> gerarRelatorioSintetico(LocalDate dataInicial, LocalDate dataFinal) {
+
+    public static ArrayList<Venda> gerarRelatorioSintetico(LocalDate dataInicial, LocalDate dataFinal) {
         ArrayList<Venda> list = new ArrayList<>();
 
         Connection connection = null;
@@ -1047,47 +1098,47 @@ public class StreetClothingDAO {
             //abrir conexão com o mysql
             connection = DriverManager.getConnection(url, login, senha);
             //preparar comando sql
-             comandoSQL = connection.prepareStatement("SELECT " +
-                                                                                            "CLIENTES.ID AS idcliente, " +
-                                                                                            "CLIENTES.Nome AS nomecliente, " +
-                                                                                            "PEDIDO.ID_Pedido AS idpedido, " +
-                                                                                            "PEDIDO.DataPedido AS datapedido, " +
-                                                                                            "COALESCE(SUM(ROUND(ITEMPEDIDO.Quantidade * PRODUTOS.PrecoUnitario, 2)), 0) AS total_pedido " +
-                                                                                        "FROM " +
-                                                                                            "CLIENTES " +
-                                                                                        "INNER JOIN " +
-                                                                                            "PEDIDO ON CLIENTES.ID = PEDIDO.FK_CLIENTES_ID " +
-                                                                                        "INNER JOIN " +
-                                                                                            "ITEMPEDIDO ON PEDIDO.ID_Pedido = ITEMPEDIDO.FK_PEDIDO_ID_Pedido " +
-                                                                                        "INNER JOIN " +
-                                                                                            "PRODUTOS ON ITEMPEDIDO.FK_PRODUTOS_ID = PRODUTOS.ID " +
-                                                                                        "WHERE " +
-                                                                                            "PEDIDO.DataPedido BETWEEN ? AND ? " +
-                                                                                        "GROUP BY " +
-                                                                                            "CLIENTES.ID, " +
-                                                                                            "PEDIDO.ID_Pedido, " +
-                                                                                            "PEDIDO.DataPedido;");
+            comandoSQL = connection.prepareStatement("SELECT "
+                    + "CLIENTES.ID AS idcliente, "
+                    + "CLIENTES.Nome AS nomecliente, "
+                    + "PEDIDO.ID_Pedido AS idpedido, "
+                    + "PEDIDO.DataPedido AS datapedido, "
+                    + "COALESCE(SUM(ROUND(ITEMPEDIDO.Quantidade * PRODUTOS.PrecoUnitario, 2)), 0) AS total_pedido "
+                    + "FROM "
+                    + "CLIENTES "
+                    + "INNER JOIN "
+                    + "PEDIDO ON CLIENTES.ID = PEDIDO.FK_CLIENTES_ID "
+                    + "INNER JOIN "
+                    + "ITEMPEDIDO ON PEDIDO.ID_Pedido = ITEMPEDIDO.FK_PEDIDO_ID_Pedido "
+                    + "INNER JOIN "
+                    + "PRODUTOS ON ITEMPEDIDO.FK_PRODUTOS_ID = PRODUTOS.ID "
+                    + "WHERE "
+                    + "PEDIDO.DataPedido BETWEEN ? AND ? "
+                    + "GROUP BY "
+                    + "CLIENTES.ID, "
+                    + "PEDIDO.ID_Pedido, "
+                    + "PEDIDO.DataPedido;");
 
             //passa as datas selecionas em "LocalDate" para o formato "java.sql.Date" aceito pelo JDBC
             java.sql.Date sqlDataInicial = java.sql.Date.valueOf(dataInicial);
             java.sql.Date sqlDataFinal = java.sql.Date.valueOf(dataFinal);
-            
+
             comandoSQL.setDate(1, sqlDataInicial);
             comandoSQL.setDate(2, sqlDataFinal);
-            
+
             //executar comando sql
             rs = comandoSQL.executeQuery();
 
             if (rs != null) {
                 while (rs.next()) {
                     Venda relatorio = new Venda();
-                           
+
                     relatorio.setCodCliente(rs.getInt("idcliente"));
                     relatorio.setNomeCliente(rs.getString("nomecliente"));
                     relatorio.setIdPedido(rs.getInt("idpedido"));
                     relatorio.setDataVenda(rs.getString("datapedido"));
                     relatorio.setTotalVenda(rs.getDouble("total_pedido"));
-                   
+
                     list.add(relatorio);
                 }
             }
@@ -1106,7 +1157,7 @@ public class StreetClothingDAO {
         }
         return list;
     }
-    
+
     public static ArrayList<Venda> gerarRelatorioAnalitico(LocalDate dataInicial, LocalDate dataFinal) {
         ArrayList<Venda> list = new ArrayList<>();
 
@@ -1120,45 +1171,45 @@ public class StreetClothingDAO {
             //abrir conexão com o mysql
             connection = DriverManager.getConnection(url, login, senha);
             //preparar comando sql
-             comandoSQL = connection.prepareStatement("SELECT " +
-                                                                                               "PEDIDO.ID_Pedido AS idpedido, " +
-                                                                                               "CLIENTES.ID AS idcliente, " +
-                                                                                               "CLIENTES.Nome AS nomecliente, " +
-                                                                                               "PRODUTOS.NomeProduto AS nomeproduto, " +
-                                                                                               "MAX(ITEMPEDIDO.Quantidade) AS quantidade, " +
-                                                                                               "PRODUTOS.PrecoUnitario AS precounitario, " +
-//                                                                                               "ROUND(SUM(quantidade * precounitario), 2) AS subtotal, " +
-                                                                                               "PEDIDO.DataPedido AS datapedido, " +
-                                                                                               "PEDIDO.FormaPagamento AS formapagamento " +
-                                                                                            "FROM " +
-                                                                                                "CLIENTES " +
-                                                                                            "INNER JOIN " +
-                                                                                                "PEDIDO ON CLIENTES.ID = PEDIDO.FK_CLIENTES_ID " +
-                                                                                            "INNER JOIN " +
-                                                                                                "ITEMPEDIDO ON PEDIDO.ID_Pedido = ITEMPEDIDO.FK_PEDIDO_ID_Pedido " +
-                                                                                            "INNER JOIN " +
-                                                                                                "PRODUTOS ON ITEMPEDIDO.FK_PRODUTOS_ID = PRODUTOS.ID " +
-                                                                                            "WHERE " +
-                                                                                                "PEDIDO.DataPedido BETWEEN ? AND ? " +
-                                                                                            "GROUP BY " +
-                                                                                                "CLIENTES.ID, " +
-                                                                                                "PEDIDO.ID_Pedido, " +
-                                                                                                "PRODUTOS.ID;");
+            comandoSQL = connection.prepareStatement("SELECT "
+                    + "PEDIDO.ID_Pedido AS idpedido, "
+                    + "CLIENTES.ID AS idcliente, "
+                    + "CLIENTES.Nome AS nomecliente, "
+                    + "PRODUTOS.NomeProduto AS nomeproduto, "
+                    + "MAX(ITEMPEDIDO.Quantidade) AS quantidade, "
+                    + "PRODUTOS.PrecoUnitario AS precounitario, "
+                    + //                                                                                               "ROUND(SUM(quantidade * precounitario), 2) AS subtotal, " +
+                    "PEDIDO.DataPedido AS datapedido, "
+                    + "PEDIDO.FormaPagamento AS formapagamento "
+                    + "FROM "
+                    + "CLIENTES "
+                    + "INNER JOIN "
+                    + "PEDIDO ON CLIENTES.ID = PEDIDO.FK_CLIENTES_ID "
+                    + "INNER JOIN "
+                    + "ITEMPEDIDO ON PEDIDO.ID_Pedido = ITEMPEDIDO.FK_PEDIDO_ID_Pedido "
+                    + "INNER JOIN "
+                    + "PRODUTOS ON ITEMPEDIDO.FK_PRODUTOS_ID = PRODUTOS.ID "
+                    + "WHERE "
+                    + "PEDIDO.DataPedido BETWEEN ? AND ? "
+                    + "GROUP BY "
+                    + "CLIENTES.ID, "
+                    + "PEDIDO.ID_Pedido, "
+                    + "PRODUTOS.ID;");
 
             //passa as datas selecionas em "LocalDate" para o formato "java.sql.Date" aceito pelo JDBC
             java.sql.Date sqlDataInicial = java.sql.Date.valueOf(dataInicial);
             java.sql.Date sqlDataFinal = java.sql.Date.valueOf(dataFinal);
-            
+
             comandoSQL.setDate(1, sqlDataInicial);
             comandoSQL.setDate(2, sqlDataFinal);
-            
+
             //executar comando sql
             rs = comandoSQL.executeQuery();
 
             if (rs != null) {
                 while (rs.next()) {
                     Venda itemVenda = new Venda();
-                   
+
                     list.add(itemVenda);
                 }
             }

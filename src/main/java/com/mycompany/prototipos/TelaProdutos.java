@@ -381,10 +381,6 @@ public class TelaProdutos extends javax.swing.JFrame {
                 String.valueOf(it.getNome()),
                 String.valueOf(it.getCategoria()),
                 String.valueOf(it.getEstoqueInicial()),
-                String.valueOf(it.getTamanho()),
-                String.valueOf(it.getUnidade()),
-                String.valueOf(it.getMarca()),
-                String.valueOf(it.getPrecoUnit())
             });
         }
       }

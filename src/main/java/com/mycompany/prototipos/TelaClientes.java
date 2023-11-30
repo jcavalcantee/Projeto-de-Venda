@@ -58,7 +58,6 @@ public class TelaClientes extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         rdbCPF = new javax.swing.JRadioButton();
         rdbNome = new javax.swing.JRadioButton();
-        rdbUF = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         btnAtualizar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -215,15 +214,6 @@ public class TelaClientes extends javax.swing.JFrame {
             }
         });
 
-        buscaClientes.add(rdbUF);
-        rdbUF.setForeground(new java.awt.Color(0, 0, 0));
-        rdbUF.setText("Buscar por UF");
-        rdbUF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdbUFActionPerformed(evt);
-            }
-        });
-
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/logoBranco140x130.jpg"))); // NOI18N
 
         btnAtualizar.setBackground(new java.awt.Color(255, 255, 255));
@@ -279,25 +269,21 @@ public class TelaClientes extends javax.swing.JFrame {
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel3))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(rdbCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15)
-                                .addComponent(rdbNome)
-                                .addGap(18, 18, 18)
-                                .addComponent(rdbUF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(50, 50, 50))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBuscar)
-                        .addGap(101, 101, 101))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                                .addComponent(rdbNome))
+                            .addComponent(txtBusca))
+                        .addGap(26, 26, 26)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBuscar)
+                    .addComponent(jLabel3))
+                .addGap(42, 42, 42))
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -316,22 +302,23 @@ public class TelaClientes extends javax.swing.JFrame {
                             .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE))
+                        .addGap(0, 39, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnBuscar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdbCPF)
-                            .addComponent(rdbNome)
-                            .addComponent(rdbUF))
+                                .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rdbCPF)
+                                    .addComponent(rdbNome)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBuscar)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(36, 36, 36)))
+                        .addComponent(jLabel3)))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -419,19 +406,14 @@ public class TelaClientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtBuscaActionPerformed
 
-    private void rdbUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbUFActionPerformed
-        removerMascara();
-        txtBusca.setBackground(Color.white);
-    }//GEN-LAST:event_rdbUFActionPerformed
-
     private void txtBuscaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyTyped
         if (rdbNome.isSelected() && mascaraAplicada == true) {
             removerMascara();
         }
 
-        if (rdbUF.isSelected() && mascaraAplicada == true) {
-            removerMascara();
-        }
+//        if (rdbUF.isSelected() && mascaraAplicada == true) {
+//            removerMascara();
+//        }
 
         if ((rdbCPF.isSelected() && mascaraAplicada == false)) {
             Validador cpf = new Validador();
@@ -444,11 +426,11 @@ public class TelaClientes extends javax.swing.JFrame {
             nome.textoSemNumeros(txtBusca, evt);
         }
 
-        if (rdbUF.isSelected() && mascaraAplicada == false) {
-            Validador uf = new Validador();
-            uf.limiteTexto(txtBusca, evt, 2);
-            uf.textoSemNumeros(txtBusca, evt);
-        }
+//        if (rdbUF.isSelected() && mascaraAplicada == false) {
+//            Validador uf = new Validador();
+//            uf.limiteTexto(txtBusca, evt, 2);
+//            uf.textoSemNumeros(txtBusca, evt);
+//        }
         txtBusca.setBackground(Color.white);
     }//GEN-LAST:event_txtBuscaKeyTyped
 
@@ -481,9 +463,28 @@ public class TelaClientes extends javax.swing.JFrame {
         Validador cliente = new Validador();
         if (rdbCPF.isSelected()) {
             cliente.validarCPF(txtBusca);
+            if (txtBusca.getText().trim().equals("")) {
+                recarregarTabela();
+            } else {
+                // TODO: Chamar a DAO
+
+                String buscar = txtBusca.getText().replace(".", "").replace("-", "").trim();
+                ArrayList<Cliente> lista = StreetClothingDAO.buscarPorCPFCliente(buscar);
+
+                DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
+                modelo.setRowCount(0);
+
+                for (Cliente it : lista) {
+                    modelo.addRow(new String[]{
+                        String.valueOf(it.getIdCliente()),
+                        String.valueOf(it.getCpf()),
+                        String.valueOf(it.getNome()),
+                        String.valueOf(it.getEmail()),
+                        String.valueOf(it.getLogradouro()),
+                    });
+                }
+            }
         } else if (rdbNome.isSelected()) {
-            cliente.validarTexto(txtBusca);
-        } else if (rdbUF.isSelected()) {
             cliente.validarTexto(txtBusca);
         } else {
             JOptionPane.showMessageDialog(rootPane, "Selecione uma opção para realizar a busca!");
@@ -514,9 +515,9 @@ public class TelaClientes extends javax.swing.JFrame {
 
 
     private void txtBuscaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyReleased
-        if (rdbUF.isSelected()) {
-            txtBusca.setText(this.txtBusca.getText().toUpperCase());
-        }
+//        if (rdbUF.isSelected()) {
+//            txtBusca.setText(this.txtBusca.getText().toUpperCase());
+//        }
     }//GEN-LAST:event_txtBuscaKeyReleased
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
@@ -591,7 +592,6 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rdbCPF;
     private javax.swing.JRadioButton rdbNome;
-    private javax.swing.JRadioButton rdbUF;
     private javax.swing.JTable tblClientes;
     private javax.swing.JFormattedTextField txtBusca;
     // End of variables declaration//GEN-END:variables
