@@ -282,10 +282,12 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="3" rowCount="0">
-                    <Column editable="false" title="Cliente" type="java.lang.Integer"/>
-                    <Column editable="false" title="Data da compra" type="java.lang.String"/>
-                    <Column editable="false" title="Total" type="java.lang.Double"/>
+                  <Table columnCount="5" rowCount="0">
+                    <Column editable="false" title="ID Cliente" type="java.lang.Object"/>
+                    <Column editable="false" title="Nome Cliente" type="java.lang.Object"/>
+                    <Column editable="false" title="ID Pedido" type="java.lang.Object"/>
+                    <Column editable="false" title="Data da compra" type="java.lang.Object"/>
+                    <Column editable="false" title="Total" type="java.lang.Object"/>
                   </Table>
                 </Property>
               </Properties>
@@ -306,7 +308,7 @@
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="1" rowCount="1">
-                    <Column editable="false" title="Valor total das vendas" type="java.lang.Double"/>
+                    <Column editable="false" title="Valor total das vendas" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
