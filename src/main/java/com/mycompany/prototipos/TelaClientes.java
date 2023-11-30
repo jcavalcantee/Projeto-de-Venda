@@ -32,6 +32,7 @@ public class TelaClientes extends javax.swing.JFrame {
     public TelaClientes() {
         initComponents();
         recarregarTabela();
+        this.dispose();
     }
 
     /**
@@ -379,6 +380,7 @@ public class TelaClientes extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         TelaCadastro tela = new TelaCadastro();
         tela.setVisible(true);
+        recarregarTabela();
         this.dispose();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
@@ -535,6 +537,7 @@ public class TelaClientes extends javax.swing.JFrame {
             //Instâncio a tela de cadastro
             TelaCadastro tela = new TelaCadastro(buscaAlterar);
             tela.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
