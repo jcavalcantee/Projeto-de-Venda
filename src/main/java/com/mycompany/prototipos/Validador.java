@@ -50,7 +50,7 @@ public class Validador {
                 throw new IllegalArgumentException();
             }
 
-            txt.setBackground(Color.white);
+            txt.setBackground(Color.BLACK);
 
         } catch (IllegalArgumentException e) {
             this.mensagensErro.add("O campo " + txt.getName() + " não deve ficar em branco!");
@@ -177,7 +177,7 @@ public class Validador {
                 throw new IllegalArgumentException();
             }
 
-            txt.setBackground(Color.white);
+            txt.setBackground(Color.BLACK);
 
         } catch (IllegalArgumentException e) {
             this.mensagensErro.add("O campo " + txt.getName() + " não deve ficar em branco e deve conter 11 números!");
