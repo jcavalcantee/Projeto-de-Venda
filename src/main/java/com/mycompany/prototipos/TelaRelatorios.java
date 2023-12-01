@@ -60,10 +60,10 @@ public class TelaRelatorios extends javax.swing.JFrame {
         setTitle("Street Clothing - Relatórios");
         setBackground(new java.awt.Color(0, 0, 0));
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBackground(new java.awt.Color(17, 0, 54));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("     Street Clothing - Tela Relatórios");
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/logo_PI_marcad.jpg"))); // NOI18N
@@ -75,31 +75,33 @@ public class TelaRelatorios extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(251, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(124, 124, 124)
+                .addGap(134, 134, 134)
                 .addComponent(jLabel8)
-                .addGap(16, 16, 16))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel1)))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        pnlSintetico.setBackground(new java.awt.Color(39, 39, 39));
+        pnlSintetico.setBackground(new java.awt.Color(0, 0, 0));
 
-        jPanel2.setBackground(new java.awt.Color(39, 39, 39));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Periodo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 255)), "Periodo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        btnBuscarSintetico.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBuscarSintetico.setBackground(new java.awt.Color(51, 0, 153));
+        btnBuscarSintetico.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnBuscarSintetico.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscarSintetico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/search1.png"))); // NOI18N
         btnBuscarSintetico.setText("Buscar");
+        btnBuscarSintetico.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 0, 255), null));
         btnBuscarSintetico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarSinteticoActionPerformed(evt);
@@ -114,8 +116,14 @@ public class TelaRelatorios extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Data final");
 
+        dtcDtInicial.setBackground(new java.awt.Color(17, 0, 54));
+        dtcDtInicial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 255)));
+        dtcDtInicial.setForeground(new java.awt.Color(255, 255, 255));
         dtcDtInicial.setDateFormatString("dd/MM/yyyy");
 
+        dtcDtFinal.setBackground(new java.awt.Color(17, 0, 54));
+        dtcDtFinal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 255)));
+        dtcDtFinal.setForeground(new java.awt.Color(255, 255, 255));
         dtcDtFinal.setDateFormatString("dd/MM/yyyy");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -132,7 +140,7 @@ public class TelaRelatorios extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(dtcDtFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBuscarSintetico)
+                .addComponent(btnBuscarSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93))
         );
         jPanel2Layout.setVerticalGroup(
@@ -157,8 +165,9 @@ public class TelaRelatorios extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        tblRelatorioSintetico.setBackground(new java.awt.Color(68, 68, 68));
-        tblRelatorioSintetico.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tblRelatorioSintetico.setBackground(new java.awt.Color(17, 0, 54));
+        tblRelatorioSintetico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 255)));
+        tblRelatorioSintetico.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tblRelatorioSintetico.setForeground(new java.awt.Color(255, 255, 255));
         tblRelatorioSintetico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -176,12 +185,17 @@ public class TelaRelatorios extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblRelatorioSintetico.setGridColor(new java.awt.Color(17, 0, 54));
+        tblRelatorioSintetico.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(tblRelatorioSintetico);
 
-        tblTotalVendasSintetico.setForeground(new java.awt.Color(68, 68, 68));
+        tblTotalVendasSintetico.setBackground(new java.awt.Color(17, 0, 54));
+        tblTotalVendasSintetico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 255)));
+        tblTotalVendasSintetico.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tblTotalVendasSintetico.setForeground(new java.awt.Color(255, 255, 255));
         tblTotalVendasSintetico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null}
+
             },
             new String [] {
                 "Valor total das vendas"
@@ -195,11 +209,16 @@ public class TelaRelatorios extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblTotalVendasSintetico.setGridColor(new java.awt.Color(17, 0, 54));
+        tblTotalVendasSintetico.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane4.setViewportView(tblTotalVendasSintetico);
 
-        btnDetalharVenda.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDetalharVenda.setBackground(new java.awt.Color(51, 0, 153));
+        btnDetalharVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnDetalharVenda.setForeground(new java.awt.Color(255, 255, 255));
         btnDetalharVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Other Sources/analytics1.png"))); // NOI18N
         btnDetalharVenda.setText("Detalhar venda");
+        btnDetalharVenda.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 0, 255), null));
         btnDetalharVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDetalharVendaActionPerformed(evt);

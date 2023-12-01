@@ -140,7 +140,7 @@ public class TelaVenda extends javax.swing.JFrame {
         btnExcItem.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnExcItem.setForeground(new java.awt.Color(255, 255, 255));
         btnExcItem.setText("Excluir Item");
-        btnExcItem.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 0, 255), null));
+        btnExcItem.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 0, 255), null));
         btnExcItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExcItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,7 +152,7 @@ public class TelaVenda extends javax.swing.JFrame {
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("Cancelar");
-        btnCancelar.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 0, 255), null));
+        btnCancelar.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 0, 255), null));
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,7 +164,7 @@ public class TelaVenda extends javax.swing.JFrame {
         btnFinalizar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnFinalizar.setForeground(new java.awt.Color(255, 255, 255));
         btnFinalizar.setText("Finalizar");
-        btnFinalizar.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 0, 255), new java.awt.Color(0, 0, 0)));
+        btnFinalizar.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 0, 255), new java.awt.Color(0, 0, 0)));
         btnFinalizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,7 +228,7 @@ public class TelaVenda extends javax.swing.JFrame {
         btnPesquisar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
         btnPesquisar.setText("Pesquisar");
-        btnPesquisar.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 0, 255), null));
+        btnPesquisar.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 0, 255), null));
         btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,7 +240,7 @@ public class TelaVenda extends javax.swing.JFrame {
         btnAdicionarItem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnAdicionarItem.setForeground(new java.awt.Color(255, 255, 255));
         btnAdicionarItem.setText("Adicionar Item");
-        btnAdicionarItem.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 0, 255), null));
+        btnAdicionarItem.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 0, 255), null));
         btnAdicionarItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAdicionarItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -435,7 +435,7 @@ public class TelaVenda extends javax.swing.JFrame {
         );
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 255)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 255)));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -450,7 +450,7 @@ public class TelaVenda extends javax.swing.JFrame {
         btnPesquisarCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnPesquisarCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnPesquisarCliente.setText("Pesquisar");
-        btnPesquisarCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 0, 255), null));
+        btnPesquisarCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 0, 255), null));
         btnPesquisarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPesquisarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -467,7 +467,6 @@ public class TelaVenda extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtCPF.setName("CPF"); // NOI18N
-        txtCPF.setSelectedTextColor(new java.awt.Color(255, 255, 255));
         txtCPF.setSelectionColor(new java.awt.Color(51, 0, 153));
         txtCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
