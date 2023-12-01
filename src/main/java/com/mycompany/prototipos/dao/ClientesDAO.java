@@ -355,48 +355,47 @@ public class ClientesDAO {
 
         return pesquisar;
     }
-    
-    public static ArrayList<Cliente> buscarPorCPFCliente(String buscaCliente){
+
+    public static ArrayList<Cliente> buscarPorCPFCliente(String buscaCliente) {
         ArrayList<Cliente> lista = new ArrayList<>();
-        
+
         Connection conexao = null;
         PreparedStatement comandoSQL = null;
         ResultSet rs = null;
-        
+
         try {
             // Passo 1: Carregar o Drive
             Class.forName("com.mysql.cj.jdbc.Driver");
-            
+
             // Passo 2: Abri a conexão com o mySQL
             conexao = DriverManager.getConnection(url, login, senha);
-            
+
             //Prepara o comando SQL
-            comandoSQL= conexao.prepareStatement("SELECT * FROM Clientes WHERE CPF = ?");
+            comandoSQL = conexao.prepareStatement("SELECT * FROM Clientes WHERE CPF = ?");
             comandoSQL.setString(1, buscaCliente);
             //Executa Comando SQL
             rs = comandoSQL.executeQuery();
-            
-            if (rs != null){
+
+            if (rs != null) {
                 // Percorres as linhas do result set
-                while(rs.next()){
+                while (rs.next()) {
                     Cliente item = new Cliente();
                     item.setIdCliente(rs.getInt("ID"));
                     item.setCpf(rs.getString("CPF"));
                     item.setNome(rs.getString("Nome"));
                     item.setEmail(rs.getString("E_mail"));
                     item.setLogradouro(rs.getString("Logradouro"));
-         
+
                     lista.add(item);
                 }
             }
-            
-            
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if (conexao != null){
+            if (conexao != null) {
                 try {
                     conexao.close();
                 } catch (SQLException ex) {
@@ -404,7 +403,58 @@ public class ClientesDAO {
                 }
             }
         }
-        
+
+        return lista;
+    }
+
+    public static ArrayList<Cliente> buscarPorNomeCliente(String buscaCliente) {
+        ArrayList<Cliente> lista = new ArrayList<>();
+
+        Connection conexao = null;
+        PreparedStatement comandoSQL = null;
+        ResultSet rs = null;
+
+        try {
+            // Passo 1: Carregar o Drive
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Passo 2: Abri a conexão com o mySQL
+            conexao = DriverManager.getConnection(url, login, senha);
+
+            //Prepara o comando SQL
+            comandoSQL = conexao.prepareStatement("SELECT * FROM Clientes WHERE Nome = ?");
+            comandoSQL.setString(1, buscaCliente);
+            //Executa Comando SQL
+            rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                // Percorres as linhas do result set
+                while (rs.next()) {
+                    Cliente item = new Cliente();
+                    item.setIdCliente(rs.getInt("ID"));
+                    item.setCpf(rs.getString("CPF"));
+                    item.setNome(rs.getString("Nome"));
+                    item.setEmail(rs.getString("E_mail"));
+                    item.setLogradouro(rs.getString("Logradouro"));
+
+                    lista.add(item);
+                }
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StreetClothingDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
         return lista;
     }
 
