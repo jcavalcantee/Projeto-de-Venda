@@ -243,9 +243,9 @@ public class ProdutosDAO {
 
             if (rs != null) {
                 while (rs.next()) {
-                    //pesquisar.setNome(rs.getString("Nome"));
                     pesquisar.setNome(rs.getString("NomeProduto"));
                     pesquisar.setPrecoUnit(rs.getFloat("PrecoUnitario"));
+                    pesquisar.setEstoqueInicial(rs.getInt("Estoque"));
                 }
 
             }
