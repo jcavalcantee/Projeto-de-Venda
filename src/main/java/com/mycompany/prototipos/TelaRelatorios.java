@@ -5,6 +5,7 @@
 package com.mycompany.prototipos;
 
 import classes.Venda;
+import com.mycompany.prototipos.dao.RelatoriosDAO;
 import com.mycompany.prototipos.dao.StreetClothingDAO;
 import com.toedter.calendar.JDateChooser;
 import java.time.DateTimeException;
@@ -270,7 +271,7 @@ public class TelaRelatorios extends javax.swing.JFrame {
             } else if (numeroDias <= 31) {
                 
                      // chamar a DAO
-                    ArrayList<Venda> list = StreetClothingDAO.gerarRelatorioSintetico(dataInicial, dataFinal);
+                    ArrayList<Venda> list = RelatoriosDAO.gerarRelatorioSintetico(dataInicial, dataFinal);
 
                     DefaultTableModel relatorioSintetico = (DefaultTableModel) tblRelatorioSintetico.getModel();
                     relatorioSintetico.setRowCount(0);

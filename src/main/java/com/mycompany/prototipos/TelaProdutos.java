@@ -5,6 +5,7 @@
 package com.mycompany.prototipos;
 
 import classes.Produto;
+import com.mycompany.prototipos.dao.ProdutosDAO;
 import com.mycompany.prototipos.dao.StreetClothingDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -345,7 +346,7 @@ public class TelaProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscaProdKeyTyped
     public void recarregarTabelaProdutos() {
 
-        ArrayList<Produto> lista = StreetClothingDAO.listarProduto();
+        ArrayList<Produto> lista = ProdutosDAO.listarProduto();
 
         DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
         modelo.setRowCount(0);
@@ -370,7 +371,7 @@ public class TelaProdutos extends javax.swing.JFrame {
         // TODO: Chamar a DAO
         
         String buscar = txtBuscaProd.getText();
-        ArrayList<Produto> lista = StreetClothingDAO.buscarPorCodigoProd(buscar);
+        ArrayList<Produto> lista = ProdutosDAO.buscarPorCodigoProd(buscar);
 
         DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
         modelo.setRowCount(0);
@@ -381,15 +382,31 @@ public class TelaProdutos extends javax.swing.JFrame {
                 String.valueOf(it.getNome()),
                 String.valueOf(it.getCategoria()),
                 String.valueOf(it.getEstoqueInicial()),
-                String.valueOf(it.getTamanho()),
-                String.valueOf(it.getUnidade()),
-                String.valueOf(it.getMarca()),
-                String.valueOf(it.getPrecoUnit())
             });
         }
       }
         } else if (rdbNome.isSelected()) {
             produto.validarTexto(txtBuscaProd);
+             if(txtBuscaProd.getText().trim().equals("")){
+               recarregarTabelaProdutos();
+      } else{        
+        // TODO: Chamar a DAO
+        
+        String buscar = txtBuscaProd.getText();
+        ArrayList<Produto> lista = ProdutosDAO.buscarPorNomeProd(buscar);
+
+        DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
+        modelo.setRowCount(0);
+
+        for (Produto it : lista) {
+            modelo.addRow(new String[]{
+                String.valueOf(it.getId()),
+                String.valueOf(it.getNome()),
+                String.valueOf(it.getCategoria()),
+                String.valueOf(it.getEstoqueInicial()),
+            });
+        }
+      }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Selecione uma opção para realizar a busca!");
         }
@@ -413,7 +430,7 @@ public class TelaProdutos extends javax.swing.JFrame {
                 DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
                 int excProduto = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
 
-                boolean retorno = StreetClothingDAO.excluirProduto(excProduto);
+                boolean retorno = ProdutosDAO.excluirProduto(excProduto);
 
                 if (retorno) {
                     JOptionPane.showMessageDialog(rootPane, "Excluído com Sucesso!");
@@ -442,7 +459,7 @@ public class TelaProdutos extends javax.swing.JFrame {
             int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
 
             Produto buscaAlterar = new Produto();
-            buscaAlterar = StreetClothingDAO.buscarProduto(buscaAlterar, idSelecionado);
+            buscaAlterar = ProdutosDAO.buscarProduto(buscaAlterar, idSelecionado);
 
             //Instâncio a tela de cadastro
             TelaCadastro telaProd = new TelaCadastro(buscaAlterar);
