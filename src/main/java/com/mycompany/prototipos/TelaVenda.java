@@ -842,12 +842,6 @@ public class TelaVenda extends javax.swing.JFrame {
             }
         }
         
-         int quantidadeEstoque = StreetClothingDAO.verificarQuantidade(Integer.parseInt(txtCodigo.getText()));
-
-        if(Integer.parseInt(txtQuantidade.getText()) > quantidadeEstoque){
-            
-        }
-        
 //         Produto pesquisarEstoque = new Produto();
 //        pesquisarEstoque.setEstoqueInicial(Integer.parseInt(txtCodigo.getText()));
 //        Produto consulta = StreetClothingDAO.verifcaQuantidade(pesquisarEstoque);

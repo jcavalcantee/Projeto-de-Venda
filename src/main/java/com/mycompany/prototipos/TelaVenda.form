@@ -963,9 +963,6 @@
                   <Format format="###.###.###-##" subtype="-1" type="5"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="CPF" noResource="true"/>
-                <Property name="selectedTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
                 <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="0" red="33" type="rgb"/>
                 </Property>
