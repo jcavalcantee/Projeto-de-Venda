@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  * @author jeffe
  */
 public class RelatoriosDAO {
-    
+
     static String url = "jdbc:mysql://localhost:3306/StreetClothing";
     static String login = "StreetClothing";
     static String senha = "psc@2*";
@@ -98,7 +98,7 @@ public class RelatoriosDAO {
         return list;
     }
 
-    public static ArrayList<Venda> gerarRelatorioAnalitico(LocalDate dataInicial, LocalDate dataFinal) {
+    public static ArrayList<Venda> gerarRelatorioAnalitico(Venda dadosVenda) {
         ArrayList<Venda> list = new ArrayList<>();
 
         Connection connection = null;
@@ -112,14 +112,9 @@ public class RelatoriosDAO {
             connection = DriverManager.getConnection(url, login, senha);
             //preparar comando sql
             comandoSQL = connection.prepareStatement("SELECT "
-                    + "PEDIDO.ID_Pedido AS idpedido, "
-                    + "CLIENTES.ID AS idcliente, "
-                    + "CLIENTES.Nome AS nomecliente, "
                     + "PRODUTOS.NomeProduto AS nomeproduto, "
-                    + "MAX(ITEMPEDIDO.Quantidade) AS quantidade, "
+                    + "ITEMPEDIDO.Quantidade AS quantidade, "
                     + "PRODUTOS.PrecoUnitario AS precounitario, "
-                    + //                                                                                               "ROUND(SUM(quantidade * precounitario), 2) AS subtotal, " +
-                    "PEDIDO.DataPedido AS datapedido, "
                     + "PEDIDO.FormaPagamento AS formapagamento "
                     + "FROM "
                     + "CLIENTES "
@@ -130,27 +125,24 @@ public class RelatoriosDAO {
                     + "INNER JOIN "
                     + "PRODUTOS ON ITEMPEDIDO.FK_PRODUTOS_ID = PRODUTOS.ID "
                     + "WHERE "
-                    + "PEDIDO.DataPedido BETWEEN ? AND ? "
-                    + "GROUP BY "
-                    + "CLIENTES.ID, "
-                    + "PEDIDO.ID_Pedido, "
-                    + "PRODUTOS.ID;");
+                    + "CLIENTES.ID = ? AND PEDIDO.ID_Pedido = ?;");
 
-            //passa as datas selecionas em "LocalDate" para o formato "java.sql.Date" aceito pelo JDBC
-            java.sql.Date sqlDataInicial = java.sql.Date.valueOf(dataInicial);
-            java.sql.Date sqlDataFinal = java.sql.Date.valueOf(dataFinal);
-
-            comandoSQL.setDate(1, sqlDataInicial);
-            comandoSQL.setDate(2, sqlDataFinal);
+            comandoSQL.setInt(1, dadosVenda.getCodCliente());
+            comandoSQL.setInt(2, dadosVenda.getIdPedido());
 
             //executar comando sql
             rs = comandoSQL.executeQuery();
 
             if (rs != null) {
                 while (rs.next()) {
-                    Venda itemVenda = new Venda();
+                    Venda relatorioAnalitico = new Venda();
 
-                    list.add(itemVenda);
+                    relatorioAnalitico.setNomeProduto(rs.getString("nomeproduto"));
+                    relatorioAnalitico.setQtdeProduto(rs.getInt("quantidade"));
+                    relatorioAnalitico.setPrecoProduto(rs.getDouble("precounitario"));
+                    relatorioAnalitico.setPagamento(rs.getString("formapagamento"));
+                    
+                    list.add(relatorioAnalitico);
                 }
             }
         } catch (ClassNotFoundException ex) {

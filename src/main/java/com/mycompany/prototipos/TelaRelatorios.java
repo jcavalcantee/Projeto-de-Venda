@@ -14,6 +14,7 @@ import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -256,7 +257,7 @@ public class TelaRelatorios extends javax.swing.JFrame {
     private static LocalDate getSelectedDate(JDateChooser dateChooser) {
         return dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
-    
+
     private void btnBuscarSinteticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarSinteticoActionPerformed
         try {
 
@@ -269,43 +270,43 @@ public class TelaRelatorios extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane,
                         "O periodo inicial selecionado não pode ser maior que o periodo final.");
             } else if (numeroDias <= 31) {
-                
-                     // chamar a DAO
-                    ArrayList<Venda> list = RelatoriosDAO.gerarRelatorioSintetico(dataInicial, dataFinal);
 
-                    DefaultTableModel relatorioSintetico = (DefaultTableModel) tblRelatorioSintetico.getModel();
-                    relatorioSintetico.setRowCount(0);
+                // chamar a DAO
+                ArrayList<Venda> list = RelatoriosDAO.gerarRelatorioSintetico(dataInicial, dataFinal);
 
-                    //adicionar na tabela cada item da lista retornada 
-                    for (Venda relatorio : list) {
-                        relatorioSintetico.addRow(new String[]{
-                            String.valueOf(relatorio.getCodCliente()),
-                            String.valueOf(relatorio.getNomeCliente()),
-                            String.valueOf(relatorio.getIdPedido()),
-                            String.valueOf(relatorio.getDataVenda()),
-                            String.valueOf(relatorio.getTotalVenda())
-                        });
-                    }
-                    
-                    DefaultTableModel totalVendas = (DefaultTableModel) tblTotalVendasSintetico.getModel();
-                    totalVendas.setRowCount(0);
-                    
-                    double valorTotalVendas = 0;
-                    for (Venda relatorio : list) {
-                        valorTotalVendas += relatorio.getTotalVenda();
-                    }
-                    
-                    totalVendas.addRow(new String[]{
-                        String.valueOf(valorTotalVendas)
+                DefaultTableModel relatorioSintetico = (DefaultTableModel) tblRelatorioSintetico.getModel();
+                relatorioSintetico.setRowCount(0);
+
+                //adicionar na tabela cada item da lista retornada 
+                for (Venda relatorio : list) {
+                    relatorioSintetico.addRow(new String[]{
+                        String.valueOf(relatorio.getCodCliente()),
+                        String.valueOf(relatorio.getNomeCliente()),
+                        String.valueOf(relatorio.getIdPedido()),
+                        String.valueOf(relatorio.getDataVenda()),
+                        String.valueOf(relatorio.getTotalVenda())
                     });
-                
-                    JOptionPane.showMessageDialog(rootPane, "Relatório gerado!");
-                    
-                } else {
-                    JOptionPane.showMessageDialog(rootPane,
-                            "O periodo selecionado para o relatório não pode ter um intervalo maior que 31 dias");
                 }
-            
+
+                DefaultTableModel totalVendas = (DefaultTableModel) tblTotalVendasSintetico.getModel();
+                totalVendas.setRowCount(0);
+
+                double valorTotalVendas = 0;
+                for (Venda relatorio : list) {
+                    valorTotalVendas += relatorio.getTotalVenda();
+                }
+
+                totalVendas.addRow(new String[]{
+                    String.valueOf(valorTotalVendas)
+                });
+
+                JOptionPane.showMessageDialog(rootPane, "Relatório gerado!");
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane,
+                        "O periodo selecionado para o relatório não pode ter um intervalo maior que 31 dias");
+            }
+
         } catch (DateTimeException e) {
             JOptionPane.showMessageDialog(rootPane, "O dia selecionado não existe, escolha uma data válida.");
         }
@@ -313,8 +314,45 @@ public class TelaRelatorios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarSinteticoActionPerformed
 
     private void btnDetalharVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalharVendaActionPerformed
-        TelaRelatorioAnalitico relatorioAnalitico = new TelaRelatorioAnalitico();
-        relatorioAnalitico.setVisible(true);       
+
+        int linhaSelecionada = tblRelatorioSintetico.getSelectedRow();
+
+        DefaultTableModel relatorioSintetico = (DefaultTableModel) tblRelatorioSintetico.getModel();
+
+        int idCliente = Integer.parseInt(relatorioSintetico.getValueAt(linhaSelecionada, 0).toString());
+        String nomeCliente = relatorioSintetico.getValueAt(linhaSelecionada, 1).toString();
+        int idPedido = Integer.parseInt(relatorioSintetico.getValueAt(linhaSelecionada, 2).toString());
+        String dataCompra = relatorioSintetico.getValueAt(linhaSelecionada, 3).toString();
+        double totalVenda = Double.parseDouble(relatorioSintetico.getValueAt(linhaSelecionada, 4).toString());
+       
+        Venda dadosVenda = new Venda();
+        dadosVenda.setCodCliente(idCliente);
+        dadosVenda.setNomeCliente(nomeCliente);
+        dadosVenda.setIdPedido(idPedido);
+        dadosVenda.setDataVenda(dataCompra);
+        dadosVenda.setTotalVenda(totalVenda);
+
+        ArrayList<Venda> list = RelatoriosDAO.gerarRelatorioAnalitico(dadosVenda);
+        
+        Venda formaPagamento = list.get(0);
+        dadosVenda.setPagamento(formaPagamento.getPagamento());
+
+        TelaRelatorioAnalitico relatorioAnalitico = new TelaRelatorioAnalitico(dadosVenda);
+        relatorioAnalitico.setVisible(true);
+
+        JTable tableItens = relatorioAnalitico.getTblItens();
+        
+        DefaultTableModel listaItens = (DefaultTableModel) tableItens.getModel();
+        listaItens.setRowCount(0);
+
+        for (Venda relatorio : list) {
+            listaItens.addRow(new String[]{
+                String.valueOf(relatorio.getNomeProduto()),
+                String.valueOf(relatorio.getQtdeProduto()),
+                String.valueOf(relatorio.getPrecoProduto()),
+            });
+                     
+        }
     }//GEN-LAST:event_btnDetalharVendaActionPerformed
 
     /**
