@@ -758,7 +758,7 @@ public class TelaVenda extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, adicionar.getMensagensErro());
         }
         try {
-            if(!txtQuantidade.getText().equals("")){
+            if (!txtQuantidade.getText().equals("")) {
                 quantidade = Integer.parseInt(txtQuantidade.getText());
             }
         } catch (NumberFormatException e) {
@@ -767,12 +767,10 @@ public class TelaVenda extends javax.swing.JFrame {
             }
         }
 
-        double subTotal =quantidade * Double.parseDouble(lblPreco.getText());
+        double subTotal = quantidade * Double.parseDouble(lblPreco.getText());
         double subTotalArredondado = Math.round(subTotal * Math.pow(10, 2)) / Math.pow(10, 2);
 
         Venda itemPedido = new Venda(Integer.parseInt(txtCodigo.getText()), lblNomeProduto.getText(), quantidade, Double.parseDouble(lblPreco.getText()), subTotalArredondado);
-
-        
 
         if (quantidade < 1) {
             JOptionPane.showMessageDialog(null, "Aviso: A quantidade inicial não pode ser menor que 1.", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -826,7 +824,7 @@ public class TelaVenda extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnPesquisarActionPerformed
-    
+
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         DefaultTableModel model = (DefaultTableModel) tblVenda.getModel();
         int rowCount = model.getRowCount();
@@ -841,60 +839,59 @@ public class TelaVenda extends javax.swing.JFrame {
                 }
             }
         }
-        
+
 //         Produto pesquisarEstoque = new Produto();
 //        pesquisarEstoque.setEstoqueInicial(Integer.parseInt(txtCodigo.getText()));
 //        Produto consulta = StreetClothingDAO.verifcaQuantidade(pesquisarEstoque);
-         
-        if(retorno == false){
+        if (retorno == false) {
             JOptionPane.showMessageDialog(rootPane, "Você precisa adicionar um produto!");
-        }else{
-            
-         Venda pedido = new Venda();    
-        String formaPagamento = "";
-       
-        try{
-        if (rdbPix.isSelected()) {
-            formaPagamento = "Pix";
-        } else if (rdbCredito.isSelected()) {
-            formaPagamento = "Credito";
-        } else if (rdbDebito.isSelected()) {
-            formaPagamento = "Débito";
-        } else if (rdbDinheiro.isSelected()) {
-            formaPagamento = "Dinheiro";
-        }
-        pedido.setPagamento(formaPagamento);
-
-        if (pedido.getPagamento().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Escolha uma forma de pagamento!");
         } else {
-            //Pega o CPF do cliente
-            Cliente pesquisarCliente = new Cliente();
-            String cpf = txtCPF.getText().replace(".", "").replace("-", "");
-            pesquisarCliente.setCpf(cpf);
 
-            //Recebe o ID do cliente da DAO
-            pesquisarCliente = ClientesDAO.pesquisarClientes(pesquisarCliente);
+            Venda pedido = new Venda();
+            String formaPagamento = "";
 
-            //Grava o pedido no banco de dados
-            VendasDAO.cadastrarPedido(pedido, pesquisarCliente.getIdCliente());
-            Venda idPedido = new Venda();
-            idPedido = VendasDAO.listarPedido(idPedido);
+            try {
+                if (rdbPix.isSelected()) {
+                    formaPagamento = "Pix";
+                } else if (rdbCredito.isSelected()) {
+                    formaPagamento = "Credito";
+                } else if (rdbDebito.isSelected()) {
+                    formaPagamento = "Débito";
+                } else if (rdbDinheiro.isSelected()) {
+                    formaPagamento = "Dinheiro";
+                }
+                pedido.setPagamento(formaPagamento);
 
-            //Grava os itens do pedido no banco de dados
-            for (Venda item : itensPedido) {
-                Venda itemVenda = new Venda(idPedido.getIdPedido(), item.getCodProduto(), item.getQtdeProduto());
-                VendasDAO.cadastrarItemPedido(itemVenda);
+                if (pedido.getPagamento().equals("")) {
+                    JOptionPane.showMessageDialog(rootPane, "Escolha uma forma de pagamento!");
+                } else {
+                    //Pega o CPF do cliente
+                    Cliente pesquisarCliente = new Cliente();
+                    String cpf = txtCPF.getText().replace(".", "").replace("-", "");
+                    pesquisarCliente.setCpf(cpf);
+
+                    //Recebe o ID do cliente da DAO
+                    pesquisarCliente = ClientesDAO.pesquisarClientes(pesquisarCliente);
+
+                    //Grava o pedido no banco de dados
+                    VendasDAO.cadastrarPedido(pedido, pesquisarCliente.getIdCliente());
+                    Venda idPedido = new Venda();
+                    idPedido = VendasDAO.listarPedido(idPedido);
+
+                    //Grava os itens do pedido no banco de dados
+                    for (Venda item : itensPedido) {
+                        Venda itemVenda = new Venda(idPedido.getIdPedido(), item.getCodProduto(), item.getQtdeProduto());
+                        VendasDAO.cadastrarItemPedido(itemVenda);
+                    }
+                    JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso!");
+                    this.dispose();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Não foi possível finalizar a venda!", "Finalização venda", JOptionPane.WARNING_MESSAGE);
             }
-            JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso!");
-            this.dispose();
         }
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(rootPane, "Não foi possível finalizar a venda!", "Finalização venda", JOptionPane.WARNING_MESSAGE);
-        }
-        }
-        
-        
+
+
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnExcItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcItemActionPerformed
