@@ -37,7 +37,7 @@ public class Produto {
         this.estoqueInicial = estoqueInicial;
         this.marca = marca;
     }
-
+    
     public Produto(String nome, String categoria, String tamanho, String unidade, int estoqueInicial, String marca, float precoUnit) {
         this.nome = nome;
         this.categoria = categoria;

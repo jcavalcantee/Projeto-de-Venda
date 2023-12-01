@@ -841,6 +841,16 @@ public class TelaVenda extends javax.swing.JFrame {
                 }
             }
         }
+        
+         int quantidadeEstoque = StreetClothingDAO.verificarQuantidade(Integer.parseInt(txtCodigo.getText()));
+
+        if(Integer.parseInt(txtQuantidade.getText()) > quantidadeEstoque){
+            
+        }
+        
+//         Produto pesquisarEstoque = new Produto();
+//        pesquisarEstoque.setEstoqueInicial(Integer.parseInt(txtCodigo.getText()));
+//        Produto consulta = StreetClothingDAO.verifcaQuantidade(pesquisarEstoque);
          
         if(retorno == false){
             JOptionPane.showMessageDialog(rootPane, "Você precisa adicionar um produto!");
@@ -889,6 +899,8 @@ public class TelaVenda extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Não foi possível finalizar a venda!", "Finalização venda", JOptionPane.WARNING_MESSAGE);
         }
         }
+        
+        
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnExcItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcItemActionPerformed
