@@ -387,6 +387,26 @@ public class TelaProdutos extends javax.swing.JFrame {
       }
         } else if (rdbNome.isSelected()) {
             produto.validarTexto(txtBuscaProd);
+             if(txtBuscaProd.getText().trim().equals("")){
+               recarregarTabelaProdutos();
+      } else{        
+        // TODO: Chamar a DAO
+        
+        String buscar = txtBuscaProd.getText();
+        ArrayList<Produto> lista = ProdutosDAO.buscarPorNomeProd(buscar);
+
+        DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
+        modelo.setRowCount(0);
+
+        for (Produto it : lista) {
+            modelo.addRow(new String[]{
+                String.valueOf(it.getId()),
+                String.valueOf(it.getNome()),
+                String.valueOf(it.getCategoria()),
+                String.valueOf(it.getEstoqueInicial()),
+            });
+        }
+      }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Selecione uma opção para realizar a busca!");
         }
