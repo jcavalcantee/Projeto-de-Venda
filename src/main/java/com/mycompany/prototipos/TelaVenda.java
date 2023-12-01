@@ -23,8 +23,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaVenda extends javax.swing.JFrame {
 
-    double totalVenda = 0;
-    ArrayList<Venda> itensPedido = new ArrayList<>();
+    private double totalVenda = 0;
+    private ArrayList<Venda> itensPedido = new ArrayList<>();
+    private Produto pesquisarProduto = new Produto();
 
     /**
      * Creates new form TelaVenda
@@ -734,6 +735,7 @@ public class TelaVenda extends javax.swing.JFrame {
 
         if (retorno.getNome() == null) {
             JOptionPane.showMessageDialog(rootPane, "Cliente não cadastrado!");
+            lblNomeCliente.setText("");
         } else {
             lblNomeCliente.setText(retorno.getNome());
 
@@ -750,42 +752,62 @@ public class TelaVenda extends javax.swing.JFrame {
         Validador adicionar = new Validador();
 
         adicionar.validarTexto(txtCodigo);
-        //adicionar.validarTexto(txtProduto);
+        txtCodigo.setBackground(Color.BLACK);
         adicionar.validarTexto(txtQuantidade);
-        //adicionar.ValidarFloat(txtPreco);
+        txtQuantidade.setBackground(Color.BLACK);
 
         if (adicionar.hasErro()) {
             JOptionPane.showMessageDialog(rootPane, adicionar.getMensagensErro());
-        }
-        try {
-            if (!txtQuantidade.getText().equals("")) {
-                quantidade = Integer.parseInt(txtQuantidade.getText());
-            }
-        } catch (NumberFormatException e) {
-            if (!txtQuantidade.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(rootPane, "Digite um valor válido para o campo quantidade");
-            }
-        }
-
-        double subTotal = quantidade * Double.parseDouble(lblPreco.getText());
-        double subTotalArredondado = Math.round(subTotal * Math.pow(10, 2)) / Math.pow(10, 2);
-
-        Venda itemPedido = new Venda(Integer.parseInt(txtCodigo.getText()), lblNomeProduto.getText(), quantidade, Double.parseDouble(lblPreco.getText()), subTotalArredondado);
-
-        if (quantidade < 1) {
-            JOptionPane.showMessageDialog(null, "Aviso: A quantidade inicial não pode ser menor que 1.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            txtQuantidade.setBackground(Color.red);
         } else {
-            totalVenda += itemPedido.getSubTotal();
-            lblTotalVenda.setText(Double.toString(totalVenda));
-            itensPedido.add(itemPedido);
-        }
+            try {
+                if (!txtQuantidade.getText().equals("")) {
+                    quantidade = Integer.parseInt(txtQuantidade.getText());
+                }
+            } catch (NumberFormatException e) {
+                if (!txtQuantidade.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(rootPane, "Digite um valor válido para o campo quantidade");
+                }
+            }
+            int estoqueAtual = pesquisarProduto.getEstoqueInicial();
+            
+            int estoqueObjeto = 0;
+            boolean produtoExistenteVenda = false;
+            for (Venda item : itensPedido) {
+                if (item.getCodProduto() == pesquisarProduto.getId()){
+                    produtoExistenteVenda = true;
+                    estoqueObjeto = item.getEstoqueAtual();
+                }
+            }
+            
+            if (produtoExistenteVenda){
+                estoqueAtual = estoqueObjeto;
+            }
+            
+            if (estoqueAtual >= quantidade) {
+                double subTotal = quantidade * Double.parseDouble(lblPreco.getText());
+                double subTotalArredondado = Math.round(subTotal * Math.pow(10, 2)) / Math.pow(10, 2);
 
-        txtCodigo.setText("");
-        txtQuantidade.setText("");
-        lblNomeProduto.setText("");
-        lblPreco.setText("");
-        exibir();
+                estoqueAtual -= quantidade;
+                Venda itemPedido = new Venda(Integer.parseInt(txtCodigo.getText()), lblNomeProduto.getText(), quantidade, Double.parseDouble(lblPreco.getText()), subTotalArredondado, estoqueAtual);
+
+                if (quantidade < 1) {
+                    JOptionPane.showMessageDialog(null, "Aviso: A quantidade inicial não pode ser menor que 1.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                    txtQuantidade.setBackground(Color.red);
+                } else {
+                    totalVenda += itemPedido.getSubTotal();
+                    lblTotalVenda.setText(Double.toString(totalVenda));
+                    itensPedido.add(itemPedido);
+                }
+
+                txtCodigo.setText("");
+                txtQuantidade.setText("");
+                lblNomeProduto.setText("");
+                lblPreco.setText("");
+                exibir();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Quantidade escolhida é superior do que o estoque do produto!");
+            }
+        }
     }//GEN-LAST:event_btnAdicionarItemActionPerformed
 
     public void exibir() {
@@ -812,20 +834,21 @@ public class TelaVenda extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, adicionar.getMensagensErro());
         }
 
-        Produto pesquisarProduto = new Produto();
-        pesquisarProduto.setId(Integer.parseInt(txtCodigo.getText()));
-        Produto retorno = ProdutosDAO.pesquisarProdutos(pesquisarProduto);
-
-        if (retorno.getNome() == null) {
-            JOptionPane.showMessageDialog(rootPane, "Produto não cadastrado!");
-        } else {
-            lblNomeProduto.setText(retorno.getNome());
-            lblPreco.setText(String.valueOf(retorno.getPrecoUnit()));
+        if (!txtCodigo.getText().equals("")) {
+            pesquisarProduto.setId(Integer.parseInt(txtCodigo.getText()));
+            pesquisarProduto = ProdutosDAO.pesquisarProdutos(pesquisarProduto);
         }
 
+        if (pesquisarProduto.getNome() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Produto não cadastrado!");
+        } else {
+            lblNomeProduto.setText(pesquisarProduto.getNome());
+            lblPreco.setText(String.valueOf(pesquisarProduto.getPrecoUnit()));
+        }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
+        ArrayList<String> errosVendas = new ArrayList<>();
         DefaultTableModel model = (DefaultTableModel) tblVenda.getModel();
         int rowCount = model.getRowCount();
         int colCount = model.getColumnCount();
@@ -840,58 +863,67 @@ public class TelaVenda extends javax.swing.JFrame {
             }
         }
 
-//         Produto pesquisarEstoque = new Produto();
-//        pesquisarEstoque.setEstoqueInicial(Integer.parseInt(txtCodigo.getText()));
-//        Produto consulta = StreetClothingDAO.verifcaQuantidade(pesquisarEstoque);
-        if (retorno == false) {
-            JOptionPane.showMessageDialog(rootPane, "Você precisa adicionar um produto!");
-        } else {
+        Venda pedido = new Venda();
+        String formaPagamento = "";
 
-            Venda pedido = new Venda();
-            String formaPagamento = "";
-
-            try {
-                if (rdbPix.isSelected()) {
-                    formaPagamento = "Pix";
-                } else if (rdbCredito.isSelected()) {
-                    formaPagamento = "Credito";
-                } else if (rdbDebito.isSelected()) {
-                    formaPagamento = "Débito";
-                } else if (rdbDinheiro.isSelected()) {
-                    formaPagamento = "Dinheiro";
-                }
-                pedido.setPagamento(formaPagamento);
-
-                if (pedido.getPagamento().equals("")) {
-                    JOptionPane.showMessageDialog(rootPane, "Escolha uma forma de pagamento!");
-                } else {
-                    //Pega o CPF do cliente
-                    Cliente pesquisarCliente = new Cliente();
-                    String cpf = txtCPF.getText().replace(".", "").replace("-", "");
-                    pesquisarCliente.setCpf(cpf);
-
-                    //Recebe o ID do cliente da DAO
-                    pesquisarCliente = ClientesDAO.pesquisarClientes(pesquisarCliente);
-
-                    //Grava o pedido no banco de dados
-                    VendasDAO.cadastrarPedido(pedido, pesquisarCliente.getIdCliente());
-                    Venda idPedido = new Venda();
-                    idPedido = VendasDAO.listarPedido(idPedido);
-
-                    //Grava os itens do pedido no banco de dados
-                    for (Venda item : itensPedido) {
-                        Venda itemVenda = new Venda(idPedido.getIdPedido(), item.getCodProduto(), item.getQtdeProduto());
-                        VendasDAO.cadastrarItemPedido(itemVenda);
-                    }
-                    JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso!");
-                    this.dispose();
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(rootPane, "Não foi possível finalizar a venda!", "Finalização venda", JOptionPane.WARNING_MESSAGE);
+        try {
+            if (rdbPix.isSelected()) {
+                formaPagamento = "Pix";
+            } else if (rdbCredito.isSelected()) {
+                formaPagamento = "Credito";
+            } else if (rdbDebito.isSelected()) {
+                formaPagamento = "Débito";
+            } else if (rdbDinheiro.isSelected()) {
+                formaPagamento = "Dinheiro";
             }
+            pedido.setPagamento(formaPagamento);
+
+            if (retorno == false) {
+                errosVendas.add("Você precisa adicionar um produto!");
+            }
+            if (pedido.getPagamento().equals("")) {
+                errosVendas.add("Escolha uma forma de pagamento!");
+            }
+            if (lblNomeCliente.getText().equals("")) {
+                errosVendas.add("Insira um cliente válido para o pedido!");
+            }
+
+            if (retorno == true && !pedido.getPagamento().equals("") && !lblNomeCliente.getText().equals("")) {
+                //Pega o CPF do cliente
+                Cliente pesquisarCliente = new Cliente();
+                String cpf = txtCPF.getText().replace(".", "").replace("-", "");
+                pesquisarCliente.setCpf(cpf);
+
+                //Recebe o ID do cliente da DAO
+                pesquisarCliente = ClientesDAO.pesquisarClientes(pesquisarCliente);
+
+                //Grava o pedido no banco de dados
+                VendasDAO.cadastrarPedido(pedido, pesquisarCliente.getIdCliente());
+                Venda idPedido = new Venda();
+                idPedido = VendasDAO.listarPedido(idPedido);
+
+                //Grava os itens do pedido no banco de dados
+                for (Venda item : itensPedido) {
+                    Venda itemVenda = new Venda(idPedido.getIdPedido(), item.getCodProduto(), item.getQtdeProduto());
+                    VendasDAO.cadastrarItemPedido(itemVenda);
+                }
+                JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso!");
+                this.dispose();
+            } else {
+                String errosFormulario = "";
+
+                //Percorro o arrayList e concateno na variável errosFormulario
+                for (String msg : errosVendas) {
+                    errosFormulario += msg + "\n";
+                }
+
+                JOptionPane.showMessageDialog(rootPane, errosFormulario);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Não foi possível finalizar a venda!", "Finalização venda", JOptionPane.WARNING_MESSAGE);
+
         }
-
-
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnExcItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcItemActionPerformed
