@@ -415,7 +415,6 @@ public class TelaClientes extends javax.swing.JFrame {
 //        if (rdbUF.isSelected() && mascaraAplicada == true) {
 //            removerMascara();
 //        }
-
         if ((rdbCPF.isSelected() && mascaraAplicada == false)) {
             Validador cpf = new Validador();
             cpf.limiteTexto(txtBusca, evt, 11);
@@ -467,8 +466,6 @@ public class TelaClientes extends javax.swing.JFrame {
             if (txtBusca.getText().trim().equals("")) {
                 recarregarTabela();
             } else {
-                // TODO: Chamar a DAO
-
                 String buscar = txtBusca.getText().replace(".", "").replace("-", "").trim();
                 ArrayList<Cliente> lista = ClientesDAO.buscarPorCPFCliente(buscar);
 
@@ -481,12 +478,29 @@ public class TelaClientes extends javax.swing.JFrame {
                         String.valueOf(it.getCpf()),
                         String.valueOf(it.getNome()),
                         String.valueOf(it.getEmail()),
-                        String.valueOf(it.getLogradouro()),
-                    });
+                        String.valueOf(it.getLogradouro()),});
                 }
             }
         } else if (rdbNome.isSelected()) {
             cliente.validarTexto(txtBusca);
+            if (txtBusca.getText().trim().equals("")) {
+                recarregarTabela();
+            } else {
+                String buscar = txtBusca.getText().trim();
+                ArrayList<Cliente> lista = ClientesDAO.buscarPorNomeCliente(buscar);
+
+                DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
+                modelo.setRowCount(0);
+
+                for (Cliente it : lista) {
+                    modelo.addRow(new String[]{
+                        String.valueOf(it.getIdCliente()),
+                        String.valueOf(it.getCpf()),
+                        String.valueOf(it.getNome()),
+                        String.valueOf(it.getEmail()),
+                        String.valueOf(it.getLogradouro()),});
+                }
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Selecione uma opção para realizar a busca!");
         }

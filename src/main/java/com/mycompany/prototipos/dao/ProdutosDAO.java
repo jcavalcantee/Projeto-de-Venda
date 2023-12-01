@@ -312,7 +312,7 @@ public class ProdutosDAO {
 
         return lista;
     }
-    
+
     public static ArrayList<Produto> buscarPorCodigoProd(String buscaProd) {
         ArrayList<Produto> lista = new ArrayList<>();
 
@@ -366,6 +366,7 @@ public class ProdutosDAO {
 
         return lista;
     }
+
     public static ArrayList<Produto> buscarPorNomeProd(String buscaProd) {
         ArrayList<Produto> lista = new ArrayList<>();
 
@@ -394,7 +395,6 @@ public class ProdutosDAO {
                     item.setNome(rs.getString("NomeProduto"));
                     item.setCategoria(rs.getString("Categoria"));
                     item.setEstoqueInicial(rs.getInt("Estoque"));
-                    
 
                     lista.add(item);
                 }
