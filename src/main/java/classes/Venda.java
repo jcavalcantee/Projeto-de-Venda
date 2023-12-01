@@ -21,6 +21,7 @@ public class Venda {
     private double totalVenda;
     private String dataVenda;
     private String pagamento;
+    private int estoqueAtual;
     
     public Venda() {
         
@@ -35,12 +36,13 @@ public class Venda {
         this.totalVenda = totalVenda;
     }
 
-    public Venda(int codProduto, String nomeProduto, int qtdeProduto, double precoProduto, double subTotal) {
+    public Venda(int codProduto, String nomeProduto, int qtdeProduto, double precoProduto, double subTotal, int estoqueAtual) {
         this.codProduto = codProduto;
         this.nomeProduto = nomeProduto;
         this.qtdeProduto = qtdeProduto;
         this.precoProduto = precoProduto;
         this.subTotal = subTotal;
+        this.estoqueAtual = estoqueAtual;
     }
 
     public Venda(int idPedido, int codProduto, int qtdeProduto) {
@@ -49,6 +51,14 @@ public class Venda {
         this.qtdeProduto = qtdeProduto;
     }
 
+    public int getEstoqueAtual() {
+        return estoqueAtual;
+    }
+
+    public void setEstoqueAtual(int estoqueAtual) {
+        this.estoqueAtual = estoqueAtual;
+    }
+    
     public int getIdPedido() {
         return idPedido;
     }
