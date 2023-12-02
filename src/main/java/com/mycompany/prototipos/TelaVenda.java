@@ -930,7 +930,17 @@ public class TelaVenda extends javax.swing.JFrame {
         try {
             int linhaSelecionada = tblVenda.getSelectedRow();
             Venda itemExcluido = itensPedido.get(linhaSelecionada);
+            int quantidadeItemExcluido = itemExcluido.getQtdeProduto();
             totalVenda -= itemExcluido.getSubTotal();
+            int posicaoObjeto = 0;
+            int estoqueObjeto = 0;
+            for (Venda item : itensPedido){
+                if (item.getCodProduto() == itemExcluido.getCodProduto()){
+                    posicaoObjeto = itensPedido.indexOf(item);
+                    estoqueObjeto = item.getEstoqueAtual();
+                }
+            }
+            itensPedido.get(posicaoObjeto).setEstoqueAtual(estoqueObjeto + quantidadeItemExcluido);
             lblTotalVenda.setText(Double.toString(totalVenda));
             itensPedido.remove(linhaSelecionada);
             exibir();

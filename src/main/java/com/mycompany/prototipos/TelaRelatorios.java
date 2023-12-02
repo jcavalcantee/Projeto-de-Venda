@@ -316,8 +316,10 @@ public class TelaRelatorios extends javax.swing.JFrame {
                     valorTotalVendas += relatorio.getTotalVenda();
                 }
 
+                double totalVenda = valorTotalVendas;
+                double totalVendaArredondado = Math.round(totalVenda * Math.pow(10, 2)) / Math.pow(10, 2);
                 totalVendas.addRow(new String[]{
-                    String.valueOf(valorTotalVendas)
+                    String.valueOf(totalVendaArredondado)
                 });
 
                 JOptionPane.showMessageDialog(rootPane, "Relatório gerado!");
@@ -344,7 +346,7 @@ public class TelaRelatorios extends javax.swing.JFrame {
         int idPedido = Integer.parseInt(relatorioSintetico.getValueAt(linhaSelecionada, 2).toString());
         String dataCompra = relatorioSintetico.getValueAt(linhaSelecionada, 3).toString();
         double totalVenda = Double.parseDouble(relatorioSintetico.getValueAt(linhaSelecionada, 4).toString());
-       
+
         Venda dadosVenda = new Venda();
         dadosVenda.setCodCliente(idCliente);
         dadosVenda.setNomeCliente(nomeCliente);
@@ -353,7 +355,7 @@ public class TelaRelatorios extends javax.swing.JFrame {
         dadosVenda.setTotalVenda(totalVenda);
 
         ArrayList<Venda> list = RelatoriosDAO.gerarRelatorioAnalitico(dadosVenda);
-        
+
         Venda formaPagamento = list.get(0);
         dadosVenda.setPagamento(formaPagamento.getPagamento());
 
@@ -361,7 +363,7 @@ public class TelaRelatorios extends javax.swing.JFrame {
         relatorioAnalitico.setVisible(true);
 
         JTable tableItens = relatorioAnalitico.getTblItens();
-        
+
         DefaultTableModel listaItens = (DefaultTableModel) tableItens.getModel();
         listaItens.setRowCount(0);
 
@@ -369,9 +371,8 @@ public class TelaRelatorios extends javax.swing.JFrame {
             listaItens.addRow(new String[]{
                 String.valueOf(relatorio.getNomeProduto()),
                 String.valueOf(relatorio.getQtdeProduto()),
-                String.valueOf(relatorio.getPrecoProduto()),
-            });
-                     
+                String.valueOf(relatorio.getPrecoProduto()),});
+
         }
     }//GEN-LAST:event_btnDetalharVendaActionPerformed
 
@@ -428,4 +429,3 @@ public class TelaRelatorios extends javax.swing.JFrame {
     private javax.swing.JTable tblTotalVendasSintetico;
     // End of variables declaration//GEN-END:variables
 }
-
