@@ -9,7 +9,6 @@ import classes.Produto;
 import classes.Venda;
 import com.mycompany.prototipos.dao.ClientesDAO;
 import com.mycompany.prototipos.dao.ProdutosDAO;
-import com.mycompany.prototipos.dao.StreetClothingDAO;
 import com.mycompany.prototipos.dao.VendasDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -794,7 +793,8 @@ public class TelaVenda extends javax.swing.JFrame {
                     txtQuantidade.setBackground(Color.red);
                 } else {
                     totalVenda += itemPedido.getSubTotal();
-                    lblTotalVenda.setText(Double.toString(totalVenda));
+                    double totalVendaArredondado = Math.round(totalVenda * Math.pow(10, 2)) / Math.pow(10, 2);
+                    lblTotalVenda.setText(Double.toString(totalVendaArredondado));
                     itensPedido.add(itemPedido);
                 }
 
