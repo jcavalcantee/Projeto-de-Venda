@@ -1,39 +1,18 @@
-<<<<<<< HEAD
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaRelatorioAnalitico.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaCadastro.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\dao\StreetClothingDAO.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\classes\Produto.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\dao\VendasDAO.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\dao\ProdutosDAO.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaPrincipal.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\Prototipos.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaProdutos.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaClientes.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaVenda.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\Validador.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\dao\ClientesDAO.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaRelatorios.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaLogin.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\classes\Cliente.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\classes\Venda.java
-C:\Users\patri\OneDrive\Área de Trabalho\ProjetoLoja\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\dao\RelatoriosDAO.java
-=======
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\classes\Venda.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaPrincipal.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaClientes.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\dao\RelatoriosDAO.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaVenda.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaLogin.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaRelatorioAnalitico.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\Validador.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\classes\Cliente.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\dao\VendasDAO.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\dao\ProdutosDAO.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\classes\Produto.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaProdutos.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\dao\StreetClothingDAO.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaCadastro.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\dao\ClientesDAO.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\Prototipos.java
-C:\Users\pedro\OneDrive\Área de Trabalho\Projeto - PI\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaRelatorios.java
->>>>>>> 1e5db57fc538d47471b38206eb4824f59e297539
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\dao\VendasDAO.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaLogin.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaRelatorios.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaVenda.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\Validador.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\dao\StreetClothingDAO.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\dao\RelatoriosDAO.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\classes\Venda.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaPrincipal.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\classes\Produto.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\dao\ClientesDAO.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\dao\ProdutosDAO.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\Prototipos.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaClientes.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaProdutos.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaCadastro.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\com\mycompany\prototipos\TelaRelatorioAnalitico.java
+C:\Users\Lucas Gouveia\OneDrive - SENAC - SP\SENAC\2º SEMESTRE\PROJETO INTEGRADOR\P.I. Entrega2\Projeto-de-Venda\src\main\java\classes\Cliente.java
