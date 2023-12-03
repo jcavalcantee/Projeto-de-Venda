@@ -78,7 +78,9 @@ public class RelatoriosDAO {
                     relatorio.setNomeCliente(rs.getString("nomecliente"));
                     relatorio.setIdPedido(rs.getInt("idpedido"));
                     relatorio.setDataVenda(rs.getString("datapedido"));
-                    relatorio.setTotalVenda(rs.getDouble("total_pedido"));
+                    double totalVenda = rs.getDouble("total_pedido");
+                    double totalVendaArredondado = Math.round(totalVenda * Math.pow(10, 2)) / Math.pow(10, 2);
+                    relatorio.setTotalVenda(totalVendaArredondado);
 
                     list.add(relatorio);
                 }
@@ -142,7 +144,7 @@ public class RelatoriosDAO {
                     relatorioAnalitico.setQtdeProduto(rs.getInt("quantidade"));
                     relatorioAnalitico.setPrecoProduto(rs.getDouble("precounitario"));
                     relatorioAnalitico.setPagamento(rs.getString("formapagamento"));
-                    
+
                     list.add(relatorioAnalitico);
                 }
             }
@@ -162,4 +164,3 @@ public class RelatoriosDAO {
         return list;
     }
 }
-
